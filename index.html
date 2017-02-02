@@ -6,13 +6,9 @@
     <meta name="description" content="A WebVR dancing experience using A-Frame by Mozilla VR.">
     <script src="vendor/aframe.js"></script>
     <script src="vendor/motion-capture.js"></script>
-    <script src="src/components/aabb-collider.js"></script>
-    <script src="src/components/grab.js"></script>
-    <script src="src/components/ground.js"></script>
-    <script src="src/shaders/skyGradient.js"></script>
   </head>
   <body>
-    <a-scene fog="color: #bc483e; near: 0; far: 65;" avatar-recorder="autoPlay: true; localStorage: true">
+    <a-scene fog="color: #bc483e; near: 0; far: 65;" avatar-replayer="src: assets/recording.json; spectatorMode: true">
       <a-assets>
         <a-asset-item id="set-obj" src="assets/set.obj"></a-asset-item>
         <a-image id="set-mtl" src="assets/atlas.png"></a-image>
@@ -26,6 +22,7 @@
       <a-entity id="right" hand-controls="right" aabb-collider="objects: .cube;" grab></a-entity>
       <a-entity  light="intensity:0.5;type:point;color:#c52e72" position="-2.5 3 -2.7"></a-entity>
       <a-entity  light="intensity:0.1;type:point;color:#e0d612" position="2.5 3 2.7 "></a-entity>
+      <a-entity  light="intensity:1.5;type:point;color:#c52e72" position="0 2 0"></a-entity>
       <a-obj-model src="#set-obj" material="shader:flat;src:#set-mtl" ></a-obj-model>
       <a-obj-model src="#floor-obj" material="shader:flat;src:#floor-mtl"></a-obj-model>
     </a-scene>
