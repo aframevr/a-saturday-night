@@ -57,7 +57,8 @@
       <a-entity id="light4" light="color:#f130cf;intensity:0.66;type:point;" position="3 2.38 -0.61"></a-entity>
       <!-- room, floor and TV sets -->
       <a-obj-model id="room" src="#set-obj" material="shader:flat;src:#set-mtl" ></a-obj-model>
-      <a-obj-model id="floor" src="#floor-obj" material="shader:flat;src:#floor-mtl"></a-obj-model>
+      <a-obj-model id="floor" src="#floor-obj" material="shader:flat;src:#floor-mtl" discofloor="bpm:1000"></a-obj-model>
+      <a-image src="#flooroff-mtl" material="repeat: 8 8" rotation="-90 0 0" scale="1.99 1.99 1" position="0 -0.01 0"></a-image>
       <a-obj-model id="tv1" src="#tv-obj" material="shader:flat;src:#tv-mtl" position="-1.66 2.15 2.18" rotation="0 -33.3 0"></a-obj-model>
       <a-obj-model id="tv2" src="#tv-obj" material="shader:flat;src:#tv-mtl" position="0.87 2.15 -2.44" rotation="0 151.8 0"></a-obj-model>
 
