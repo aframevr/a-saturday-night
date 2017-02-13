@@ -9,7 +9,8 @@
     <script src="vendor/motion-capture.js"></script>
   </head>
   <body>
-    <a-scene game-state avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2">
+    <a-scene game-state
+             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2; localStorage: false; saveFile: false">
       <a-assets>
         <a-asset-item id="set-obj" src="assets/set.obj"></a-asset-item>
         <a-image id="set-mtl" src="assets/set.png"></a-image>
@@ -46,6 +47,11 @@
 
 
       </a-assets>
+      <a-entity id="avatarHead"
+                camera="userHeight: 1.6"
+                wasd-controls look-controls
+                obj-model="obj: #char2-head-obj; mtl: #char2-head-mtl"
+                position="0 0 2"></a-entity>
       <!-- Hands -->
       <a-entity id="left" hand-controls="left" aabb-collider="objects: .cube;" grab></a-entity>
       <a-entity id="right" hand-controls="right" aabb-collider="objects: .cube;" grab></a-entity>
@@ -61,9 +67,8 @@
       <a-image src="#flooroff-mtl" material="repeat: 8 8" rotation="-90 0 0" scale="1.99 1.99 1" position="0 -0.01 0"></a-image>
       <a-obj-model id="tv1" src="#tv-obj" material="shader:flat;src:#tv-mtl" position="-1.66 2.15 2.18" rotation="0 -33.3 0"></a-obj-model>
       <a-obj-model id="tv2" src="#tv-obj" material="shader:flat;src:#tv-mtl" position="0.87 2.15 -2.44" rotation="0 151.8 0"></a-obj-model>
-
       <!-- Avatar selection -->
-      <a-entity id="avatarSelection" scale="0.75 0.75 0.75" position="0 0.6 0" visible="false" >
+      <a-entity id="avatarSelection" scale="0.75 0.75 0.75" position="0 0.6 0" visible="false">
         <a-obj-model class="avatar" src="#char1-head-obj" mtl="#char1-head-mtl" position="-1.5 1 0"></a-obj-model>
         <!-- <a-obj-model src="#char1-hand-left-obj" mtl="#char1-hand-left-mtl" position="-2.5 1 0"></a-obj-model>
         <a-obj-model src="#char1-hand-right-obj" mtl="#char1-hand-right-mtl" position="-1.5 1 0"></a-obj-model> -->

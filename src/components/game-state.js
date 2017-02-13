@@ -6,9 +6,9 @@
 AFRAME.registerComponent('game-state', {
   schema: {
     selectedAvatar: {type: 'selector'},
-    countdownTime: {default: 5},
-    dancingTime: {default: 10},
-    state: {default: 'avatar-selection', oneOf: ['countdown', 'dancing', 'collect-url']}
+    countdownTime: {default: 3},
+    dancingTime: {default: 3},
+    state: {default: 'avatar-selection', oneOf: ['avatar-selection', 'countdown', 'dancing', 'collect-url']}
   },
 
   update: function (oldData) {
@@ -20,7 +20,7 @@ AFRAME.registerComponent('game-state', {
       return;
     }
     switch (data.state) {
-      case 'avatarSelection': {
+      case 'avatar-selection': {
         if (!data.selectedAvatar) { return; }
         el.setAttribute('game-state', 'state', 'countdown');
         break;
@@ -32,10 +32,10 @@ AFRAME.registerComponent('game-state', {
       }
       case 'dancing': {
         if (data.dancingTime > 0) { return; }
-        el.setAttribute('game-state', 'state', 'collectUrl');
+        el.setAttribute('game-state', 'state', 'collect-url');
         break;
       }
-      case 'collectUrl': {
+      case 'collect-url': {
         break;
       }
       default: {

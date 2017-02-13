@@ -441,6 +441,7 @@
 	    spectatorPlay: {default: false},
 	    spectatorPosition: {default: '0 1.6 0', type: 'vec3'},
 	    localStorage: {default: true},
+	    saveFile: {default: true},
 	    loop: {default: true},
 	  },
 
@@ -454,13 +455,13 @@
 	    // Grab camera.
 	    if (el.camera && el.camera.el) {
 	      prepareCamera(el.camera.el);
-	    } else {
-	      el.addEventListener('camera-set-active', function (evt) {
-	        prepareCamera(evt.detail.cameraEl);
-	      });
 	    }
+	    el.addEventListener('camera-set-active', function (evt) {
+	      prepareCamera(evt.detail.cameraEl);
+	    });
 
 	    function prepareCamera (cameraEl) {
+	      if (self.cameraEl) { self.cameraEl.removeAttribute('motion-capture-recorder'); }
 	      self.cameraEl = cameraEl;
 	      self.cameraEl.setAttribute('motion-capture-recorder', {
 	        autoRecord: false,
@@ -625,7 +626,8 @@
 	    if (this.data.localStorage) {
 	      log('Recording saved to localStorage.');
 	      this.saveToLocalStorage(data);
-	    } else {
+	    }
+	    if (this.data.saveFile) {
 	      log('Recording saved to file.');
 	      this.saveRecordingFile(data);
 	    }
@@ -808,9 +810,7 @@
 
 	  configureHeadGeometry: function() {
 	    var currentCameraEl = this.currentCameraEl;
-	    // Remove previous visual appearance.
-	    currentCameraEl.removeAttribute('geometry');
-	    currentCameraEl.removeAttribute('material');
+	    if (currentCameraEl.getObject3D('mesh')) { return; }
 	    if (!this.data.spectatorMode) { return; }
 	    currentCameraEl.setAttribute('geometry', {primitive: 'box', height: 0.3, width: 0.3, depth: 0.2});
 	    currentCameraEl.setAttribute('material', {color: 'pink'});
