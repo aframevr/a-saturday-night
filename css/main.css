@@ -1,0 +1,69 @@
+#asaturday-ui {
+  font-family: Helvetica, Arial, sans-serif;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  line-height: 1.2em;
+  background-color: rgba(10,10,10,0.8);
+  border-radius: 6px;
+  padding: 1.7em 2em;
+}
+
+#asaturday-ui .help {
+  width: 600px;
+  color: #ccc;
+  font-size: 14px;
+  text-shadow: 0px 2px 1px #000;
+}
+
+#asaturday-ui .help h1 {
+  font-size: 22px;
+  font-weight: 100;
+  color: #e42b5a;
+  margin-top: 0;
+}
+
+#asaturday-ui .button {
+  background-color: #ef2d5e;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  width: 130px;
+  text-align: center;
+  max-width: 115px;
+  padding: 6px;
+}
+
+#asaturday-ui .button:hover {
+  background-color: #f43b6a;
+}
+
+#asaturday-ui .form {
+  display: flex;
+  align-content: center;
+}
+
+#asaturday-ui .share input {
+  width: 600px;
+  color: #333;
+  text-align: center;
+}
+
+#asaturday-ui .hide {
+  display: none !important;
+}
+
+#asaturday-ui .progress{
+  font-size: 22px;
+  font-weight: 100;
+  color: #e42b5a;
+  border-bottom: 1px solid #e42b5a;
+  text-shadow: 0px 2px 1px #000;
+}
+
+#asaturday-ui .bar{
+  width: 0%;
+  height: 3px;
+  margin-top: 13px;
+  background-color: #e42b5a;
+}

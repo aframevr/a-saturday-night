@@ -25,9 +25,10 @@ AFRAME.registerComponent('dancing', {
       window.clearInterval(this.interval);
       this.el.components['avatar-recorder'].stopRecording();
     }
+    this.el.setAttribute('game-state', 'dancingTime', this.dancingTime);
   },
 
   remove: function () {
     this.textElement.setAttribute('visible', false);
-  }  
+  }
 });
