@@ -1,27 +1,29 @@
 AFRAME.registerComponent('countdown', {
   init: function () {
-    var countdownEl = this.countdownEl = document.createElement('div');
     this.countdownTime = this.el.getAttribute('game-state').countdownTime;
     this.countdown = this.countdown.bind(this);
-    countdownEl.style.position = 'absolute';
-    countdownEl.style.top = '50%';
-    countdownEl.style.left = '50%';
-    countdownEl.style.fontSize = '120px';
-    countdownEl.style.fontWeight = 'bold';
-    countdownEl.style.color = 'white';
-    countdownEl.innerHTML = this.countdownTime;
     this.interval = window.setInterval(this.countdown, 1000);
-    document.body.appendChild(countdownEl);
-  },
+    var textElement = this.textElement = document.getElementById('centeredText');
+    textElement.setAttribute('visible', true);
+    textElement.setAttribute('text', {value: this.countdownTime.toString()});
 
-  remove: function () {
-    document.body.removeChild(this.countdownEl);
+    this.opacity = 1;
   },
 
   countdown: function () {
     this.countdownTime--;
-    this.countdownEl.innerHTML = this.countdownTime;
+    this.opacity = 1;
+    this.textElement.setAttribute('text', {value: this.countdownTime.toString()});
     this.el.setAttribute('game-state', 'countdownTime', this.countdownTime);
     if (this.countdownTime === 0) { window.clearInterval(this.interval); }
+  },
+
+  tick: function (time, delta) {
+    this.opacity -= delta*0.001;
+    this.textElement.setAttribute('text', {opacity: this.opacity});
+  },
+
+  remove: function () {
+    this.textElement.setAttribute('visible', false);
   }
 });

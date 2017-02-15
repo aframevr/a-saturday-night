@@ -1,18 +1,18 @@
 AFRAME.registerComponent('collect-url', {
   init: function () {
-    var urlEl = this.urlEl = document.createElement('div');
-    urlEl.style.position = 'absolute';
-    urlEl.style.width = '800px';
-    urlEl.style.top = '50%';
-    urlEl.style.left = 'calc(50% - 400px)';
-    urlEl.style.fontSize = '80px';
-    urlEl.style.fontWeight = 'bold';
-    urlEl.style.color = 'white';
-    urlEl.innerHTML = 'Copy your dance URL';
-    document.body.appendChild(urlEl);
+    var textElement = this.textElement = document.getElementById('centeredText');
+    textElement.setAttribute('visible', true);
+    textElement.setAttribute('text', {value: 'Copy your dance URL', width: 3});
+    var object = { opacity: 0.0 };
+    new AFRAME.TWEEN.Tween(object)
+      .to({opacity: 1.0}, 1000)
+      .onUpdate(function () {
+        textElement.setAttribute('text', {opacity: object.opacity});
+      })
+      .start();
   },
 
   remove: function () {
-    document.body.removeChild(this.urlEl);
+    this.textElement.setAttribute('visible', false);
   }
 });
