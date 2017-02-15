@@ -1,7 +1,7 @@
-# Blender v2.77 (sub 0) OBJ File: '_char4.blend'
+# Blender v2.78 (sub 0) OBJ File: '_char4.blend'
 # www.blender.org
 mtllib char4-hand.mtl
-o Plane.003
+o hand_Plane.004
 v -0.123001 0.056766 -0.001501
 v -0.061092 0.043282 0.009251
 v 0.030021 0.031015 0.016904
