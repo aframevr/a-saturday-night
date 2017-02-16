@@ -1,5 +1,6 @@
 AFRAME.registerComponent('collect-url', {
   init: function () {
+    document.getElementById('floor').setAttribute('discofloor', {pattern: 'idle'});
     var textElement = this.textElement = document.getElementById('centeredText');
     textElement.setAttribute('visible', true);
     textElement.setAttribute('text', {value: 'Copy your dance URL', width: 3});
