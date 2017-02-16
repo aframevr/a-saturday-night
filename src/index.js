@@ -1,6 +1,3 @@
-// Shaders
-require('./shaders/skyGradient.js')
-
 require('./ui2d.js');
 
 // Components.
