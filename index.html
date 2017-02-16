@@ -20,22 +20,23 @@
              avatar-replayer="src: assets/dance.json; spectatorMode: true">
       <a-assets>
         <a-asset-item id="set-obj" src="assets/set.obj"></a-asset-item>
-        <a-image id="set-mtl" src="assets/set.png"></a-image>
+        <a-image id="set-img" src="assets/set.png"></a-image>
         <a-asset-item id="floor-obj" src="assets/floor.obj"></a-asset-item>
-        <a-image id="floor-mtl" src="assets/flooron.png"></a-image>
+        <a-image id="floor-img" src="assets/flooron.png"></a-image>
         <a-asset-item id="flooroff-mtl" src="assets/flooroff.png"></a-asset-item>
         <a-asset-item id="spotlight-obj" src="assets/spotlight.obj"></a-asset-item>
-        <a-image id="spotlight-mtl" src="assets/grad.png"></a-image>
+        <a-image id="spotlight-img" src="assets/spotlight.png"></a-image>
+        <a-image id="star-img" src="assets/star.png"></a-image>
 
-        <a-image id="tv-mtl" src="assets/tv.png"></a-image>
+        <a-image id="tv-img" src="assets/tv.png"></a-image>
         <a-asset-item id="tv-obj" src="assets/tv.obj"></a-asset-item>
 
         <a-asset-item id="char1-head-obj" src="assets/char1-head.obj"></a-asset-item>
         <a-asset-item id="char1-hand-right-obj" src="assets/char1-hand-right.obj"></a-asset-item>
         <a-asset-item id="char1-hand-left-obj" src="assets/char1-hand-left.obj"></a-asset-item>
-        <a-image id="char1-head-mtl" src="assets/char1-head.mtl"></a-image>
-        <a-image id="char1-hand-left-mtl" src="assets/char1-hand-left.mtl"></a-image>
-        <a-image id="char1-hand-right-mtl" src="assets/char1-hand-right.mtl"></a-image>
+        <a-asset-item id="char1-head-mtl" src="assets/char1-head.mtl"></a-asset-item>
+        <a-asset-item id="char1-hand-left-mtl" src="assets/char1-hand-left.mtl"></a-asset-item>
+        <a-asset-item id="char1-hand-right-mtl" src="assets/char1-hand-right.mtl"></a-asset-item>
 
         <a-asset-item id="char2-head-obj" src="assets/char2-head.obj"></a-asset-item>
         <a-asset-item id="char2-hand-obj" src="assets/char2-hand.obj"></a-asset-item>
@@ -71,12 +72,29 @@
       <a-entity id="light2" light="color:#205eff;type:point;" position="2.9 2.29 2.7"></a-entity>
       <a-entity id="light3" light="color:#a431f0;type:point;" position="-2.5 2.38 -2.5"></a-entity>
       <a-entity id="light4" light="color:#f130cf;intensity:0.66;type:point;" position="3 2.38 -0.61"></a-entity>
+      <!-- spotlights -->
+      <a-obj-model id="spot1" src="#spotlight-obj" spotlight="color:#ab7121" position="-3.14 2.38 2.7" rotation="44 -38 0" scale="0 0 0">
+        <a-animation attribute="scale" begin="dancing" to="1 1 1" dur="1000" easing="ease-out-elastic"></a-animation>
+      </a-obj-model>
+      <a-obj-model id="spot2" src="#spotlight-obj" spotlight="color:#205eff" position="2.7 2.29 2.7" rotation="50 53 0" scale="0 0 0">
+        <a-animation attribute="scale" begin="dancing" to="1 1 1" dur="1000" easing="ease-out-elastic"></a-animation>
+      </a-obj-model>
+      <a-obj-model id="spot3" src="#spotlight-obj" spotlight="color:#a431f0" position="-3 2.38 -2.5" rotation="-52 60 -13" scale="0 0 0">
+        <a-animation attribute="scale" begin="dancing" to="1 1 1" dur="1000" easing="ease-out-elastic"></a-animation>
+      </a-obj-model>
+      <a-obj-model id="spot4" src="#spotlight-obj" spotlight="color:#f130cf" position="3 2.38 -1.19" rotation="-50 -60 0" scale="0 0 0">
+        <a-animation attribute="scale" begin="dancing" to="1 1 1" dur="1000" easing="ease-out-elastic"></a-animation>
+      </a-obj-model>
+
+
       <!-- room, floor and TV sets -->
-      <a-obj-model id="room" src="#set-obj" material="shader:flat;src:#set-mtl" ></a-obj-model>
-      <a-obj-model id="floor" src="#floor-obj" material="shader:flat;src:#floor-mtl" discofloor="bpm:1000" position="0 -0.009 0" rotation="0 -90 0"></a-obj-model>
+      <a-obj-model id="room" src="#set-obj" material="shader:flat;src:#set-img;color:#222" >
+        <a-animation attribute="material.color" begin="dancing" to="#FFF" dur="1000" easing="ease-out-elastic"></a-animation>
+      </a-obj-model>
+      <a-obj-model id="floor" src="#floor-obj" material="shader:flat;src:#floor-img" discofloor="bpm:1000;" position="0 -0.009 0" rotation="0 -90 0"></a-obj-model>
       <a-image src="#flooroff-mtl" material="repeat: 8 8" rotation="-90 0 0" scale="1.99 1.99 1" position="0 -0.01 0"></a-image>
-      <a-obj-model id="tv1" src="#tv-obj" material="shader:flat;src:#tv-mtl" position="-1.66 2.15 2.18" rotation="0 -33.3 0"></a-obj-model>
-      <a-obj-model id="tv2" src="#tv-obj" material="shader:flat;src:#tv-mtl" position="0.87 2.15 -2.44" rotation="0 151.8 0"></a-obj-model>
+      <a-obj-model id="tv1" src="#tv-obj" material="shader:flat;src:#tv-img" position="-1.66 2.15 2.18" rotation="0 -33.3 0"></a-obj-model>
+      <a-obj-model id="tv2" src="#tv-obj" material="shader:flat;src:#tv-img" position="0.87 2.15 -2.44" rotation="0 151.8 0"></a-obj-model>
       <!-- Avatar selection -->
       <a-entity id="avatarSelection" scale="0.75 0.75 0.75" position="0 0.6 0" visible="false">
         <a-obj-model class="avatar" id="avatar1" src="#char1-head-obj" mtl="#char1-head-mtl" position="-1.5 1 0"></a-obj-model>
