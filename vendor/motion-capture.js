@@ -758,7 +758,7 @@
 	    var self = this;
 	    var puppetEl = this.puppetEl;
 	    var sceneEl = this.el;
-	    this.recordingreplayData = replayData;
+	    this.recordingReplayData = replayData;
 	    this.isReplaying = true;
 	    if (!this.el.camera) {
 	      this.el.addEventListener('camera-set-active', function () {
@@ -786,7 +786,7 @@
 	      log('Setting motion-capture-replayer on ' + key + '.');
 	      puppetEl.setAttribute('motion-capture-replayer', {loop: data.loop});
 	      puppetEl.components['motion-capture-replayer'].startReplaying(replayData[key]);
-	      this.puppetEl = puppetEl;
+	      self.puppetEl = puppetEl;
 	    });
 	    this.configureCamera();
 	  },
@@ -819,12 +819,12 @@
 	  stopReplaying: function () {
 	    var keys;
 	    var self = this;
-	    if (!this.isReplaying || !this.recordingData) { return; }
+	    if (!this.isReplaying || !this.recordingReplayData) { return; }
 	    this.isReplaying = false;
-	    keys = Object.keys(this.recordingData);
+	    keys = Object.keys(this.recordingReplayData);
 	    keys.forEach(function (key) {
 	      if (key === 'camera') {
-	        self.el.camera.el.components['motion-capture-replayer'].stopReplaying();
+	        self.puppetEl.components['motion-capture-replayer'].stopReplaying();
 	      } else {
 	        el = document.querySelector('#' + key);
 	        if (!el) { warn('No element with id ' + key); }

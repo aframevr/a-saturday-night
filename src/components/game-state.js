@@ -8,18 +8,39 @@ AFRAME.registerComponent('game-state', {
     selectedAvatar: {type: 'selector'},
     countdownTime: {default: 3},
     dancingTime: {default: 3},
-    state: {default: 'avatar-selection', oneOf: ['avatar-selection', 'countdown', 'dancing', 'collect-url']}
+    state: {default: 'intro', oneOf: ['intro', 'avatar-selection', 'countdown', 'dancing', 'collect-url']}
+  },
+
+  init: function () {
+    this.updateState = this.updateState.bind(this);
+  },
+
+  play: function () {
+    this.el.addEventListener('enter-vr', this.updateState);
+  },
+
+  pause: function () {
+    this.el.removeEventListener('enter-vr', this.updateState);
   },
 
   update: function (oldData) {
     var data = this.data;
-    var currentState = data.state;
     var el = this.el;
     if (oldData.state !== data.state) {
       this.setState(data.state);
       return;
     }
-    switch (data.state) {
+    this.updateState();
+  },
+
+  updateState: function () {
+    var el = this.el;
+    switch (this.data.state) {
+      case 'intro': {
+        if (!this.el.is('vr-mode')) { return; }
+        el.setAttribute('game-state', 'state', 'avatar-selection');
+        break;
+      }
       case 'avatar-selection': {
         if (!data.selectedAvatar) { return; }
         el.setAttribute('game-state', 'state', 'countdown');

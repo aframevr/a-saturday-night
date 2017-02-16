@@ -11,6 +11,7 @@ AFRAME.registerComponent('avatar-selection', {
       this.pauseCamera({detail: {cameraEl: this.el.sceneEl.camera.el}});
     }
     this.el.sceneEl.addEventListener('camera-set-active', this.pauseCamera);
+    this.el.sceneEl.addEventListener('enter-vr', this.playCamera.bind(this));
   },
 
   pauseCamera: function (evt) {
@@ -22,6 +23,11 @@ AFRAME.registerComponent('avatar-selection', {
     cameraEl.addEventListener('loaded', function () {
       cameraEl.pause();
     });
+  },
+
+  playCamera: function () {
+    this.cameraEl.setAttribute('position', '0 0 0');
+    this.cameraEl.play();
   },
 
   onKeyDown: function (event) {
