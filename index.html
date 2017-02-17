@@ -75,22 +75,22 @@
       <a-entity id="light3" light="color:#a431f0;type:point;" position="-2.5 2.38 -2.5"></a-entity>
       <a-entity id="light4" light="color:#f130cf;intensity:0.66;type:point;" position="3 2.38 -0.61"></a-entity>
       <!-- spotlights -->
-      <a-obj-model id="spot1" src="#spotlight-obj" spotlight="color:#ab7121" position="-3.14 2.38 2.7" rotation="44 -38 0" scale="0 0 0">
+      <a-obj-model id="spot1" proxy-event="event: dancing" src="#spotlight-obj" spotlight="color:#ab7121" position="-3.14 2.38 2.7" rotation="44 -38 0" scale="0 0 0">
         <a-animation attribute="scale" begin="dancing" to="1 1 1" dur="1000" easing="ease-out-elastic"></a-animation>
       </a-obj-model>
-      <a-obj-model id="spot2" src="#spotlight-obj" spotlight="color:#205eff" position="2.7 2.29 2.7" rotation="50 53 0" scale="0 0 0">
+      <a-obj-model id="spot2" proxy-event="event: dancing" src="#spotlight-obj" spotlight="color:#205eff" position="2.7 2.29 2.7" rotation="50 53 0" scale="0 0 0">
         <a-animation attribute="scale" begin="dancing" to="1 1 1" dur="1000" easing="ease-out-elastic"></a-animation>
       </a-obj-model>
-      <a-obj-model id="spot3" src="#spotlight-obj" spotlight="color:#a431f0" position="-3 2.38 -2.5" rotation="-52 60 -13" scale="0 0 0">
+      <a-obj-model id="spot3" proxy-event="event: dancing" src="#spotlight-obj" spotlight="color:#a431f0" position="-3 2.38 -2.5" rotation="-52 60 -13" scale="0 0 0">
         <a-animation attribute="scale" begin="dancing" to="1 1 1" dur="1000" easing="ease-out-elastic"></a-animation>
       </a-obj-model>
-      <a-obj-model id="spot4" src="#spotlight-obj" spotlight="color:#f130cf" position="3 2.38 -1.19" rotation="-50 -60 0" scale="0 0 0">
+      <a-obj-model id="spot4" proxy-event="event: dancing" src="#spotlight-obj" spotlight="color:#f130cf" position="3 2.38 -1.19" rotation="-50 -60 0" scale="0 0 0">
         <a-animation attribute="scale" begin="dancing" to="1 1 1" dur="1000" easing="ease-out-elastic"></a-animation>
       </a-obj-model>
 
 
       <!-- room, floor and TV sets -->
-      <a-obj-model id="room" src="#set-obj" material="shader:flat;src:#set-img;color:#222" >
+      <a-obj-model id="room" src="#set-obj" proxy-event="event: dancing" material="shader:flat;src:#set-img;color:#222" >
         <a-animation attribute="material.color" begin="dancing" to="#FFF" dur="1000" easing="ease-out-elastic"></a-animation>
       </a-obj-model>
       <a-obj-model id="floor" src="#floor-obj" material="shader:flat;src:#floor-img" discofloor="bpm:1000;" position="0 -0.009 0" rotation="0 -90 0"></a-obj-model>
