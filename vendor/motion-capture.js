@@ -263,14 +263,18 @@
 	    this.currentEventIndex = 0;
 	    this.onStrokeStarted = this.onStrokeStarted.bind(this);
 	    this.onStrokeEnded = this.onStrokeEnded.bind(this);
-	    this.el.addEventListener('pause', this.playComponent.bind(this));
+	    this.playComponent = this.playComponent.bind(this);
+	    this.el.addEventListener('pause', this.playComponent);
 	    this.discardedFrames = 0;
 	    this.playingEvents = [];
 	    this.playingPoses = [];
 	  },
 
 	  remove: function () {
+	    this.el.removeEventListener('pause', this.playComponent);
 	    this.stopReplaying();
+	    this.el.pause();
+	    this.el.play();
 	  },
 
 	  update: function (oldData) {
