@@ -697,7 +697,6 @@
 	  },
 
 	  restoreCamera: function() {
-	    this.currentCameraEl.play();
 	    this.currentCameraEl.setAttribute('camera', 'active', true);
 	  },
 
