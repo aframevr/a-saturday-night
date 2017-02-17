@@ -7,7 +7,6 @@ AFRAME.registerComponent('intro', {
   },
 
   remove: function () {
-    this.el.components['avatar-replayer'].stopReplaying();
     this.el.removeAttribute('avatar-replayer');
   }
 });

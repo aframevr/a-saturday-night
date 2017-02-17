@@ -35,7 +35,8 @@ AFRAME.registerComponent('game-state', {
 
   updateState: function () {
     var el = this.el;
-    switch (this.data.state) {
+    var data = this.data;
+    switch (data.state) {
       case 'intro': {
         if (!this.el.is('vr-mode')) { return; }
         el.setAttribute('game-state', 'state', 'avatar-selection');

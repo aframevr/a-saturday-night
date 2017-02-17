@@ -11,13 +11,13 @@
     <script src="https://ucarecdn.com/widget/2.5.5/uploadcare/uploadcare.full.min.js"></script>
     <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.12/dist/clipboard.min.js"></script>
     <script src="vendor/aframe.js"></script>
-    <script src="build/build.js"></script>
     <script src="vendor/motion-capture.js"></script>
     <script src="build/build.js"></script>
   </head>
   <body>
     <a-scene uploadcare="" game-state
-             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2; localStorage: false; saveFile: false">
+             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2; localStorage: false; saveFile: false"
+             avatar-replayer="src: assets/dance.json; spectatorMode: true">
       <a-assets>
         <a-asset-item id="set-obj" src="assets/set.obj"></a-asset-item>
         <a-image id="set-mtl" src="assets/set.png"></a-image>

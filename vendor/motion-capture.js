@@ -269,6 +269,10 @@
 	    this.playingPoses = [];
 	  },
 
+	  remove: function () {
+	    this.stopReplaying();
+	  },
+
 	  update: function (oldData) {
 	    var data = this.data;
 	    this.updateRecorder(data.recorderEl, oldData.recorderEl);
@@ -688,6 +692,10 @@
 	    this.onKeyDown = this.onKeyDown.bind(this);
 	  },
 
+	  remove: function () {
+	    this.stopReplaying();
+	  },
+
 	  restoreCamera: function() {
 	    this.currentCameraEl.play();
 	    this.currentCameraEl.setAttribute('camera', 'active', true);
@@ -773,7 +781,7 @@
 	      if (key === 'camera') {
 	        // Grab camera.
 	        log('Setting motion-capture-replayer on camera.');
-	        puppetEl = self.data.spectatorMode ? self.currentCameraEl : sceneEl.camera.el;
+	        puppetEl = self.puppetEl = self.data.spectatorMode ? self.currentCameraEl : sceneEl.camera.el;
 	      } else {
 	        // Grab other entities.
 	        puppetEl = sceneEl.querySelector('#' + key);
@@ -786,7 +794,6 @@
 	      log('Setting motion-capture-replayer on ' + key + '.');
 	      puppetEl.setAttribute('motion-capture-replayer', {loop: data.loop});
 	      puppetEl.components['motion-capture-replayer'].startReplaying(replayData[key]);
-	      self.puppetEl = puppetEl;
 	    });
 	    this.configureCamera();
 	  },
@@ -824,11 +831,11 @@
 	    keys = Object.keys(this.recordingReplayData);
 	    keys.forEach(function (key) {
 	      if (key === 'camera') {
-	        self.puppetEl.components['motion-capture-replayer'].stopReplaying();
+	        self.puppetEl.removeComponent('motion-capture-replayer');
 	      } else {
 	        el = document.querySelector('#' + key);
 	        if (!el) { warn('No element with id ' + key); }
-	        el.components['motion-capture-replayer'].stopReplaying();
+	        el.removeComponent('motion-capture-replayer');
 	      }
 	    });
 	  },
