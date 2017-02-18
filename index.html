@@ -4,11 +4,7 @@
     <meta charset="utf-8">
     <title>A-Saturday-Night</title>
     <meta name="description" content="A WebVR dancing experience using A-Frame by Mozilla VR.">
-    <script>
-      UPLOADCARE_PUBLIC_KEY = '85ed3c25d99e387316bd';
-    </script>
     <link rel="stylesheet" href="css/main.css">
-    <script src="https://ucarecdn.com/widget/2.5.5/uploadcare/uploadcare.full.min.js"></script>
     <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.12/dist/clipboard.min.js"></script>
     <script src="vendor/aframe.js"></script>
     <script src="vendor/motion-capture.js"></script>
@@ -16,8 +12,7 @@
   </head>
   <body>
     <a-scene uploadcare="" game-state
-             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2; localStorage: false; saveFile: false"
-             avatar-replayer="src: assets/dance.json; spectatorMode: true">
+             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2; localStorage: false; saveFile: false">
       <a-assets>
         <a-asset-item id="set-obj" src="assets/set.obj"></a-asset-item>
         <a-image id="set-img" src="assets/set.png"></a-image>

@@ -35,7 +35,6 @@ AFRAME.registerComponent('dancing', {
     this.counter0.setAttribute('text', {value: this.dancingTime.toString()});
     this.counter1.setAttribute('text', {value: this.dancingTime.toString()});
 
-    this.el.setAttribute('game-state', 'dancingTime', this.dancingTime);
     if (this.dancingTime === 0) {
       window.clearInterval(this.interval);
       this.el.components['avatar-recorder'].stopRecording();

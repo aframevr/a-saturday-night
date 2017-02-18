@@ -11,6 +11,7 @@ AFRAME.registerComponent('collect-url', {
         textElement.setAttribute('text', {opacity: object.opacity});
       })
       .start();
+      debugger;
     var json = {
       avatar: this.el.getAttribute('game-state').selectedAvatar.id,
       recording: this.el.components['avatar-recorder'].getJSONData()

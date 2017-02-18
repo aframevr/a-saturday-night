@@ -14,6 +14,17 @@ function getUrlParams () {
   return urlParams;
 }
 
+function loadJSONFromUrl (url, callback) {
+  var loader = new THREE.XHRLoader();
+  loader.crossOrigin = 'anonymous';
+  var self = this;
+
+  loader.load(url, function (buffer) {
+    callback(JSON.parse(buffer));
+  });
+}
+
 module.exports = {
-  getUrlParams: getUrlParams
+  getUrlParams: getUrlParams,
+  loadJSONFromUrl: loadJSONFromUrl
 }

@@ -1,5 +1,13 @@
 window.UPLOADCARE_PUBLIC_KEY = '85ed3c25d99e387316bd';
 
+function injectJS (url) {
+  var link = document.createElement('script');
+  link.src = url;
+  link.charset = 'utf-8';
+  link.setAttribute('data-aframe-inspector', 'style');
+  document.head.appendChild(link);
+}
+
 /* global AFRAME */
 
 if (typeof AFRAME === 'undefined') {
@@ -20,7 +28,9 @@ AFRAME.registerComponent('uploadcare', {
    */
   multiple: false,
 
-  init: function () { },
+  init: function () {
+    injectJS('https://ucarecdn.com/widget/2.10.0/uploadcare/uploadcare.full.min.js');
+  },
 
   upload: function (value, contentType) {
     switch (contentType) {

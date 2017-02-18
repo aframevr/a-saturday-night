@@ -16,6 +16,3 @@ require('./components/states/collectUrl.js');
 require('./components/states/countdown.js');
 require('./components/states/dancing.js');
 require('./components/states/intro.js');
-
-// Systems
-require('./systems/a-saturday-night.js');
