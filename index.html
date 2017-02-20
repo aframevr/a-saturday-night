@@ -14,46 +14,46 @@
     <a-scene uploadcare="" game-state
              avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2; localStorage: false; saveFile: false">
       <a-assets>
-        <a-asset-item id="set-obj" src="assets/set.obj"></a-asset-item>
-        <a-image id="set-img" src="assets/set.png"></a-image>
-        <a-asset-item id="floor-obj" src="assets/floor.obj"></a-asset-item>
-        <a-image id="floor-img" src="assets/flooron.png"></a-image>
-        <a-asset-item id="flooroff-mtl" src="assets/flooroff.png"></a-asset-item>
-        <a-asset-item id="spotlight-obj" src="assets/spotlight.obj"></a-asset-item>
-        <a-image id="spotlight-img" src="assets/spotlight.png"></a-image>
-        <a-image id="star-img" src="assets/star.png"></a-image>
+        <a-asset-item id="set-obj" src="assets/room/set.obj"></a-asset-item>
+        <a-image id="set-img" src="assets/room/set.png"></a-image>
+        <a-asset-item id="floor-obj" src="assets/room/floor.obj"></a-asset-item>
+        <a-image id="floor-img" src="assets/room/flooron.png"></a-image>
+        <a-asset-item id="flooroff-mtl" src="assets/room/flooroff.png"></a-asset-item>
+        <a-asset-item id="spotlight-obj" src="assets/room/spotlight.obj"></a-asset-item>
+        <a-image id="spotlight-img" src="assets/room/spotlight.png"></a-image>
+        <a-image id="star-img" src="assets/room/star.png"></a-image>
 
-        <a-image id="tv-img" src="assets/tv.png"></a-image>
-        <a-asset-item id="tv-obj" src="assets/tv.obj"></a-asset-item>
+        <a-image id="tv-img" src="assets/room/tv.png"></a-image>
+        <a-asset-item id="tv-obj" src="assets/room/tv.obj"></a-asset-item>
 
-        <a-asset-item id="char1-head-obj" src="assets/char1-head.obj"></a-asset-item>
-        <a-asset-item id="char1-hand-right-obj" src="assets/char1-hand-right.obj"></a-asset-item>
-        <a-asset-item id="char1-hand-left-obj" src="assets/char1-hand-left.obj"></a-asset-item>
-        <a-asset-item id="char1-head-mtl" src="assets/char1-head.mtl"></a-asset-item>
-        <a-asset-item id="char1-hand-left-mtl" src="assets/char1-hand-left.mtl"></a-asset-item>
-        <a-asset-item id="char1-hand-right-mtl" src="assets/char1-hand-right.mtl"></a-asset-item>
+        <a-asset-item id="avatar1-head-obj" src="assets/avatar1/avatar1-head.obj"></a-asset-item>
+        <a-asset-item id="avatar1-hand-right-obj" src="assets/avatar1/avatar1-hand-right.obj"></a-asset-item>
+        <a-asset-item id="avatar1-hand-left-obj" src="assets/avatar1/avatar1-hand-left.obj"></a-asset-item>
+        <a-asset-item id="avatar1-head-mtl" src="assets/avatar1/avatar1-head.mtl"></a-asset-item>
+        <a-asset-item id="avatar1-hand-left-mtl" src="assets/avatar1/avatar1-hand-left.mtl"></a-asset-item>
+        <a-asset-item id="avatar1-hand-right-mtl" src="assets/avatar1/avatar1-hand-right.mtl"></a-asset-item>
 
-        <a-asset-item id="char2-head-obj" src="assets/char2-head.obj"></a-asset-item>
-        <a-asset-item id="char2-hand-obj" src="assets/char2-hand.obj"></a-asset-item>
-        <a-image id="char2-head-mtl" src="assets/char2-head.mtl"></a-image>
-        <a-image id="char2-hand-mtl" src="assets/char2-hand.mtl"></a-image>
+        <a-asset-item id="avatar2-head-obj" src="assets/avatar2/avatar2-head.obj"></a-asset-item>
+        <a-asset-item id="avatar2-hand-obj" src="assets/avatar2/avatar2-hand.obj"></a-asset-item>
+        <a-image id="avatar2-head-mtl" src="assets/avatar2/avatar2-head.mtl"></a-image>
+        <a-image id="avatar2-hand-mtl" src="assets/avatar2/avatar2-hand.mtl"></a-image>
 
-        <a-asset-item id="char3-head-obj" src="assets/char3-head.obj"></a-asset-item>
-        <a-asset-item id="char3-hand-obj" src="assets/char3-hand.obj"></a-asset-item>
-        <a-image id="char3-head-mtl" src="assets/char3-head.mtl"></a-image>
-        <a-image id="char3-hand-mtl" src="assets/char3-hand.mtl"></a-image>
+        <a-asset-item id="avatar3-head-obj" src="assets/avatar3/avatar3-head.obj"></a-asset-item>
+        <a-asset-item id="avatar3-hand-obj" src="assets/avatar3/avatar3-hand.obj"></a-asset-item>
+        <a-image id="avatar3-head-mtl" src="assets/avatar3/avatar3-head.mtl"></a-image>
+        <a-image id="avatar3-hand-mtl" src="assets/avatar3/avatar3-hand.mtl"></a-image>
 
-        <a-asset-item id="char4-head-obj" src="assets/char4-head.obj"></a-asset-item>
-        <a-asset-item id="char4-hand-obj" src="assets/char4-hand.obj"></a-asset-item>
-        <a-image id="char4-head-mtl" src="assets/char4-head.mtl"></a-image>
-        <a-image id="char4-hand-mtl" src="assets/char4-hand.mtl"></a-image>
+        <a-asset-item id="avatar4-head-obj" src="assets/avatar4/avatar4-head.obj"></a-asset-item>
+        <a-asset-item id="avatar4-hand-obj" src="assets/avatar4/avatar4-hand.obj"></a-asset-item>
+        <a-image id="avatar4-head-mtl" src="assets/avatar4/avatar4-head.mtl"></a-image>
+        <a-image id="avatar4-hand-mtl" src="assets/avatar4/avatar4-hand.mtl"></a-image>
 
 
       </a-assets>
       <a-entity id="avatarHead"
                 camera="userHeight: 1.6"
                 wasd-controls look-controls
-                obj-model="obj: #char2-head-obj; mtl: #char2-head-mtl"
+                obj-model="obj: #avatar2-head-obj; mtl: #avatar2-head-mtl"
                 position="0 0 2"></a-entity>
       <!-- Texts -->
       <a-entity id="counter0" visible="false" position="0.87 2.18 -2.42" rotation="23.78 -27.40 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:7.4"></a-entity>
@@ -88,24 +88,24 @@
       <a-obj-model id="room" src="#set-obj" proxy-event="event: dancing" material="shader:flat;src:#set-img;color:#999" >
         <a-animation attribute="material.color" begin="dancing" to="#FFF" dur="1000" easing="ease-out-elastic"></a-animation>
       </a-obj-model>
-      <a-obj-model id="floor" src="#floor-obj" material="shader:flat;src:#floor-img" discofloor="bpm:1000;" position="0 -0.009 0" rotation="0 -90 0"></a-obj-model>
+      <a-obj-model id="floor" src="#floor-obj" material="shader:flat;src:#floor-img" discofloor position="0 -0.009 0" rotation="0 -90 0"></a-obj-model>
       <a-image src="#flooroff-mtl" material="repeat: 8 8" rotation="-90 0 0" scale="1.99 1.99 1" position="0 -0.01 0"></a-image>
       <a-obj-model id="tv1" src="#tv-obj" material="shader:flat;src:#tv-img" position="-1.66 2.15 2.18" rotation="0 -33.3 0"></a-obj-model>
       <a-obj-model id="tv2" src="#tv-obj" material="shader:flat;src:#tv-img" position="0.87 2.15 -2.44" rotation="0 151.8 0"></a-obj-model>
       <!-- Avatar selection -->
       <a-entity id="avatarSelection" scale="0.75 0.75 0.75" position="0 1.6 -1" visible="false">
-        <a-obj-model class="avatar" id="avatar1" src="#char1-head-obj" mtl="#char1-head-mtl" position="-1 0 0"></a-obj-model>
-        <!-- <a-obj-model src="#char1-hand-left-obj" mtl="#char1-hand-left-mtl" position="-2.5 1 0"></a-obj-model>
-        <a-obj-model src="#char1-hand-right-obj" mtl="#char1-hand-right-mtl" position="-1.5 1 0"></a-obj-model> -->
+        <a-obj-model class="avatar" id="avatar1" src="#avatar1-head-obj" mtl="#avatar1-head-mtl" position="-1 0 0"></a-obj-model>
+        <!-- <a-obj-model src="#avatar1-hand-left-obj" mtl="#avatar1-hand-left-mtl" position="-2.5 1 0"></a-obj-model>
+        <a-obj-model src="#avatar1-hand-right-obj" mtl="#avatar1-hand-right-mtl" position="-1.5 1 0"></a-obj-model> -->
 
-        <a-obj-model class="avatar" id="avatar2" src="#char2-head-obj" mtl="#char2-head-mtl" position="-0.33 0 0"></a-obj-model>
-<!--         <a-obj-model src="#char2-hand-obj" mtl="#char2-hand-mtl" position="-0.5 1 0"></a-obj-model>
+        <a-obj-model class="avatar" id="avatar2" src="#avatar2-head-obj" mtl="#avatar2-head-mtl" position="-0.33 0 0"></a-obj-model>
+<!--         <a-obj-model src="#avatar2-hand-obj" mtl="#avatar2-hand-mtl" position="-0.5 1 0"></a-obj-model>
  -->
-        <a-obj-model class="avatar" id="avatar3" src="#char3-head-obj" mtl="#char3-head-mtl" position="0.38 0 0"></a-obj-model>
-<!--         <a-obj-model src="#char3-hand-obj" mtl="#char3-hand-mtl" position="1 1 0"></a-obj-model>
+        <a-obj-model class="avatar" id="avatar3" src="#avatar3-head-obj" mtl="#avatar3-head-mtl" position="0.38 0 0"></a-obj-model>
+<!--         <a-obj-model src="#avatar3-hand-obj" mtl="#avatar3-hand-mtl" position="1 1 0"></a-obj-model>
  -->
-        <a-obj-model class="avatar" id="avatar4" src="#char4-head-obj" mtl="#char4-head-mtl" position="1 0 0"></a-obj-model>
-<!--         <a-obj-model src="#char4-hand-obj" mtl="#char4-hand-mtl" position="2.5 1 0"></a-obj-model>
+        <a-obj-model class="avatar" id="avatar4" src="#avatar4-head-obj" mtl="#avatar4-head-mtl" position="1 0 0"></a-obj-model>
+<!--         <a-obj-model src="#avatar4-hand-obj" mtl="#avatar4-hand-mtl" position="2.5 1 0"></a-obj-model>
  -->  </a-entity>
     </a-scene>
     <div id="instructions" class="hide">
