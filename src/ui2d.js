@@ -1,10 +1,24 @@
+var getUrlParams = require('./utils').getUrlParams;
+
 /* global Clipboard */
 window.addEventListener('load', function (event) {
+  var instructions = document.getElementById('instructions');
   var asaturdayUI = document.getElementById('asaturday-ui');
   var shareDiv = document.querySelector('#asaturday-ui .share');
   var shareUrl = document.getElementById('asaturday-share-url');
   var progressDiv = document.querySelector('#asaturday-ui .progress');
   var progressBar = document.querySelector('#asaturday-ui .bar');
+  var sceneEl = document.querySelector('a-scene');
+
+  var urlParams = getUrlParams();
+  if (!urlParams.url) {
+    instructions.classList.remove('hide');
+  }
+
+  sceneEl.addEventListener('enter-vr', function () {
+    instructions.classList.add('hide');
+  });
+
   document.addEventListener('uploadcare-upload-completed', function (event) {
     shareDiv.classList.remove('hide');
     progressDiv.classList.add('hide');

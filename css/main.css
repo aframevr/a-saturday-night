@@ -1,12 +1,17 @@
-#asaturday-ui {
+.dialog {
   font-family: Helvetica, Arial, sans-serif;
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
   line-height: 1.2em;
   background-color: rgba(10,10,10,0.8);
   border-radius: 6px;
   padding: 1.7em 2em;
+}
+
+#asaturday-ui {
+  z-index: 100;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  line-height: 1.2em;
 }
 
 #asaturday-ui .help {
@@ -66,4 +71,30 @@
   height: 3px;
   margin-top: 13px;
   background-color: #e42b5a;
+}
+
+#instructions {
+  z-index: 100;
+  position: absolute;
+  color: #fff;
+  display: flex;
+  left: 0;
+  top: 20px;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+}
+
+#instructions div {
+  max-width: 800px;
+  max-height: 200px;
+}
+
+#instructions div {
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
