@@ -6,8 +6,8 @@ AFRAME.registerComponent('intro', {
     var urlParams = getUrlParams();
     if (urlParams.url) {
       var self = this;
-      loadJSONFromUrl(urlParams.url, function (data) {
-        var selectedAvatar = document.getElementById(data.avatar);
+      this.el.sceneEl.systems['uploadcare'].download(urlParams.url, function (data) {
+        var selectedAvatar = document.getElementById(data.content.avatar);
         var avatarHeadEl = document.getElementById('avatarHead');
         self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatar);
         avatarHeadEl.setAttribute('obj-model', {
@@ -19,7 +19,7 @@ AFRAME.registerComponent('intro', {
           spectatorMode: true,
           loop: true
         });
-        self.el.components['avatar-replayer'].startReplaying(data.recording);
+        self.el.components['avatar-replayer'].startReplaying(data.content.recording);
       });
     } else {
       this.el.setAttribute('avatar-replayer', {

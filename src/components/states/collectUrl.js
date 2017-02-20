@@ -15,7 +15,7 @@ AFRAME.registerComponent('collect-url', {
       avatar: this.el.getAttribute('game-state').selectedAvatar.id,
       recording: this.el.components['avatar-recorder'].getJSONData()
     }
-    this.el.components['uploadcare'].upload(json, 'application/json');
+    this.el.systems['uploadcare'].upload(json, 'application/json');
   },
 
   remove: function () {
