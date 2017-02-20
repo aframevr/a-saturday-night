@@ -7,6 +7,14 @@ AFRAME.registerComponent('intro', {
     if (urlParams.url) {
       var self = this;
       loadJSONFromUrl(urlParams.url, function (data) {
+        var selectedAvatar = document.getElementById(data.avatar);
+        var avatarHeadEl = document.getElementById('avatarHead');
+        self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatar);
+        avatarHeadEl.setAttribute('obj-model', {
+          obj: selectedAvatar.getAttribute('src'),
+          mtl: selectedAvatar.getAttribute('mtl')
+        });
+
         self.el.setAttribute('avatar-replayer', {
           spectatorMode: true,
           loop: true
