@@ -1,10 +1,8 @@
-window.UPLOADCARE_PUBLIC_KEY = '85ed3c25d99e387316bd';
-
 function injectJS (url) {
   var link = document.createElement('script');
   link.src = url;
   link.charset = 'utf-8';
-  link.setAttribute('data-aframe-inspector', 'style');
+  link.setAttribute('data-aframe-injected', 'uploadcare-component');
   document.head.appendChild(link);
 }
 
@@ -17,7 +15,7 @@ if (typeof AFRAME === 'undefined') {
 /**
  * Uploadcare component for A-Frame.
  */
-AFRAME.registerComponent('uploadcare', {
+AFRAME.registerSystem('uploadcare', {
   schema: {
     publicKey: {default: ''},
     debug: {default: false}
@@ -29,6 +27,7 @@ AFRAME.registerComponent('uploadcare', {
   multiple: false,
 
   init: function () {
+    window.UPLOADCARE_PUBLIC_KEY = this.data.publicKey;
     injectJS('https://ucarecdn.com/widget/2.10.0/uploadcare/uploadcare.full.min.js');
   },
 
@@ -43,23 +42,24 @@ AFRAME.registerComponent('uploadcare', {
 
     var blob = (value instanceof Blob) ? value : new Blob(value, {type: contentType});
     var file = uploadcare.fileFrom('object', blob);
+    var sceneEl = this.sceneEl;
     var self = this;
 
-    this.el.emit('uploadcare-upload-started');
+    sceneEl.emit('uploadcare-upload-started');
 
     file.done(function (fileInfo) {
       if (self.data.debug) { console.info('Uploaded link:', fileInfo); }
-      self.el.emit('uploadcare-upload-completed', {url: fileInfo.cdnUrl, fileInfo: fileInfo});
+      sceneEl.emit('uploadcare-upload-completed', {url: fileInfo.cdnUrl, fileInfo: fileInfo});
     }).fail(function (errorInfo, fileInfo) {
       if (self.data.debug) { console.error('Uploaded fail:', errorInfo, fileInfo); }
-      self.el.emit('uploadcare-upload-error', {errorInfo: errorInfo, fileInfo: fileInfo});
+      sceneEl.emit('uploadcare-upload-error', {errorInfo: errorInfo, fileInfo: fileInfo});
     }).progress(function (uploadInfo) {
       if (self.data.debug) { console.info('Upload progress:', uploadInfo); }
-      self.el.emit('uploadcare-upload-progress', {progress: uploadInfo.progress, uploadInfo: uploadInfo});
+      sceneEl.emit('uploadcare-upload-progress', {progress: uploadInfo.progress, uploadInfo: uploadInfo});
     });
   },
 
-  download: function (fileId, binary) {
+  download: function (fileId, callback, binary) {
     var baseUrl = 'https://ucarecdn.com/';
 
     var loader = new THREE.XHRLoader();
@@ -68,13 +68,13 @@ AFRAME.registerComponent('uploadcare', {
       loader.setResponseType('arraybuffer');
     }
 
-    var el = this.el;
-    loader.load(baseUrl + fileId, function (buffer) {
-      if (binary === true) {
-        el.emit('uploadcare-download-completed', {content: buffer, isBinary: true});
-      } else {
-        el.emit('uploadcare-download-completed', {content: JSON.parse(buffer), isBinary: false});
-      }
+    var sceneEl = this.sceneEl;
+    var url = fileId.indexOf('http') !== -1 ? fileId : baseUrl + fileId;
+
+    loader.load(url, function (buffer) {
+      var data = binary === true ? {content: buffer, isBinary: true} : {content: JSON.parse(buffer), isBinary: false};
+      if (callback) { callback(data); }
+      sceneEl.emit('uploadcare-download-completed', data);
     });
   }
 });
