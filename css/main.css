@@ -1,8 +1,11 @@
+body {
+  background: #000;
+}
 .dialog {
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1.2em;
   background-color: rgba(10,10,10,0.8);
-  border-radius: 6px;
+  border-radius: 13px;
   padding: 1.7em 2em;
 }
 
@@ -16,31 +19,35 @@
 
 #asaturday-ui .help {
   width: 600px;
-  color: #ccc;
+  color: #ffd;
   font-size: 14px;
   text-shadow: 0px 2px 1px #000;
 }
 
 #asaturday-ui .help h1 {
   font-size: 22px;
+  font-style: italic;
   font-weight: 100;
-  color: #e42b5a;
+  color: #e43b5e;
   margin-top: 0;
 }
 
 #asaturday-ui .button {
-  background-color: #ef2d5e;
+  background-color: #e43b5e;
   color: #fff;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
+  font-style: italic;
   width: 130px;
   text-align: center;
   max-width: 115px;
   padding: 6px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 #asaturday-ui .button:hover {
-  background-color: #f43b6a;
+  background-color: #f44b6e;
 }
 
 #asaturday-ui .form {
@@ -58,43 +65,70 @@
   display: none !important;
 }
 
-#asaturday-ui .progress{
+#asaturday-ui .progress {
   font-size: 22px;
+  font-style: italic;
   font-weight: 100;
-  color: #e42b5a;
-  border-bottom: 1px solid #e42b5a;
+  color: #e43b5e;
+  border-bottom: 1px solid #e43b5e;
   text-shadow: 0px 2px 1px #000;
 }
 
-#asaturday-ui .bar{
+#asaturday-ui .bar {
   width: 0%;
   height: 3px;
   margin-top: 13px;
-  background-color: #e42b5a;
+  background-color: #e43b5e;
 }
 
 #instructions {
   z-index: 100;
   position: absolute;
-  color: #fff;
-  display: flex;
-  left: 0;
-  top: 20px;
-  right: 0;
-  bottom: 0;
-  justify-content: center;
+  color: #ffd;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
+  text-align: center;
+  width: 100%;
+  opacity: 0;
 }
 
-#instructions div {
-  max-width: 800px;
-  max-height: 200px;
-}
-
-#instructions div {
-  animation: fadein 1s;
+#instructions {
+  animation: fadein 2s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
 }
 
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from { opacity: 0; top: -50px; }
+    to   { opacity: 1; top: 0px;}
+}
+
+#instructions img {
+  max-width: 960px;
+  width: 100%;
+}
+
+#instructions h2 {
+  font-size: 20px;
+  color: #e43b5e;
+  font-style: italic;
+}
+
+#instructions p {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+#instructions a {
+  font-size: 16px;
+  color: #fff78c;
+  font-style: italic;
+  text-decoration: none;
+  border-bottom: 1px dotted #fff78c;
+}
+
+#instructions a:hover {
+  color: #fff;
+  border-bottom-color: #fff;
 }
