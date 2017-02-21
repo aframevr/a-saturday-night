@@ -1,4 +1,4 @@
-# Blender MTL File: '_char2.blend'
+# Blender MTL File: '_avatar2.blend'
 # Material Count: 1
 
 newmtl matfinal
@@ -10,5 +10,5 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd char2.jpg
-map_Ks char2spec.jpg
+map_Kd avatar2.jpg
+map_Ks avatar2spec.jpg
