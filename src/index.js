@@ -3,7 +3,6 @@ require('./ui2d.js');
 // Components.
 require('./components/proxy-event.js');
 require('./components/aabb-collider.js');
-require('./components/confetti.js');
 require('./components/game-state.js');
 require('./components/avatar-selector.js');
 require('./components/ground.js');
