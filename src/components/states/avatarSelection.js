@@ -1,7 +1,7 @@
 AFRAME.registerComponent('avatar-selection', {
   init: function () {
     var avatarSelectionEl = this.avatarSelectionEl = this.el.querySelector('#avatarSelection');
-    this.avatarEls = this.el.querySelectorAll('.avatar');
+    this.avatarEls = this.el.querySelectorAll('.head');
     this.selectAvatar(0);
     avatarSelectionEl.setAttribute('visible', true);
     this.onKeyDown = this.onKeyDown.bind(this);
@@ -10,6 +10,11 @@ AFRAME.registerComponent('avatar-selection', {
 
   onKeyDown: function (event) {
     var avatarHeadEl = this.el.querySelector('#avatarHead');
+    var leftHandEl = this.el.querySelector('#leftHand');
+    var rightHandEl = this.el.querySelector('#rightHand');
+    var leftSelectionHandEl = this.el.querySelector('#leftSelectionHand');
+    var rightSelectionHandEl = this.el.querySelector('#rightSelectionHand');
+    var selectedAvatarEl = this.selectedAvatarEl.parentEl;
     var code = event.keyCode;
     if (code !== 37 && code !== 39 && code !== 13) { return; }
     switch (code) {
@@ -24,9 +29,19 @@ AFRAME.registerComponent('avatar-selection', {
       case 13: {
         this.el.setAttribute('game-state', 'selectedAvatar', this.selectedAvatarEl);
         avatarHeadEl.setAttribute('obj-model', {
-          obj: this.selectedAvatarEl.getAttribute('src'),
-          mtl: this.selectedAvatarEl.getAttribute('mtl')
+          obj: selectedAvatarEl.querySelector('.head').getAttribute('src'),
+          mtl: selectedAvatarEl.querySelector('.head').getAttribute('mtl')
         });
+        leftHandEl.setAttribute('obj-model', {
+          obj: selectedAvatarEl.querySelector('.leftHand').getAttribute('src'),
+          mtl: selectedAvatarEl.querySelector('.leftHand').getAttribute('mtl')
+        });
+        rightHandEl.setAttribute('obj-model', {
+          obj: selectedAvatarEl.querySelector('.rightHand').getAttribute('src'),
+          mtl: selectedAvatarEl.querySelector('.rightHand').getAttribute('mtl')
+        });
+        this.el.removeChild(leftSelectionHandEl);
+        this.el.removeChild(rightSelectionHandEl);
         break;
       }
     }
