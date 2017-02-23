@@ -25,7 +25,7 @@
     </div>
 
     <a-scene uploadcare="publicKey: 85ed3c25d99e387316bd" game-state
-             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2; localStorage: false; saveFile: false">
+             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 0 2; localStorage: false; saveFile: false">
       <a-assets>
         <a-asset-item id="set-obj" src="assets/room/set.obj"></a-asset-item>
         <a-image id="set-img" src="assets/room/set.jpg"></a-image>
@@ -64,10 +64,10 @@
 
       </a-assets>
       <a-entity id="avatarHead"
-                camera="userHeight: 1.6"
+                camera="userHeight: 0"
                 wasd-controls look-controls
                 obj-model="obj: #avatar2-head-obj; mtl: #avatar2-head-mtl"
-                position="0 0 2"></a-entity>
+                position="0 0 0"></a-entity>
       <a-entity id="leftHand" vive-controls="hand: left; model: false"></a-entity>
       <a-entity id="rightHand" vive-controls="hand: right; model: false"></a-entity>
       <!-- Hands -->
