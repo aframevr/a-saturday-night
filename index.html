@@ -71,8 +71,8 @@
       <a-entity id="leftHand" vive-controls="hand: left; model: false"></a-entity>
       <a-entity id="rightHand" vive-controls="hand: right; model: false"></a-entity>
       <!-- Hands -->
-      <a-entity id="leftSelectionHand" hand-controls="left" aabb-collider="objects: .cube;" grab></a-entity>
-      <a-entity id="rightSelectionHand" hand-controls="right" aabb-collider="objects: .cube;" grab></a-entity>
+      <a-entity id="leftSelectionHand" hand-controls="left" ></a-entity>
+      <a-entity id="rightSelectionHand" hand-controls="right" aabb-collider="objects:.head;"></a-entity>
       <!-- Texts -->
       <a-entity id="counter0" visible="false" position="0.87 2.18 -2.42" rotation="23.78 -27.40 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:7.4"></a-entity>
       <a-entity id="counter1" visible="false" position="-1.66 2.18 2.16" rotation="23.78 147.24 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:7.4"></a-entity>
@@ -109,27 +109,27 @@
       <a-obj-model id="tv1" src="#tv-obj" material="shader:flat;src:#tv-img" position="-1.66 2.15 2.18" rotation="0 -33.3 0"></a-obj-model>
       <a-obj-model id="tv2" src="#tv-obj" material="shader:flat;src:#tv-img" position="0.87 2.15 -2.44" rotation="0 151.8 0"></a-obj-model>
       <!-- Avatar selection -->
-      <a-entity id="avatarSelection" scale="0.75 0.75 0.75" position="0 0.6 0" visible="false">
+      <a-entity id="avatarSelection" scale="0.75 0.75 0.75" position="0 1.6 -1" visible="false">
         <a-entity id="avatar1" class="avatar">
-          <a-obj-model class="head" src="#avatar1-head-obj" mtl="#avatar1-head-mtl" position="-1.5 1 0"></a-obj-model>
+          <a-obj-model class="head" src="#avatar1-head-obj" mtl="#avatar1-head-mtl" position="-1 0 0" highlighter="color:#ff8"></a-obj-model>
           <a-obj-model class="leftHand" src="#avatar1-hand-left-obj" mtl="#avatar1-hand-left-mtl" position="-2.5 1 0" visible="false"></a-obj-model>
           <a-obj-model class="rightHand" src="#avatar1-hand-right-obj" mtl="#avatar1-hand-right-mtl" position="-1.5 1 0" visible="false"></a-obj-model>
         </a-entity>
 
         <a-entity id="avatar2" class="avatar">
-          <a-obj-model class="head" src="#avatar2-head-obj" mtl="#avatar2-head-mtl" position="-0.5 1 0"></a-obj-model>
+          <a-obj-model class="head" src="#avatar2-head-obj" mtl="#avatar2-head-mtl" position="-0.33 0 0" highlighter="color:#ff0"></a-obj-model>
           <a-obj-model class="leftHand" src="#avatar2-hand-obj" mtl="#avatar2-hand-mtl" position="-0.5 1 0" visible="false"></a-obj-model>
           <a-obj-model class="rightHand" src="#avatar2-hand-obj" mtl="#avatar2-hand-mtl" position="-0.5 1 0" visible="false"></a-obj-model>
         </a-entity>
 
         <a-entity id="avatar3" class="avatar">
-          <a-obj-model class="head" src="#avatar3-head-obj" mtl="#avatar3-head-mtl" position="0.5 1 0"></a-obj-model>
+          <a-obj-model class="head" src="#avatar3-head-obj" mtl="#avatar3-head-mtl" position="0.38 0 0" highlighter="color:#ff0"></a-obj-model>
           <a-obj-model class="leftHand" src="#avatar3-hand-obj" mtl="#avatar3-hand-mtl" position="1 1 0"  visible="false"></a-obj-model>
           <a-obj-model class="rightHand" src="#avatar3-hand-obj" mtl="#avatar3-hand-mtl" position="1 1 0" visible="false"></a-obj-model>
         </a-entity>
 
         <a-entity id="avatar4" class="avatar">
-          <a-obj-model class="head" src="#avatar4-head-obj" mtl="#avatar4-head-mtl" position="1.5 1 0"></a-obj-model>
+          <a-obj-model class="head" src="#avatar4-head-obj" mtl="#avatar4-head-mtl" position="1 0 0" highlighter="color:#ff0"></a-obj-model>
           <a-obj-model class="leftHand" src="#avatar4-hand-obj" mtl="#avatar4-hand-mtl" position="2.5 1 0" visible="false"></a-obj-model>
           <a-obj-model class="rightHand" src="#avatar4-hand-obj" mtl="#avatar4-hand-mtl" position="2.5 1 0" visible="false"></a-obj-model>
         </a-entity>
