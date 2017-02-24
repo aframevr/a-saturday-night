@@ -1,0 +1,238 @@
+{
+    "accessors": {
+        "accessor_buffer_tv_0": {
+            "bufferView": "bufferView_buffer_tv_0",
+            "byteOffset": 0,
+            "byteStride": 32,
+            "componentType": 5126,
+            "count": 66,
+            "max": [
+                1.0,
+                2.9119925498962402,
+                13.467148780822754
+            ],
+            "min": [
+                -1.0,
+                -4.121190547943115,
+                -0.8932276964187622
+            ],
+            "type": "VEC3"
+        },
+        "accessor_buffer_tv_1": {
+            "bufferView": "bufferView_buffer_tv_0",
+            "byteOffset": 12,
+            "byteStride": 32,
+            "componentType": 5126,
+            "count": 66,
+            "max": [
+                1.0,
+                1.0,
+                0.9974358081817627
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -0.9974357485771179
+            ],
+            "type": "VEC3"
+        },
+        "accessor_buffer_tv_2": {
+            "bufferView": "bufferView_buffer_tv_0",
+            "byteOffset": 24,
+            "byteStride": 32,
+            "componentType": 5126,
+            "count": 66,
+            "max": [
+                0.9794555902481079,
+                0.9856199026107788
+            ],
+            "min": [
+                0.015446886420249939,
+                0.014380097389221191
+            ],
+            "type": "VEC2"
+        },
+        "accessor_buffer_tv_3": {
+            "bufferView": "bufferView_buffer_tv_1",
+            "byteOffset": 0,
+            "byteStride": 2,
+            "componentType": 5123,
+            "count": 114,
+            "max": [
+                65
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        }
+    },
+    "asset": {
+        "profile": {
+            "api": "WebGL",
+            "version": "1.0.3"
+        },
+        "version": "1.0"
+    },
+    "bufferViews": {
+        "bufferView_buffer_tv_0": {
+            "buffer": "buffer_tv",
+            "byteLength": 2112,
+            "byteOffset": 0,
+            "target": 34962
+        },
+        "bufferView_buffer_tv_1": {
+            "buffer": "buffer_tv",
+            "byteLength": 228,
+            "byteOffset": 2112,
+            "target": 34963
+        }
+    },
+    "buffers": {
+        "buffer_tv": {
+            "byteLength": 2340,
+            "type": "arraybuffer",
+            "uri": "buffer_tv.bin"
+        }
+    },
+    "extensions": {
+        "KHR_materials_common": {
+            "lights": {}
+        }
+    },
+    "extensionsUsed": [
+        "KHR_materials_common"
+    ],
+    "images": {
+        "image_tv.png": {
+            "uri": "tv.png"
+        }
+    },
+    "materials": {
+        "material_tvmat": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "technique": "CONSTANT",
+                    "values": {
+                        "ambient": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "diffuse": "texture_Texture.005",
+                        "doubleSided": false,
+                        "emission": "texture_Texture.005",
+                        "shininess": 83,
+                        "specular": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "transparency": 1.0,
+                        "transparent": false
+                    }
+                }
+            },
+            "name": "tvmat"
+        }
+    },
+    "meshes": {
+        "mesh_tv": {
+            "name": "tv",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_buffer_tv_1",
+                        "POSITION": "accessor_buffer_tv_0",
+                        "TEXCOORD_0": "accessor_buffer_tv_2"
+                    },
+                    "indices": "accessor_buffer_tv_3",
+                    "material": "material_tvmat",
+                    "mode": 4
+                }
+            ]
+        }
+    },
+    "nodes": {
+        "node_scene_Scene_root": {
+            "children": [
+                "node_tv"
+            ],
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "name": "node_scene_Scene_root"
+        },
+        "node_tv": {
+            "children": [],
+            "matrix": [
+                0.2750000059604645,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.027715370059013367,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.17499999701976776,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "meshes": [
+                "mesh_tv"
+            ],
+            "name": "tv"
+        }
+    },
+    "samplers": {
+        "sampler_default": {}
+    },
+    "scene": "scene_Scene",
+    "scenes": {
+        "scene_Scene": {
+            "extras": {
+                "active_camera": "",
+                "background_color": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "frames_per_second": 24
+            },
+            "name": "Scene",
+            "nodes": [
+                "node_scene_Scene_root"
+            ]
+        }
+    },
+    "textures": {
+        "texture_Texture.005": {
+            "format": 6408,
+            "internalFormat": 6408,
+            "sampler": "sampler_default",
+            "source": "image_tv.png"
+        }
+    }
+}
