@@ -76,7 +76,7 @@
       <!-- Texts -->
       <a-entity id="counter0" visible="false" position="0.87 2.18 -2.42" rotation="23.78 -27.40 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:7.4"></a-entity>
       <a-entity id="counter1" visible="false" position="-1.66 2.18 2.16" rotation="23.78 147.24 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:7.4"></a-entity>
-      <a-entity id="centeredText" text="font: assets/asaturdaynight.fnt; align: center; opacity: 1; width: 6.22;" visible="false" position="0 1.8 1.5"></a-entity>
+      <a-entity id="centeredText" text="font: assets/asaturdaynight.fnt; align: center; opacity: 1; width: 6.22;color:#fffdb3;" visible="false" position="0 1.8 1.5"></a-entity>
 
 
       <!-- Lights -->
@@ -110,6 +110,7 @@
       <a-obj-model id="tv2" src="#tv-obj" material="shader:flat;src:#tv-img" position="0.87 2.15 -2.44" rotation="0 151.8 0"></a-obj-model>
       <!-- Avatar selection -->
       <a-entity id="avatarSelection" scale="0.75 0.75 0.75" position="0 1.6 -1" visible="false">
+        <a-entity id="selectionText" text="font: assets/asaturdaynight.fnt; align: center; opacity: 1; width: 6.22; value:Select your avatar; color:#fffdb3;" position="0 -0.5 0"></a-entity>
         <a-entity id="avatar1" class="avatar">
           <a-obj-model class="head" src="#avatar1-head-obj" mtl="#avatar1-head-mtl" position="-1 0 0" highlighter="color:#ff8"></a-obj-model>
           <a-obj-model class="leftHand" src="#avatar1-hand-left-obj" mtl="#avatar1-hand-left-mtl" position="-2.5 1 0" visible="false"></a-obj-model>
