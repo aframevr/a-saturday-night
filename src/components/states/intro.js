@@ -10,10 +10,7 @@ AFRAME.registerComponent('intro', {
         var selectedAvatar = document.getElementById(data.content.avatar);
         var avatarHeadEl = document.getElementById('avatarHead');
         self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatar);
-        avatarHeadEl.setAttribute('obj-model', {
-          obj: selectedAvatar.getAttribute('src'),
-          mtl: selectedAvatar.getAttribute('mtl')
-        });
+        avatarHeadEl.setAttribute('gltf-model', selectedAvatar.getAttribute('gltf-model'));
 
         self.el.setAttribute('avatar-replayer', {
           spectatorMode: true,
