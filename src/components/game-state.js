@@ -7,7 +7,7 @@ AFRAME.registerComponent('game-state', {
   schema: {
     selectedAvatar: {type: 'selector'},
     countdownTime: {default: 3},
-    dancingTime: {default: 5},
+    dancingTime: {default: 10},
     state: {default: 'intro', oneOf: ['intro', 'avatar-selection', 'countdown', 'dancing', 'collect-url']}
   },
 
