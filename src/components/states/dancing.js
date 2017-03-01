@@ -51,6 +51,6 @@ AFRAME.registerComponent('dancing', {
     this.textElement.setAttribute('visible', false);
     this.counter0.setAttribute('visible', false);
     this.counter1.setAttribute('visible', false);
-    this.soundEl.components.sound.pauseSound();
+    this.soundEl.components.sound.stopSound();
   }
 });

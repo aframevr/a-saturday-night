@@ -24,6 +24,6 @@ AFRAME.registerComponent('collect-url', {
 
   remove: function () {
     this.textElement.setAttribute('visible', false);
-    this.soundEl.components.sound.pauseSound();
+    this.soundEl.components.sound.stopSound();
   }
 });
