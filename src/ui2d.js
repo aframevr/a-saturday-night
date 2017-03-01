@@ -22,7 +22,7 @@ window.addEventListener('load', function (event) {
   document.addEventListener('uploadcare-upload-completed', function (event) {
     shareDiv.classList.remove('hide');
     progressDiv.classList.add('hide');
-    shareUrl.value = event.detail.url;
+    shareUrl.value = window.location + '?url=' + event.detail.url;
   });
 
   document.addEventListener('uploadcare-upload-started', function (event) {

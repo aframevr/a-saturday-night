@@ -23,7 +23,11 @@ AFRAME.registerComponent('intro', {
           spectatorMode: true,
           loop: true
         });
-        self.el.components['avatar-replayer'].startReplaying(data.content.recording);
+        window.setTimeout(function () {
+          self.el.components['avatar-replayer'].startReplaying(data.content.recording);
+          self.el.emit('dancing');
+          selectedAvatarEl.querySelector('[sound]').components.sound.playSound();
+        }, 5000);
       });
     } else {
       this.el.setAttribute('avatar-replayer', {
