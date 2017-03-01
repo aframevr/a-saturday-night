@@ -2,6 +2,9 @@ AFRAME.registerComponent('collect-url', {
   init: function () {
     document.getElementById('floor').setAttribute('discofloor', {pattern: 'idle'});
     var textElement = this.textElement = document.getElementById('centeredText');
+    var selectedAvatarEl = this.el.getAttribute('game-state').selectedAvatar;
+    var soundEl = this.soundEl = selectedAvatarEl.querySelector('[sound]');
+
     textElement.setAttribute('visible', true);
     textElement.setAttribute('text', {value: 'Copy your dance URL', width: 3});
     var object = { opacity: 0.0 };
@@ -12,13 +15,15 @@ AFRAME.registerComponent('collect-url', {
       })
       .start();
     var json = {
-      avatar: this.el.getAttribute('game-state').selectedAvatar.id,
+      avatar: selectedAvatarEl.id,
       recording: this.el.components['avatar-recorder'].getJSONData()
     }
     this.el.systems['uploadcare'].upload(json, 'application/json');
+    this.soundEl.components.sound.playSound();
   },
 
   remove: function () {
     this.textElement.setAttribute('visible', false);
+    this.soundEl.components.sound.pauseSound();
   }
 });

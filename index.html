@@ -29,13 +29,14 @@
       <a-assets>
         <a-asset-item id="set-obj" src="assets/room/set.gltf"></a-asset-item>
         <a-asset-item id="floor-obj" src="assets/room/floor.gltf"></a-asset-item>
+        <audio id="song1" src="assets/playItAgain.mp3"></audio>
+
         <a-image id="floor-img" src="assets/room/flooron.png"></a-image>
         <a-asset-item id="flooroff-mtl" src="assets/room/flooroff.png"></a-asset-item>
         <a-asset-item id="spotlight-obj" src="assets/room/spotlight.gltf"></a-asset-item>
         <a-image id="spotlight-img" src="assets/room/spotlight.png"></a-image>
         <a-image id="star-img" src="assets/room/star.png"></a-image>
         <a-asset-item id="tv-obj" src="assets/room/tv.gltf"></a-asset-item>
-
         <a-asset-item id="avatar1-head-obj" src="assets/avatar1/avatar1-head.gltf"></a-asset-item>
         <a-asset-item id="avatar1-hand-right-obj" src="assets/avatar1/avatar1-hand-right.gltf"></a-asset-item>
         <a-asset-item id="avatar1-hand-left-obj" src="assets/avatar1/avatar1-hand-left.gltf"></a-asset-item>
@@ -45,7 +46,6 @@
         <a-asset-item id="avatar3-hand-obj" src="assets/avatar3/avatar3-hand.gltf"></a-asset-item>
         <a-asset-item id="avatar4-head-obj" src="assets/avatar4/avatar4-head.gltf"></a-asset-item>
         <a-asset-item id="avatar4-hand-obj" src="assets/avatar4/avatar4-hand.gltf"></a-asset-item>
-
       </a-assets>
       <a-entity id="avatarHead"
                 camera="userHeight: 0"
@@ -97,24 +97,28 @@
       <a-entity id="avatarSelection" scale="0.75 0.75 0.75" position="0 1.6 -1" visible="false">
         <a-entity id="selectionText" text="font: assets/asaturdaynight.fnt; align: center; opacity: 1; width: 6.22; value:Select your avatar; color:#fffdb3;" position="0 -0.5 0"></a-entity>
         <a-entity id="avatar1" class="avatar">
+          <a-entity sound="src: #song1"></a-entity>
           <a-entity class="head" gltf-model="#avatar1-head-obj" position="-1 0 0" highlighter="color:#ff8"></a-entity>
           <a-entity class="leftHand" gltf-model="#avatar1-hand-left-obj" position="-2.5 1 0" visible="false"></a-entity>
           <a-entity class="rightHand" gltf-model="#avatar1-hand-right-obj" position="-1.5 1 0" visible="false"></a-entity>
         </a-entity>
 
         <a-entity id="avatar2" class="avatar">
+          <a-entity sound="src: #song1"></a-entity>
           <a-entity class="head" gltf-model="#avatar2-head-obj" position="-0.33 0 0" highlighter="color:#ff0"></a-entity>
           <a-entity class="leftHand" gltf-model="#avatar2-hand-obj" position="-0.5 1 0" visible="false"></a-entity>
           <a-entity class="rightHand" gltf-model="#avatar2-hand-obj" position="-0.5 1 0" visible="false"></a-entity>
         </a-entity>
 
         <a-entity id="avatar3" class="avatar">
+          <a-entity sound="src: #song1"></a-entity>
           <a-entity class="head" gltf-model="#avatar3-head-obj" position="0.38 0 0" highlighter="color:#ff0"></a-entity>
           <a-entity class="leftHand" gltf-model="#avatar3-hand-obj" position="1 1 0"  visible="false"></a-entity>
           <a-entity class="rightHand" gltf-model="#avatar3-hand-obj" position="1 1 0" visible="false"></a-entity>
         </a-entity>
 
         <a-entity id="avatar4" class="avatar">
+          <a-entity sound="src: #song1"></a-entity>
           <a-entity class="head" gltf-model="#avatar4-head-obj" position="1 0 0" highlighter="color:#ff0"></a-entity>
           <a-entity class="leftHand" gltf-model="#avatar4-hand-obj" position="2.5 1 0" visible="false"></a-entity>
           <a-entity class="rightHand" gltf-model="#avatar4-hand-obj" position="2.5 1 0" visible="false"></a-entity>
