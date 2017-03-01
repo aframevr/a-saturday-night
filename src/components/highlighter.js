@@ -13,7 +13,7 @@ AFRAME.registerComponent('highlighter', {
     var self = this;
     this.material = null;
     this.el.addEventListener('model-loaded', function () {
-      var mat = self.el.getObject3D('mesh').children[0].material;
+      var mat = self.el.getObject3D('mesh').children[0].children[0].children[0].material;
       mat.emissiveMap = mat.map;
       self.material = mat;
       self.update();

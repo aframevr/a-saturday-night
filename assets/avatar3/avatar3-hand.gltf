@@ -5,7 +5,7 @@
             "byteOffset": 0,
             "byteStride": 0,
             "componentType": 5123,
-            "count": 120,
+            "count": 1368,
             "type": "SCALAR"
         },
         "accessor_23": {
@@ -13,50 +13,50 @@
             "byteOffset": 0,
             "byteStride": 12,
             "componentType": 5126,
-            "count": 120,
+            "count": 1368,
             "max": [
-                1,
-                2.91199,
-                13.4671
+                0.533254,
+                0.335067,
+                0.999611
             ],
             "min": [
-                -1,
-                -4.12119,
-                -0.893228
+                -1.42254,
+                -0.604154,
+                -0.674364
             ],
             "type": "VEC3"
         },
         "accessor_25": {
             "bufferView": "bufferView_30",
-            "byteOffset": 1440,
+            "byteOffset": 16416,
             "byteStride": 12,
             "componentType": 5126,
-            "count": 120,
+            "count": 1368,
             "max": [
-                1,
-                0.329988,
-                0.997436
+                0.998835,
+                0.99789,
+                0.986228
             ],
             "min": [
-                -1,
-                -0.329988,
-                -0.997436
+                -0.998195,
+                -0.999809,
+                -0.998643
             ],
             "type": "VEC3"
         },
         "accessor_27": {
             "bufferView": "bufferView_30",
-            "byteOffset": 2880,
+            "byteOffset": 32832,
             "byteStride": 8,
             "componentType": 5126,
-            "count": 120,
+            "count": 1368,
             "max": [
-                0.979456,
-                0.98562
+                0.984414,
+                0.980592
             ],
             "min": [
-                0.0154468,
-                0.0143801
+                0.697149,
+                0.0156711
             ],
             "type": "VEC2"
         }
@@ -73,50 +73,71 @@
     },
     "bufferViews": {
         "bufferView_29": {
-            "buffer": "tv",
-            "byteLength": 240,
+            "buffer": "avatar3-hand",
+            "byteLength": 2736,
             "byteOffset": 0,
             "target": 34963
         },
         "bufferView_30": {
-            "buffer": "tv",
-            "byteLength": 3840,
-            "byteOffset": 240,
+            "buffer": "avatar3-hand",
+            "byteLength": 43776,
+            "byteOffset": 2736,
             "target": 34962
         }
     },
     "buffers": {
-        "tv": {
-            "byteLength": 4080,
+        "avatar3-hand": {
+            "byteLength": 46512,
             "type": "arraybuffer",
-            "uri": "tv.bin"
+            "uri": "avatar3-hand.bin"
         }
     },
     "extensionsUsed": [
         "KHR_materials_common"
     ],
     "images": {
-        "tv_png": {
-            "name": "tv_png",
-            "uri": "tv.png"
+        "avatar3": {
+            "name": "avatar3",
+            "uri": "avatar3.jpg"
+        },
+        "avatar3spec": {
+            "name": "avatar3spec",
+            "uri": "avatar3spec.jpg"
         }
     },
     "materials": {
-        "tvmat-effect": {
+        "matfinal-effect": {
             "extensions": {
                 "KHR_materials_common": {
-                    "technique": "CONSTANT",
+                    "doubleSided": false,
+                    "jointCount": 0,
+                    "technique": "PHONG",
+                    "transparent": false,
                     "values": {
-                        "emission": "texture_tv_png"
+                        "ambient": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "diffuse": "texture_avatar3",
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 59,
+                        "specular": "texture_avatar3spec"
                     }
                 }
             },
-            "name": "tvmat"
+            "name": "matfinal"
         }
     },
     "meshes": {
-        "tv-mesh": {
-            "name": "tv",
+        "hand-mesh": {
+            "name": "hand",
             "primitives": [
                 {
                     "attributes": {
@@ -125,16 +146,41 @@
                         "TEXCOORD_0": "accessor_27"
                     },
                     "indices": "accessor_21",
-                    "material": "tvmat-effect",
+                    "material": "matfinal-effect",
                     "mode": 4
                 }
             ]
         }
     },
     "nodes": {
+        "hand": {
+            "children": [],
+            "matrix": [
+                0.109607,
+                0,
+                0,
+                0,
+                0,
+                0.109607,
+                0,
+                0,
+                0,
+                0,
+                0.109607,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "meshes": [
+                "hand-mesh"
+            ],
+            "name": "hand"
+        },
         "node_1": {
             "children": [
-                "tv"
+                "hand"
             ],
             "matrix": [
                 1,
@@ -155,31 +201,6 @@
                 1
             ],
             "name": "Y_UP_Transform"
-        },
-        "tv": {
-            "children": [],
-            "matrix": [
-                0.275,
-                0,
-                0,
-                0,
-                0,
-                0.0277154,
-                0,
-                0,
-                0,
-                0,
-                0.175,
-                0,
-                0,
-                0,
-                0,
-                1
-            ],
-            "meshes": [
-                "tv-mesh"
-            ],
-            "name": "tv"
         }
     },
     "samplers": {
@@ -200,11 +221,19 @@
     },
     "skins": {},
     "textures": {
-        "texture_tv_png": {
+        "texture_avatar3": {
             "format": 6408,
             "internalFormat": 6408,
             "sampler": "sampler_0",
-            "source": "tv_png",
+            "source": "avatar3",
+            "target": 3553,
+            "type": 5121
+        },
+        "texture_avatar3spec": {
+            "format": 6408,
+            "internalFormat": 6408,
+            "sampler": "sampler_0",
+            "source": "avatar3spec",
             "target": 3553,
             "type": 5121
         }

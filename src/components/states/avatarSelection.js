@@ -35,18 +35,9 @@ AFRAME.registerComponent('avatar-selection', {
     var rightSelectionHandEl = el.querySelector('#rightSelectionHand');
 
     this.el.setAttribute('game-state', 'selectedAvatar', this.selectedAvatarEl);
-    avatarHeadEl.setAttribute('obj-model', {
-      obj: selectedAvatarEl.querySelector('.head').getAttribute('src'),
-      mtl: selectedAvatarEl.querySelector('.head').getAttribute('mtl')
-    });
-    leftHandEl.setAttribute('obj-model', {
-      obj: selectedAvatarEl.querySelector('.leftHand').getAttribute('src'),
-      mtl: selectedAvatarEl.querySelector('.leftHand').getAttribute('mtl')
-    });
-    rightHandEl.setAttribute('obj-model', {
-      obj: selectedAvatarEl.querySelector('.rightHand').getAttribute('src'),
-      mtl: selectedAvatarEl.querySelector('.rightHand').getAttribute('mtl')
-    });
+    avatarHeadEl.setAttribute('gtlf-model', selectedAvatarEl.querySelector('.head').getAttribute('gtlf-model'));
+    leftHandEl.setAttribute('gtlf-model', selectedAvatarEl.querySelector('.leftHand').getAttribute('gltf-model'));
+    rightHandEl.setAttribute('gtlf-model', selectedAvatarEl.querySelector('.rightHand').getAttribute('gltf-model'));
     leftSelectionHandEl.setAttribute('visible', false);
     rightSelectionHandEl.setAttribute('visible', false);
   },

@@ -31,3 +31,4 @@ LICENSE text
 *.wav binary
 *.ogg binary
 *.gif binary
+*.bin binary

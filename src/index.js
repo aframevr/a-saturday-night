@@ -9,6 +9,7 @@ require('./components/ground.js');
 require('./components/discofloor.js');
 require('./components/spotlight.js');
 require('./components/highlighter.js');
+require('./components/roomcolor.js');
 
 // States
 require('./components/states/avatarSelection.js');

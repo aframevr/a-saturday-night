@@ -28,9 +28,11 @@ AFRAME.registerComponent('discofloor', {
     this.el.addEventListener('model-loaded', this.initTiles.bind(this));
   },
   initTiles: function (evt) {
-    for (var i = 0; i < evt.detail.model.children.length; i++) {
-      this.tiles[i] = evt.detail.model.children[i];
+    var meshes = evt.detail.model.children[0].children;
+    for (var i = 0; i < meshes.length; i++) {
+      this.tiles[i] = meshes[i];
     }
+    this.tiles.sort((a, b) => a.name > b.name ? 1 : -1);
   },
   update: function (oldData) {
     this.tickTime = 1000 * 60 / this.bpms[this.data.pattern];

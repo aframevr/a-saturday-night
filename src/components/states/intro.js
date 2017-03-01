@@ -15,18 +15,9 @@ AFRAME.registerComponent('intro', {
         var rightHandEl = document.getElementById('rightHand');
         var leftHandEl = document.getElementById('leftHand');
         self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatarEl);
-        avatarHeadEl.setAttribute('obj-model', {
-          obj: selectedAvatarHeadEl.getAttribute('src'),
-          mtl: selectedAvatarHeadEl.getAttribute('mtl')
-        });
-        rightHandEl.setAttribute('obj-model', {
-          obj: selectedAvatarRightHandEl.getAttribute('src'),
-          mtl: selectedAvatarRightHandEl.getAttribute('mtl')
-        });
-        leftHandEl.setAttribute('obj-model', {
-          obj: selectedAvatarLeftHandEl.getAttribute('src'),
-          mtl: selectedAvatarLeftHandEl.getAttribute('mtl')
-        });
+        avatarHeadEl.setAttribute('gltf-model', selectedAvatarHeadEl.getAttribute('gltf-model'));
+        rightHandEl.setAttribute('gltf-model', selectedAvatarRightHandEl.getAttribute('gltf-model'));
+        leftHandEl.setAttribute('gltf-model', selectedAvatarLeftHandEl.getAttribute('gltf-model'));
 
         self.el.setAttribute('avatar-replayer', {
           spectatorMode: true,
