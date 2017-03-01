@@ -7,12 +7,25 @@ AFRAME.registerComponent('intro', {
     if (urlParams.url) {
       var self = this;
       this.el.sceneEl.systems['uploadcare'].download(urlParams.url, function (data) {
-        var selectedAvatar = document.getElementById(data.content.avatar);
+        var selectedAvatarEl = document.getElementById(data.content.avatar);
+        var selectedAvatarHeadEl = selectedAvatarEl.querySelector('.head');
+        var selectedAvatarRightHandEl = selectedAvatarEl.querySelector('.rightHand');
+        var selectedAvatarLeftHandEl = selectedAvatarEl.querySelector('.leftHand');
         var avatarHeadEl = document.getElementById('avatarHead');
-        self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatar);
+        var rightHandEl = document.getElementById('rightHand');
+        var leftHandEl = document.getElementById('leftHand');
+        self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatarEl);
         avatarHeadEl.setAttribute('obj-model', {
-          obj: selectedAvatar.getAttribute('src'),
-          mtl: selectedAvatar.getAttribute('mtl')
+          obj: selectedAvatarHeadEl.getAttribute('src'),
+          mtl: selectedAvatarHeadEl.getAttribute('mtl')
+        });
+        rightHandEl.setAttribute('obj-model', {
+          obj: selectedAvatarRightHandEl.getAttribute('src'),
+          mtl: selectedAvatarRightHandEl.getAttribute('mtl')
+        });
+        leftHandEl.setAttribute('obj-model', {
+          obj: selectedAvatarLeftHandEl.getAttribute('src'),
+          mtl: selectedAvatarLeftHandEl.getAttribute('mtl')
         });
 
         self.el.setAttribute('avatar-replayer', {

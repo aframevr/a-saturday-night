@@ -31,15 +31,18 @@ AFRAME.registerComponent('dancing', {
   },
 
   countdown: function () {
+    var el = this.el;
     this.dancingTime--;
     this.counter0.setAttribute('text', {value: this.dancingTime.toString()});
     this.counter1.setAttribute('text', {value: this.dancingTime.toString()});
 
     if (this.dancingTime === 0) {
       window.clearInterval(this.interval);
-      this.el.components['avatar-recorder'].stopRecording();
+      el.querySelector('#leftHand').removeAttribute('tracked-controls');
+      el.querySelector('#rightHand').removeAttribute('tracked-controls');
+      el.components['avatar-recorder'].stopRecording();
     }
-    this.el.setAttribute('game-state', 'dancingTime', this.dancingTime);
+    el.setAttribute('game-state', 'dancingTime', this.dancingTime);
   },
 
   remove: function () {

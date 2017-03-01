@@ -4,26 +4,35 @@ AFRAME.registerComponent('avatar-selection', {
     this.avatarEls = this.el.querySelectorAll('.head');
     avatarSelectionEl.setAttribute('visible', true);
     this.onKeyDown = this.onKeyDown.bind(this);
-    window.addEventListener('hit', this.onSelection.bind(this));
-    window.addEventListener('buttondown', this.commitSelection.bind(this));
+    this.onHover = this.onHover.bind(this);
+    this.onButtonDown = this.onButtonDown.bind(this);
+    this.el.querySelector('#leftSelectionHand').setAttribute('visible', true);
+    this.el.querySelector('#rightSelectionHand').setAttribute('visible', true);
+    window.addEventListener('hit', this.onHover);
+    window.addEventListener('buttondown', this.onButtonDown);
+    window.addEventListener('keydown', this.onKeyDown);
   },
 
   onKeyDown: function (event) {
     var code = event.keyCode;
     if (code >= 49 && code <= 52) {
-      this.selectedAvatarEl = this.avatarEls[code - 49];
-      this.commitSelection();
+      this.selectAvatar(this.avatarEls[code - 49].parentEl);
     }
   },
 
-  commitSelection: function (event) {
-    if (!this.selectedAvatarEl || (event && event.target.id!=='rightSelectionHand')) return;
-    var avatarHeadEl = this.el.querySelector('#avatarHead');
-    var leftHandEl = this.el.querySelector('#leftHand');
-    var rightHandEl = this.el.querySelector('#rightHand');
-    var leftSelectionHandEl = this.el.querySelector('#leftSelectionHand');
-    var rightSelectionHandEl = this.el.querySelector('#rightSelectionHand');
-    var selectedAvatarEl = this.selectedAvatarEl.parentEl;
+  onButtonDown: function (event) {
+    if (!this.hoveredAvatarEl) return;
+    this.selectAvatar(this.hoveredAvatarEl.parentEl);
+  },
+
+  selectAvatar: function (avatarEl) {
+    var el = this.el;
+    var selectedAvatarEl = this.selectedAvatarEl = avatarEl;
+    var avatarHeadEl = el.querySelector('#avatarHead');
+    var leftHandEl = el.querySelector('#leftHand');
+    var rightHandEl = el.querySelector('#rightHand');
+    var leftSelectionHandEl = el.querySelector('#leftSelectionHand');
+    var rightSelectionHandEl = el.querySelector('#rightSelectionHand');
 
     this.el.setAttribute('game-state', 'selectedAvatar', this.selectedAvatarEl);
     avatarHeadEl.setAttribute('obj-model', {
@@ -38,31 +47,31 @@ AFRAME.registerComponent('avatar-selection', {
       obj: selectedAvatarEl.querySelector('.rightHand').getAttribute('src'),
       mtl: selectedAvatarEl.querySelector('.rightHand').getAttribute('mtl')
     });
-    this.el.removeChild(leftSelectionHandEl);
-    this.el.removeChild(rightSelectionHandEl);
+    leftSelectionHandEl.setAttribute('visible', false);
+    rightSelectionHandEl.setAttribute('visible', false);
   },
 
   pause: function () {
     window.removeEventListener('keydown', this.onKeyDown);
-    window.removeEventListener('hit', this.onSelection);
-    window.removeEventListener('buttondown', this.commitSelection);
+    window.removeEventListener('hit', this.onHover);
+    window.removeEventListener('buttondown', this.selectAvatar);
   },
 
-  onSelection: function (event) {
-    this.selectAvatar(event.detail.el === null ? null : event.target);
+  onHover: function (event) {
+    this.highlightAvatar(event.detail.el === null ? null : event.target);
   },
 
-  selectAvatar: function (el) {
-    if ((el && el.className !== 'head') || el === this.selectedAvatarEl) return;
+  highlightAvatar: function (el) {
+    if ((el && el.className !== 'head') || el === this.hoveredAvatarEl) return;
     if (el !== null) el.setAttribute('highlighter', {active: true});
-    if (this.selectedAvatarEl) { this.selectedAvatarEl.setAttribute('highlighter', {active: false}); }
-    this.selectedAvatarEl = el;
+    if (this.hoveredAvatarEl) { this.hoveredAvatarEl.setAttribute('highlighter', {active: false}); }
+    this.hoveredAvatarEl = el;
   },
 
   remove: function () {
     this.avatarSelectionEl.setAttribute('visible', false);
     window.removeEventListener('keydown', this.onKeyDown);
-    window.removeEventListener('hit', this.onSelection);
+    window.removeEventListener('hit', this.onHover);
     window.removeEventListener('buttondown', this.commitSelection);
   }
 });

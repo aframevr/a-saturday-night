@@ -68,11 +68,12 @@
                 wasd-controls look-controls
                 obj-model="obj: #avatar2-head-obj; mtl: #avatar2-head-mtl"
                 position="0 0 0"></a-entity>
+      <!-- Avatar Hands -->
       <a-entity id="leftHand" vive-controls="hand: left; model: false"></a-entity>
       <a-entity id="rightHand" vive-controls="hand: right; model: false"></a-entity>
-      <!-- Hands -->
-      <a-entity id="leftSelectionHand" hand-controls="left" ></a-entity>
-      <a-entity id="rightSelectionHand" hand-controls="right" aabb-collider="objects:.head;"></a-entity>
+      <!-- Selection Hands -->
+      <a-entity id="leftSelectionHand" hand-controls="left" aabb-collider="objects: .head" visible="false"></a-entity>
+      <a-entity id="rightSelectionHand" hand-controls="right" aabb-collider="objects: .head" visible="false"></a-entity>
       <!-- Texts -->
       <a-entity id="counter0" visible="false" position="0.87 2.18 -2.42" rotation="23.78 -27.40 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:7.4"></a-entity>
       <a-entity id="counter1" visible="false" position="-1.66 2.18 2.16" rotation="23.78 147.24 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:7.4"></a-entity>
