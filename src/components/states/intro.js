@@ -18,6 +18,7 @@ AFRAME.registerComponent('intro', {
         self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatarEl);
         avatarHeadEl.setAttribute('gltf-model', selectedAvatarHeadEl.getAttribute('gltf-model'));
         cameraRig.setAttribute('rotation', '0 180 0');
+        avatarHeadEl.setAttribute('visible', true);
         rightHandEl.setAttribute('gltf-model', selectedAvatarRightHandEl.getAttribute('gltf-model'));
         leftHandEl.setAttribute('gltf-model', selectedAvatarLeftHandEl.getAttribute('gltf-model'));
 
