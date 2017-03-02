@@ -18,7 +18,10 @@ AFRAME.registerComponent('intro', {
         self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatarEl);
         avatarHeadEl.setAttribute('gltf-model', selectedAvatarHeadEl.getAttribute('gltf-model'));
         cameraRig.setAttribute('rotation', '0 180 0');
+<<<<<<< 270404b305fadb28ff950a7b349cb517710766a3
         avatarHeadEl.setAttribute('visible', true);
+=======
+>>>>>>> Fix rotations while playing
         rightHandEl.setAttribute('gltf-model', selectedAvatarRightHandEl.getAttribute('gltf-model'));
         leftHandEl.setAttribute('gltf-model', selectedAvatarLeftHandEl.getAttribute('gltf-model'));
 
