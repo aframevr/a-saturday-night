@@ -43,6 +43,10 @@ AFRAME.registerComponent('dancing', {
       el.querySelector('#leftHand').removeAttribute('tracked-controls');
       el.querySelector('#rightHand').removeAttribute('tracked-controls');
       el.components['avatar-recorder'].stopRecording();
+      var avatarHeadEl = document.getElementById('avatarHead');
+      avatarHeadEl.setAttribute('visible', true);
+      var cameraRig = document.getElementById('cameraRig');
+      cameraRig.setAttribute('rotation', '0 180 0');
     }
     el.setAttribute('game-state', 'dancingTime', this.dancingTime);
   },

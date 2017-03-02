@@ -1,7 +1,9 @@
 AFRAME.registerComponent('avatar-selection', {
   init: function () {
     var avatarSelectionEl = this.avatarSelectionEl = this.el.querySelector('#avatarSelection');
+    var avatarHeadEl = document.getElementById('avatarHead');
     this.avatarEls = this.el.querySelectorAll('.head');
+    avatarHeadEl.setAttribute('visible', false);
     avatarSelectionEl.setAttribute('visible', true);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onHover = this.onHover.bind(this);

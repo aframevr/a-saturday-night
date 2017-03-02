@@ -14,8 +14,10 @@ AFRAME.registerComponent('intro', {
         var avatarHeadEl = document.getElementById('avatarHead');
         var rightHandEl = document.getElementById('rightHand');
         var leftHandEl = document.getElementById('leftHand');
+        var cameraRig = document.getElementById('cameraRig');
         self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatarEl);
         avatarHeadEl.setAttribute('gltf-model', selectedAvatarHeadEl.getAttribute('gltf-model'));
+        cameraRig.setAttribute('rotation', '0 180 0');
         rightHandEl.setAttribute('gltf-model', selectedAvatarRightHandEl.getAttribute('gltf-model'));
         leftHandEl.setAttribute('gltf-model', selectedAvatarLeftHandEl.getAttribute('gltf-model'));
 

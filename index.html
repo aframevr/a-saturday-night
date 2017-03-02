@@ -54,14 +54,16 @@
         <a-asset-item id="avatar4-hand-right-obj" src="assets/avatar4/avatar4-hand-right.gltf"></a-asset-item>
         <a-asset-item id="avatar4-hand-left-obj" src="assets/avatar4/avatar4-hand-left.gltf"></a-asset-item>
       </a-assets>
-      <a-entity id="avatarHead"
-                camera="userHeight: 0"
-                wasd-controls look-controls
-                gltf-model="#avatar2-head-obj"
-                position="0 0 0"></a-entity>
-      <!-- Avatar Hands -->
-      <a-entity id="leftHand" vive-controls="hand: left; model: false"></a-entity>
-      <a-entity id="rightHand" vive-controls="hand: right; model: false"></a-entity>
+      <a-entity id="cameraRig" rotation="0 0 0">
+        <a-entity id="avatarHead"
+                  camera="userHeight: 0"
+                  wasd-controls look-controls
+                  gltf-model="#avatar2-head-obj"
+                  position="0 0 0"></a-entity>
+        <!-- Avatar Hands -->
+        <a-entity id="leftHand" vive-controls="hand: left; model: false"></a-entity>
+        <a-entity id="rightHand" vive-controls="hand: right; model: false"></a-entity>
+      </a-entity>
       <!-- Selection Hands -->
       <a-entity id="leftSelectionHand" hand-controls="left" aabb-collider="objects: .head" visible="false"></a-entity>
       <a-entity id="rightSelectionHand" hand-controls="right" aabb-collider="objects: .head" visible="false"></a-entity>

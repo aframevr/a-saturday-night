@@ -18,6 +18,13 @@ AFRAME.registerComponent('collect-url', {
       avatar: selectedAvatarEl.id,
       recording: this.el.components['avatar-recorder'].getJSONData()
     }
+
+    // @fixme Hack to fix serialization errors on events
+    delete json.recording['leftSelectionHand'];
+    delete json.recording['rightSelectionHand'];
+    if (json.recording.rightHand) { json.recording.rightHand.events = []; }
+    if (json.recording.leftHand) { json.recording.leftHand.events = []; }
+
     this.el.systems['uploadcare'].upload(json, 'application/json');
     this.soundEl.components.sound.playSound();
   },
