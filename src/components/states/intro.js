@@ -17,6 +17,11 @@ AFRAME.registerComponent('intro', {
         var cameraRig = document.getElementById('cameraRig');
         self.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatarEl);
         avatarHeadEl.setAttribute('gltf-model', selectedAvatarHeadEl.getAttribute('gltf-model'));
+        avatarHeadEl.setAttribute('visible', false);
+        rightHandEl.setAttribute('visible', false);
+        leftHandEl.setAttribute('visible', false);
+
+
         cameraRig.setAttribute('rotation', '0 180 0');
         rightHandEl.setAttribute('gltf-model', selectedAvatarRightHandEl.getAttribute('gltf-model'));
         leftHandEl.setAttribute('gltf-model', selectedAvatarLeftHandEl.getAttribute('gltf-model'));
@@ -25,7 +30,12 @@ AFRAME.registerComponent('intro', {
           spectatorMode: true,
           loop: true
         });
+
+        document.getElementById('spectatorCamera').setAttribute('position', '0 1.6 2');
         window.setTimeout(function () {
+          avatarHeadEl.setAttribute('visible', true);
+          rightHandEl.setAttribute('visible', true);
+          leftHandEl.setAttribute('visible', true);
           self.el.components['avatar-replayer'].startReplaying(data.content.recording);
           self.el.emit('dancing');
           selectedAvatarEl.querySelector('[sound]').components.sound.playSound();
