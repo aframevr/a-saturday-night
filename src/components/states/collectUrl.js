@@ -5,8 +5,9 @@ AFRAME.registerComponent('collect-url', {
     var selectedAvatarEl = this.el.getAttribute('game-state').selectedAvatar;
     var soundEl = this.soundEl = selectedAvatarEl.querySelector('[sound]');
 
+    textElement.setAttribute('position', {y: 0.9});
     textElement.setAttribute('visible', true);
-    textElement.setAttribute('text', {value: 'Copy your dance URL', width: 3});
+    textElement.setAttribute('text', {value: 'Copy your dance URL and share!', width: 3.5});
     var object = { opacity: 0.0 };
     new AFRAME.TWEEN.Tween(object)
       .to({opacity: 1.0}, 1000)
