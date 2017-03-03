@@ -10,6 +10,7 @@ AFRAME.registerComponent('countdown', {
     for (var i = 0; i < textElements.length; i++) {
       var textElement = textElements[i];
       textElement.setAttribute('visible', true);
+      textElement.setAttribute('position', {y:1.4});
       textElement.setAttribute('text', {value: 'ready'});
     }
     this.opacity = 1;
