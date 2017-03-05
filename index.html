@@ -25,12 +25,13 @@
     </div>
 
     <a-scene uploadcare="publicKey: 85ed3c25d99e387316bd" game-state
-             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 0 2; localStorage: false; saveFile: false">
+             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2; localStorage: false; saveFile: false"
+             auto-enter-vr="enabled: false">
       <a-assets>
         <a-asset-item id="set-obj" src="assets/room/set.gltf"></a-asset-item>
         <a-asset-item id="floor-obj" src="assets/room/floor.gltf"></a-asset-item>
-        <audio id="song1" src="assets/playItAgain.ogg"></audio>
-
+        <audio id="song1mp3" src="assets/playItAgain.mp3"></audio>
+        <audio id="song1ogg" src="assets/playItAgain.ogg"></audio>
         <a-image id="floor-img" src="assets/room/flooron.png"></a-image>
         <a-asset-item id="flooroff-mtl" src="assets/room/flooroff.png"></a-asset-item>
         <a-asset-item id="spotlight-obj" src="assets/room/spotlight.gltf"></a-asset-item>
@@ -58,15 +59,15 @@
         <a-entity id="avatarHead"
                   camera="userHeight: 0"
                   wasd-controls look-controls
-                  gltf-model="#avatar2-head-obj"
-                  position="0 0 0"></a-entity>
+                  position="0 0 0"
+                  visible="false"></a-entity>
         <!-- Avatar Hands -->
         <a-entity id="leftHand" vive-controls="hand: left; model: false"></a-entity>
         <a-entity id="rightHand" vive-controls="hand: right; model: false"></a-entity>
+        <!-- Selection Hands -->
+        <a-entity id="leftSelectionHand" hand-controls="left" aabb-collider="objects: .head" visible="false"></a-entity>
+        <a-entity id="rightSelectionHand" hand-controls="right" aabb-collider="objects: .head" visible="false"></a-entity>
       </a-entity>
-      <!-- Selection Hands -->
-      <a-entity id="leftSelectionHand" hand-controls="left" aabb-collider="objects: .head" visible="false"></a-entity>
-      <a-entity id="rightSelectionHand" hand-controls="right" aabb-collider="objects: .head" visible="false"></a-entity>
       <!-- Texts -->
       <a-entity id="counter0Text" visible="false" position="0.87 2.18 -2.42" rotation="23.78 -27.40 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:3.8"></a-entity>
       <a-entity id="counter1Text" visible="false" position="-1.66 2.18 2.16" rotation="23.78 147.24 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:3.8"></a-entity>
@@ -107,28 +108,28 @@
       <a-entity id="avatarSelection" scale="0.75 0.75 0.75" position="0 1.6 -1" visible="false">
         <a-entity id="selectionText" text="font: assets/asaturdaynight.fnt; align: center; opacity: 1; width: 6.22; value:Select your avatar; color:#fffdb3;" position="0 -0.5 0"></a-entity>
         <a-entity id="avatar1" class="avatar" rotation="0 180 0">
-          <a-entity sound="src: #song1"></a-entity>
+          <a-entity sound></a-entity>
           <a-entity class="head" gltf-model="#avatar1-head-obj" position="1 0 0" highlighter="color:#ff8"></a-entity>
           <a-entity class="leftHand" gltf-model="#avatar1-hand-left-obj" visible="false"></a-entity>
           <a-entity class="rightHand" gltf-model="#avatar1-hand-right-obj" visible="false"></a-entity>
         </a-entity>
 
         <a-entity id="avatar2" class="avatar" rotation="0 180 0">
-          <a-entity sound="src: #song1"></a-entity>
+          <a-entity sound></a-entity>
           <a-entity class="head" gltf-model="#avatar2-head-obj" position="0.33 0 0" highlighter="color:#ff0"></a-entity>
           <a-entity class="leftHand" gltf-model="#avatar2-hand-left-obj" visible="false"></a-entity>
           <a-entity class="rightHand" gltf-model="#avatar2-hand-right-obj" visible="false"></a-entity>
         </a-entity>
 
         <a-entity id="avatar3" class="avatar" rotation="0 180 0">
-          <a-entity sound="src: #song1"></a-entity>
+          <a-entity sound></a-entity>
           <a-entity class="head" gltf-model="#avatar3-head-obj" position="-0.38 0 0" highlighter="color:#ff0"></a-entity>
           <a-entity class="leftHand" gltf-model="#avatar3-hand-left-obj" visible="false"></a-entity>
           <a-entity class="rightHand" gltf-model="#avatar3-hand-right-obj" visible="false"></a-entity>
         </a-entity>
 
         <a-entity id="avatar4" class="avatar" rotation="0 180 0">
-          <a-entity sound="src: #song1"></a-entity>
+          <a-entity sound></a-entity>
           <a-entity class="head" gltf-model="#avatar4-head-obj" position="-1 0 0" highlighter="color:#ff0"></a-entity>
           <a-entity class="leftHand" gltf-model="#avatar4-hand-left-obj" visible="false"></a-entity>
           <a-entity class="rightHand" gltf-model="#avatar4-hand-right-obj" visible="false"></a-entity>

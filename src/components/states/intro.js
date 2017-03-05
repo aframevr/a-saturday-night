@@ -17,7 +17,10 @@ AFRAME.registerComponent('intro', {
 
   loadDance: function (data) {
     var self = this;
-    var selectedAvatarEl = document.getElementById(data.avatar);
+    var el = this.el;
+    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    var timeout = isChrome ? 0 : 800;
+    var selectedAvatarEl = this.selectedAvatarEl = document.getElementById(data.avatar);
     var selectedAvatarHeadEl = selectedAvatarEl.querySelector('.head');
     var selectedAvatarRightHandEl = selectedAvatarEl.querySelector('.rightHand');
     var selectedAvatarLeftHandEl = selectedAvatarEl.querySelector('.leftHand');
@@ -25,13 +28,19 @@ AFRAME.registerComponent('intro', {
     var rightHandEl = document.getElementById('rightHand');
     var leftHandEl = document.getElementById('leftHand');
     var cameraRig = document.getElementById('cameraRig');
-    if (!this.el.hasLoaded) {
-      this.el.addEventListener('loaded', function (){
+    if (!el.hasLoaded) {
+      el.addEventListener('loaded', function (){
         self.loadDance(data);
       });
       return;
     }
-    this.el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatarEl);
+    avatarHeadEl.addEventListener('model-loaded', function () {
+      avatarHeadEl.setAttribute('visible', true);
+      rightHandEl.setAttribute('visible', true);
+      leftHandEl.setAttribute('visible', true);
+    });
+
+    el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatarEl);
     avatarHeadEl.setAttribute('gltf-model', selectedAvatarHeadEl.getAttribute('gltf-model'));
     avatarHeadEl.setAttribute('visible', false);
     rightHandEl.setAttribute('visible', false);
@@ -40,23 +49,27 @@ AFRAME.registerComponent('intro', {
     rightHandEl.setAttribute('gltf-model', selectedAvatarRightHandEl.getAttribute('gltf-model'));
     leftHandEl.setAttribute('gltf-model', selectedAvatarLeftHandEl.getAttribute('gltf-model'));
 
-    this.el.setAttribute('avatar-replayer', {
+    el.setAttribute('avatar-replayer', {
       spectatorMode: true,
       loop: true
     });
 
-    document.getElementById('spectatorCamera').setAttribute('position', '0 1.6 2');
     window.setTimeout(function () {
-      avatarHeadEl.setAttribute('visible', true);
-      rightHandEl.setAttribute('visible', true);
-      leftHandEl.setAttribute('visible', true);
-      self.el.components['avatar-replayer'].startReplaying(data.recording);
-      self.el.emit('dancing');
+      var soundSrc = isChrome ? '#song1ogg' : '#song1mp3';
+      el.components['avatar-replayer'].startReplaying(data.recording);
+      selectedAvatarEl.querySelector('[sound]').setAttribute('sound', 'src', soundSrc);
       selectedAvatarEl.querySelector('[sound]').components.sound.playSound();
-    }, 5000);
+      el.emit('dancing');
+    }, timeout);
   },
 
   remove: function () {
+    var animationEls = this.el.querySelectorAll('[begin=dancing]');
+    var i;
+    this.selectedAvatarEl.querySelector('[sound]').components.sound.stopSound();
     this.el.removeAttribute('avatar-replayer');
+    for (i = 0; i < animationEls.length; ++i) {
+      animationEls[i].stop();
+    }
   }
 });

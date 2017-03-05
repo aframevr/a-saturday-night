@@ -2,6 +2,8 @@ AFRAME.registerComponent('avatar-selection', {
   init: function () {
     var avatarSelectionEl = this.avatarSelectionEl = this.el.querySelector('#avatarSelection');
     var avatarHeadEl = document.getElementById('avatarHead');
+    var rightHandEl = document.getElementById('rightHand');
+    var leftHandEl = document.getElementById('leftHand');
     this.avatarEls = this.el.querySelectorAll('.head');
     avatarHeadEl.setAttribute('visible', false);
     avatarSelectionEl.setAttribute('visible', true);
@@ -10,6 +12,8 @@ AFRAME.registerComponent('avatar-selection', {
     this.onButtonDown = this.onButtonDown.bind(this);
     this.el.querySelector('#leftSelectionHand').setAttribute('visible', true);
     this.el.querySelector('#rightSelectionHand').setAttribute('visible', true);
+    rightHandEl.setAttribute('visible', false);
+    leftHandEl.setAttribute('visible', false);
     window.addEventListener('hit', this.onHover);
     window.addEventListener('buttondown', this.onButtonDown);
     window.addEventListener('keydown', this.onKeyDown);

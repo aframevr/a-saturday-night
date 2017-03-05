@@ -94,8 +94,7 @@ body {
 }
 
 #instructions {
-  animation: fadein 2s;
-  animation-delay: 3s;
+  animation: fadein 0.5s;
   animation-fill-mode: forwards;
 }
 
