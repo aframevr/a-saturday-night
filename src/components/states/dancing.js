@@ -21,8 +21,8 @@ AFRAME.registerComponent('dancing', {
       })
       .start();
 
-    counter0.setAttribute('text', {value: this.dancingTime.toString()});
-    counter1.setAttribute('text', {value: this.dancingTime.toString()});
+    counter0.setAttribute('text', {value: '!!'});
+    counter1.setAttribute('text', {value: '!!'});
     counter0.setAttribute('visible', true);
     counter1.setAttribute('visible', true);
 
@@ -44,7 +44,7 @@ AFRAME.registerComponent('dancing', {
       el.querySelector('#rightHand').removeAttribute('tracked-controls');
       el.components['avatar-recorder'].stopRecording();
       var avatarHeadEl = document.getElementById('avatarHead');
-      avatarHeadEl.setAttribute('visible', true);
+      avatarHeadEl.setAttribute('visible', false);
       var cameraRig = document.getElementById('cameraRig');
       cameraRig.setAttribute('rotation', '0 180 0');
     }

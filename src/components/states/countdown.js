@@ -10,10 +10,12 @@ AFRAME.registerComponent('countdown', {
     for (var i = 0; i < textElements.length; i++) {
       var textElement = textElements[i];
       textElement.setAttribute('visible', true);
-      textElement.setAttribute('position', {y:1.4});
-      textElement.setAttribute('text', {value: 'ready'});
+      textElement.setAttribute('text', {value: ''});
     }
     this.opacity = 1;
+
+    var avatarHeadEl = document.getElementById('avatarHead');
+    avatarHeadEl.setAttribute('visible', false);
   },
 
   countdown: function () {
@@ -23,7 +25,7 @@ AFRAME.registerComponent('countdown', {
     for (var i = 0; i < this.textElements.length; i++) {
       var textElement = this.textElements[i];
       textElement.setAttribute('visible', true);
-      textElement.setAttribute('text', {value: this.countdownTime === 2 ? 'set' : 'Dance!'});
+      textElement.setAttribute('text', {value: this.countdownTime === 2 ? 'Ready' : 'Set'});
     }
 
     this.el.setAttribute('game-state', 'countdownTime', this.countdownTime);
