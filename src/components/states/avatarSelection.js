@@ -17,6 +17,7 @@ AFRAME.registerComponent('avatar-selection', {
     window.addEventListener('hit', this.onHover);
     window.addEventListener('buttondown', this.onButtonDown);
     window.addEventListener('keydown', this.onKeyDown);
+    document.getElementById('room').querySelector('[sound]').components.sound.playSound();
   },
 
   onKeyDown: function (event) {
@@ -73,5 +74,6 @@ AFRAME.registerComponent('avatar-selection', {
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('hit', this.onHover);
     window.removeEventListener('buttondown', this.commitSelection);
+    document.getElementById('room').querySelector('[sound]').components.sound.pauseSound();
   }
 });
