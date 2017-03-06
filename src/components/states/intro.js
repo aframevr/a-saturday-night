@@ -55,7 +55,7 @@ AFRAME.registerComponent('intro', {
     });
 
     window.setTimeout(function () {
-      var soundSrc = isChrome ? '#song1ogg' : '#song1mp3';
+      var soundSrc = '#' + data.avatar + (isChrome ? 'ogg' : 'mp3');
       el.components['avatar-replayer'].startReplaying(data.recording);
       selectedAvatarEl.querySelector('[sound]').setAttribute('sound', 'src', soundSrc);
       selectedAvatarEl.querySelector('[sound]').components.sound.playSound();
