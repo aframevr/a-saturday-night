@@ -27,7 +27,7 @@ AFRAME.registerComponent('intro', {
     var avatarHeadEl = document.getElementById('avatarHead');
     var rightHandEl = document.getElementById('rightHand');
     var leftHandEl = document.getElementById('leftHand');
-    var cameraRig = document.getElementById('cameraRig');
+    this.cameraRig = document.getElementById('cameraRig');
     if (!el.hasLoaded) {
       el.addEventListener('loaded', function (){
         self.loadDance(data);
@@ -45,7 +45,7 @@ AFRAME.registerComponent('intro', {
     avatarHeadEl.setAttribute('visible', false);
     rightHandEl.setAttribute('visible', false);
     leftHandEl.setAttribute('visible', false);
-    cameraRig.setAttribute('rotation', '0 180 0');
+    this.cameraRig.setAttribute('rotation', '0 180 0');
     rightHandEl.setAttribute('gltf-model', selectedAvatarRightHandEl.getAttribute('gltf-model'));
     leftHandEl.setAttribute('gltf-model', selectedAvatarLeftHandEl.getAttribute('gltf-model'));
 
@@ -71,6 +71,7 @@ AFRAME.registerComponent('intro', {
     var animationEls = this.el.querySelectorAll('[begin=dancing]');
     document.querySelector('#room [sound]').components.sound.stopSound();
     this.el.removeAttribute('avatar-replayer');
+    this.cameraRig.setAttribute('rotation', '0 0 0');
     for (i = 0; i < animationEls.length; ++i) {
       animationEls[i].stop();
     }
