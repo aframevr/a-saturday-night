@@ -17,6 +17,10 @@ AFRAME.registerComponent('avatar-selection', {
     window.addEventListener('hit', this.onHover);
     window.addEventListener('buttondown', this.onButtonDown);
     window.addEventListener('keydown', this.onKeyDown);
+    document.getElementById('backText').setAttribute('visible', true);
+    for (var i = 1; i <= 4; i++) {
+      document.getElementById('spot'+i).setAttribute('scale', '0 0 0');
+    }
     document.querySelector('#room [sound]').setAttribute('sound', 'src', isChrome ? '#menuogg' : '#menump3');
     document.querySelector('#room [sound]').components.sound.playSound();
   },
@@ -75,6 +79,7 @@ AFRAME.registerComponent('avatar-selection', {
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('hit', this.onHover);
     window.removeEventListener('buttondown', this.commitSelection);
+    document.getElementById('backText').setAttribute('visible', false);
     document.getElementById('room').querySelector('[sound]').components.sound.pauseSound();
   }
 });

@@ -49,7 +49,7 @@ AFRAME.registerComponent('intro', {
     rightHandEl.setAttribute('gltf-model', selectedAvatarRightHandEl.getAttribute('gltf-model'));
     leftHandEl.setAttribute('gltf-model', selectedAvatarLeftHandEl.getAttribute('gltf-model'));
 
-
+    document.getElementById('backText').setAttribute('visible', false);
 
     el.setAttribute('avatar-replayer', {
       spectatorMode: true,
