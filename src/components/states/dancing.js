@@ -3,7 +3,12 @@ AFRAME.registerComponent('dancing', {
     var textElement = this.textElement = document.getElementById('centeredText');
     var counter0 = this.counter0 = document.getElementById('counter0');
     var counter1 = this.counter1 = document.getElementById('counter1');
-    var soundEl = this.soundEl = this.el.getAttribute('game-state').selectedAvatar.querySelector('[sound]');
+    var soundEl = document.querySelector('#room [sound]');
+
+    var avatarId = this.el.getAttribute('game-state').selectedAvatar.id;
+    var soundAsset = '#' + avatarId + (isChrome ? 'ogg' : 'mp3');
+    this.el.setAttribute('game-state', 'dancingTime', document.querySelector(soundAsset).getAttribute('duration'));
+    soundEl.setAttribute('sound', 'src', soundAsset);
 
     this.dancingTime = this.el.getAttribute('game-state').dancingTime;
 
@@ -25,9 +30,10 @@ AFRAME.registerComponent('dancing', {
     counter1.setAttribute('text', {value: this.dancingTime.toString()});
     counter0.setAttribute('visible', true);
     counter1.setAttribute('visible', true);
-
+     
     this.countdown = this.countdown.bind(this);
     soundEl.components.sound.playSound();
+
     this.el.components['avatar-recorder'].startRecording();
     this.interval = window.setInterval(this.countdown, 1000);
   },
@@ -55,6 +61,6 @@ AFRAME.registerComponent('dancing', {
     this.textElement.setAttribute('visible', false);
     this.counter0.setAttribute('visible', false);
     this.counter1.setAttribute('visible', false);
-    this.soundEl.components.sound.stopSound();
+    document.querySelector('#room [sound]').components.sound.stopSound();
   }
 });
