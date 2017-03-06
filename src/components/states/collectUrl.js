@@ -3,7 +3,7 @@ AFRAME.registerComponent('collect-url', {
     document.getElementById('floor').setAttribute('discofloor', {pattern: 'idle'});
     var textElement = this.textElement = document.getElementById('centeredText');
     var selectedAvatarEl = this.el.getAttribute('game-state').selectedAvatar;
-    var soundEl = this.soundEl = selectedAvatarEl.querySelector('[sound]');
+    this.soundEl = document.querySelector('#room [sound]');
 
     textElement.setAttribute('position', {y: 0.9});
     textElement.setAttribute('visible', true);
