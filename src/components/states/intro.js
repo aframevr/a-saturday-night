@@ -18,7 +18,7 @@ AFRAME.registerComponent('intro', {
   loadDance: function (data) {
     var self = this;
     var el = this.el;
-    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    window.isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
     var timeout = isChrome ? 0 : 800;
     var selectedAvatarEl = this.selectedAvatarEl = document.getElementById(data.avatar);
     var selectedAvatarHeadEl = selectedAvatarEl.querySelector('.head');
@@ -58,17 +58,18 @@ AFRAME.registerComponent('intro', {
 
     window.setTimeout(function () {
       var soundSrc = '#' + data.avatar + (isChrome ? 'ogg' : 'mp3');
+      el.sceneEl.setAttribute('game-state', 'dancingTime', document.querySelector(soundSrc).getAttribute('duration'));
       el.components['avatar-replayer'].startReplaying(data.recording);
-      selectedAvatarEl.querySelector('[sound]').setAttribute('sound', 'src', soundSrc);
-      selectedAvatarEl.querySelector('[sound]').components.sound.playSound();
+      document.querySelector('#room [sound]').setAttribute('sound', 'src', soundSrc);
+      document.querySelector('#room [sound]').components.sound.playSound();
       el.emit('dancing');
     }, timeout);
   },
 
   remove: function () {
-    var animationEls = this.el.querySelectorAll('[begin=dancing]');
     var i;
-    this.selectedAvatarEl.querySelector('[sound]').components.sound.stopSound();
+    var animationEls = this.el.querySelectorAll('[begin=dancing]');
+    document.querySelector('#room [sound]').components.sound.stopSound();
     this.el.removeAttribute('avatar-replayer');
     this.cameraRig.setAttribute('rotation', '0 0 0');
     for (i = 0; i < animationEls.length; ++i) {
