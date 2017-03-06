@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "cross-env": "^3.0.0",
+    "json-loader": "^0.5.4",
     "semistandard": "^9.0.0",
     "snazzy": "^4.0.1",
     "webpack": "^1.13.2",
