@@ -12,25 +12,57 @@
     <script src="build/build.js"></script>
   </head>
   <body>
-    <div class="instructions-overlay">
+    <div class="instructions-overlay" id="instructions">
       <div class="instructions" class="hide">
         <img src="assets/logo.png" alt="a-saturday-night logo">
         <div>
           <h2>Show everybody your moves!</h2>
-          <p>This dance was captured using a VR headset and controllers. If you have a HTC Vive or Oculus with controllers, enter VR mode, choose an avatar, record your dance, and share it with everybody!</p>
-          <p>Meanwhile, you can move around with WASD and mouse.</p>
+          <p>This dance was captured using a VR headset and controllers. <br>
+          If you have <b>HTC Vive</b> or <b>Oculus Rift</b> you can record your dance too <b>and share it!</b></p>
           <p>
             <a href="http://blog.mozvr.com/a-saturday-night">Read more</a>
           </p>
         </div>
-        <button class="start-button"><span>Start</span></button>
+        <button class="start-button"><span>Loading...</span></button>
       </div>
     </div>
+
+    <div class="watermark">
+      <a href="http://aframe.io/a-saturday-night"><img src="assets/logo-small.png" alt="a-saturday-night logo"></a>
+    </div>
+    
 
     <a-scene uploadcare="publicKey: 85ed3c25d99e387316bd" game-state
              avatar-recorder="spectatorPlay: true; spectatorPosition: 0 0 0; localStorage: false; saveFile: false"
              auto-enter-vr="enabled: false">
-      <a-assets>
+      <a-assets timeout="8000">
+<!--
+        <img src="assets/room/set.jpg">
+        <img src="assets/room/tv.png">
+        <img src="assets/avatar1/avatar1.jpg">
+        <img src="assets/avatar2/avatar2.jpg">
+        <img src="assets/avatar2/avatar2spec.jpg">
+        <img src="assets/avatar3/avatar3.jpg">
+        <img src="assets/avatar3/avatar3spec.jpg">
+        <img src="assets/avatar4/avatar4.jpg">
+
+        <a-asset-item src="assets/avatar1/avatar1-hand-left.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar1/avatar1-hand-right.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar1/avatar1-head.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar2/avatar2-hand-left.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar2/avatar2-hand-right.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar2/avatar2-head.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar3/avatar3-hand-left.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar3/avatar3-hand-right.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar3/avatar3-head.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar4/avatar4-hand-left.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar4/avatar4-hand-right.bin"></a-asset-item>
+        <a-asset-item src="assets/avatar4/avatar4-head.bin"></a-asset-item>
+        <a-asset-item src="assets/room/floor.bin"></a-asset-item>
+        <a-asset-item src="assets/room/set.bin"></a-asset-item>
+        <a-asset-item src="assets/room/spotlight.bin"></a-asset-item>
+        <a-asset-item src="assets/room/tv.bin"></a-asset-item>
+-->
         <a-asset-item id="set-obj" src="assets/room/set.gltf"></a-asset-item>
         <a-asset-item id="floor-obj" src="assets/room/floor.gltf"></a-asset-item>
         <audio id="avatar1ogg" src="assets/sounds/avatar1.ogg" duration="15"></audio>
@@ -160,5 +192,6 @@
         </div>
       </div>
     </div>
+    <script>
   </body>
 </html>
