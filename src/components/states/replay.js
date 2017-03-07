@@ -15,7 +15,7 @@ AFRAME.registerComponent('replay', {
   },
 
   onEnterVR: function () {
-    this.el.querySelector('#spectatorCameraRig').setAttribute('position','0 0 2');
+    this.el.querySelector('#spectatorCameraRig').setAttribute('position','0 0 1.5');
   },
 
   loadDance: function (data) {
@@ -56,7 +56,7 @@ AFRAME.registerComponent('replay', {
 
     el.setAttribute('avatar-replayer', {
       spectatorMode: true,
-      spectatorPosition: '0 1.6 2',
+      spectatorPosition: '0 1.6 1.5',
       loop: true
     });
 
@@ -86,6 +86,29 @@ AFRAME.registerComponent('replay', {
     spectatorCameraRigEl.appendChild(rightSelectionHandEl);
     leftSelectionHandEl.addEventListener('triggerdown', this.onTriggerDown);
     rightSelectionHandEl.addEventListener('triggerdown', this.onTriggerDown);
+
+    var textProps = {
+      font : 'assets/asaturdaynight.fnt',
+      color: '#fcff79',
+      align: 'right',
+      anchor:'right',
+      side:  'double',
+      value: 'Press trigger >>',
+      width: 0.6
+    };
+    this.leftTooltip = document.createElement('a-entity');
+    this.leftTooltip.setAttribute('text', textProps);
+    this.leftTooltip.setAttribute('rotation', '-90 0 0');
+    this.leftTooltip.setAttribute('position', '-0.01 -0.05 0.05');
+    this.rightTooltip = document.createElement('a-entity');
+    this.rightTooltip.setAttribute('text', textProps);
+    this.rightTooltip.setAttribute('text', {anchor: 'left', align: 'left', value: '<< Press trigger'});
+    this.rightTooltip.setAttribute('rotation', '-90 0 0');
+    this.rightTooltip.setAttribute('position', '0.01 -0.05 0.05');
+    
+    leftSelectionHandEl.appendChild(this.leftTooltip);
+    rightSelectionHandEl.appendChild(this.rightTooltip);
+
     this.insertedHands = true;
   },
 
@@ -102,6 +125,8 @@ AFRAME.registerComponent('replay', {
     for (i = 0; i < animationEls.length; ++i) {
       animationEls[i].stop();
     }
+    this.leftTooltip.parentNode.removeChild(this.leftTooltip);
+    this.rightTooltip.parentNode.removeChild(this.rightTooltip);
     this.leftSelectionHandEl.removeEventListener('triggerdown', this.onTriggerDown);
     this.rightSelectionHandEl.removeEventListener('triggerdown', this.onTriggerDown);
   }
