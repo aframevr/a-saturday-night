@@ -8,7 +8,7 @@ AFRAME.registerComponent('game-state', {
     selectedAvatar: {type: 'selector'},
     countdownTime: {default: 3},
     dancingTime: {default: 15},
-    state: {default: 'intro', oneOf: ['intro', 'avatar-selection', 'countdown', 'dancing', 'collect-url']}
+    state: {default: 'instructions', oneOf: ['instructions', 'avatar-selection', 'countdown', 'dancing', 'collect-url']}
   },
 
   init: function () {
@@ -37,11 +37,6 @@ AFRAME.registerComponent('game-state', {
     var el = this.el;
     var data = this.data;
     switch (data.state) {
-      case 'intro': {
-        if (!this.el.is('vr-mode')) { return; }
-        el.setAttribute('game-state', 'state', 'avatar-selection');
-        break;
-      }
       case 'avatar-selection': {
         if (!data.selectedAvatar) { return; }
         el.setAttribute('game-state', 'state', 'countdown');

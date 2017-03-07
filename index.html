@@ -12,20 +12,23 @@
     <script src="build/build.js"></script>
   </head>
   <body>
-    <div id="instructions" class="hide">
-      <img src="assets/logo.png" alt="a-saturday-night logo">
-      <div>
-        <h2>Show everybody your moves!</h2>
-        <p>This dance was captured using a VR headset and controllers. If you have a HTC Vive or Oculus with controllers, enter VR mode and choose an avatar, record your dance, and share with everybody!</p>
-        <p>Meanwhile, you can move around with WASD and mouse.</p>
-        <p>
-          <a href="http://blog.mozvr.com/a-saturday-night">Read more</a>
-        </p>
+    <div class="instructions-overlay">
+      <div class="instructions" class="hide">
+        <img src="assets/logo.png" alt="a-saturday-night logo">
+        <div>
+          <h2>Show everybody your moves!</h2>
+          <p>This dance was captured using a VR headset and controllers. If you have a HTC Vive or Oculus with controllers, enter VR mode, choose an avatar, record your dance, and share it with everybody!</p>
+          <p>Meanwhile, you can move around with WASD and mouse.</p>
+          <p>
+            <a href="http://blog.mozvr.com/a-saturday-night">Read more</a>
+          </p>
+        </div>
+        <button class="start-button"><span>Start</span></button>
       </div>
     </div>
 
     <a-scene uploadcare="publicKey: 85ed3c25d99e387316bd" game-state
-             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 1.6 2; localStorage: false; saveFile: false"
+             avatar-recorder="spectatorPlay: true; spectatorPosition: 0 0 0; localStorage: false; saveFile: false"
              auto-enter-vr="enabled: false">
       <a-assets>
         <a-asset-item id="set-obj" src="assets/room/set.gltf"></a-asset-item>
@@ -71,12 +74,12 @@
                   position="0 0 0"
                   visible="false"></a-entity>
         <!-- Avatar Hands -->
-        <a-entity id="leftHand" vive-controls="hand: left; model: false"></a-entity>
-        <a-entity id="rightHand" vive-controls="hand: right; model: false"></a-entity>
-        <!-- Selection Hands -->
-        <a-entity id="leftSelectionHand" hand-controls="left" aabb-collider="objects: .head" visible="false"></a-entity>
-        <a-entity id="rightSelectionHand" hand-controls="right" aabb-collider="objects: .head" visible="false"></a-entity>
+        <a-entity id="leftHand" visible="false"></a-entity>
+        <a-entity id="rightHand" visible="false"></a-entity>
       </a-entity>
+      <!-- Selection Hands -->
+      <a-entity id="leftSelectionHand" vive-controls="hand: left" aabb-collider="objects: .head"></a-entity>
+      <a-entity id="rightSelectionHand" vive-controls="hand: right" aabb-collider="objects: .head"></a-entity>
       <!-- Texts -->
       <a-entity id="counter0Text" visible="false" position="0.87 2.18 -2.42" rotation="23.78 -27.40 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:3.8"></a-entity>
       <a-entity id="counter1Text" visible="false" position="-1.66 2.18 2.16" rotation="23.78 147.24 0" text="font: assets/asaturdaynight.fnt; color: #fffd6a; align:center;width:3.8"></a-entity>

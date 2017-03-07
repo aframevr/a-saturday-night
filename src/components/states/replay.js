@@ -1,18 +1,21 @@
 var getUrlParams = require('../../utils').getUrlParams;
-var loadJSONFromUrl = require('../../utils').loadJSONFromUrl;
 var defaultDanceData = require('json!../../../assets/dance.json');
 
-AFRAME.registerComponent('intro', {
+AFRAME.registerComponent('replay', {
   init: function () {
-    var urlParams = getUrlParams();
-    var self = this;
-    if (urlParams.url) {
-      this.el.sceneEl.systems['uploadcare'].download(urlParams.url, function(data) {
-        self.loadDance(data.content);
-      });
-    } else {
-      this.loadDance(defaultDanceData);
-    }
+    this.onEnterVR = this.onEnterVR.bind(this);
+  },
+
+  play: function () {
+    this.el.addEventListener('enter-vr', this.onEnterVR);
+  },
+
+  pause: function () {
+    this.el.removeEventListener('enter-vr', this.onEnterVR);
+  },
+
+  onEnterVR: function () {
+    this.el.querySelector('#spectatorCamera').setAttribute('position','0 0 2');
   },
 
   loadDance: function (data) {
@@ -56,14 +59,12 @@ AFRAME.registerComponent('intro', {
       loop: true
     });
 
-    window.setTimeout(function () {
-      var soundSrc = '#' + data.avatar + (isChrome ? 'ogg' : 'mp3');
-      el.sceneEl.setAttribute('game-state', 'dancingTime', document.querySelector(soundSrc).getAttribute('duration'));
-      el.components['avatar-replayer'].startReplaying(data.recording);
-      document.querySelector('#room [sound]').setAttribute('sound', 'src', soundSrc);
-      document.querySelector('#room [sound]').components.sound.playSound();
-      el.emit('dancing');
-    }, timeout);
+    var soundSrc = '#' + data.avatar + (isChrome ? 'ogg' : 'mp3');
+    el.sceneEl.setAttribute('game-state', 'dancingTime', document.querySelector(soundSrc).getAttribute('duration'));
+    el.components['avatar-replayer'].startReplaying(data.recording);
+    document.querySelector('#room [sound]').setAttribute('sound', 'src', soundSrc);
+    document.querySelector('#room [sound]').components.sound.playSound();
+    el.emit('dancing');
   },
 
   remove: function () {

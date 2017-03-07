@@ -16,4 +16,5 @@ require('./components/states/avatarSelection.js');
 require('./components/states/collectUrl.js');
 require('./components/states/countdown.js');
 require('./components/states/dancing.js');
-require('./components/states/intro.js');
+require('./components/states/instructions.js');
+require('./components/states/replay.js');

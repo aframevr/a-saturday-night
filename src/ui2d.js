@@ -2,7 +2,7 @@ var getUrlParams = require('./utils').getUrlParams;
 
 /* global Clipboard */
 window.addEventListener('load', function (event) {
-  var instructions = document.getElementById('instructions');
+  var instructions = document.querySelector('.instructions');
   var asaturdayUI = document.getElementById('asaturday-ui');
   var shareDiv = document.querySelector('#asaturday-ui .share');
   var shareUrl = document.getElementById('asaturday-share-url');
