@@ -4,11 +4,11 @@ var defaultDanceData = require('json!../../../assets/dance.json');
 AFRAME.registerComponent('instructions', {
   init: function () {
     this.startButtonEl = document.querySelector('.start-button');
-    this.startButtonEl.querySelector('span').innerHTML = 'Loading'
+    this.startButtonEl.querySelector('span').innerHTML = 'Loading';
     this.startButtonEl.querySelector('span').classList.add('loading');
     this.onClicked = this.onClicked.bind(this);
     this.loading = true;
-    this.downloadDance();
+    this.el.sceneEl.addEventListener('loaded', this.downloadDance.bind(this));
   },
 
   downloadDance: function () {
@@ -18,7 +18,6 @@ AFRAME.registerComponent('instructions', {
       this.el.sceneEl.systems['uploadcare'].download(urlParams.url, function (data) {
         self.danceData = data.content;
         self.setupStartButton();
-
       });
     } else {
       this.danceData = defaultDanceData;
@@ -28,7 +27,7 @@ AFRAME.registerComponent('instructions', {
 
   setupStartButton: function () {
     var buttonLabelEl = this.startButtonEl.querySelector('span');
-    buttonLabelEl.innerHTML = 'Start';
+    buttonLabelEl.innerHTML = 'START';
     buttonLabelEl.classList.remove('loading');
   },
 
