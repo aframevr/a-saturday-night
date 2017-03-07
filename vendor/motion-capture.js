@@ -707,7 +707,7 @@
 	  storeInitialCamera: function () {
 	    this.currentCameraEl = this.el.camera.el;
 	    this.currentCameraEl.removeAttribute('data-aframe-default-camera');
-	    this.el.appendChild(this.spectatorCameraEl);
+	    this.el.appendChild(this.spectatorCameraRigEl);
 	    this.el.removeEventListener('camera-set-active', this.storeInitialCamera);
 	  },
 
@@ -745,10 +745,13 @@
 
 	  initSpectatorCamera: function () {
 	    var spectatorCameraEl = this.spectatorCameraEl = document.createElement('a-entity');
-	    spectatorCameraEl.id = 'spectatorCamera';
+	    var spectatorCameraRigEl = this.spectatorCameraRigEl = document.createElement('a-entity');
+	    spectatorCameraRigEl.id = 'spectatorCamera';
+	    spectatorCameraRigEl.id = 'spectatorCameraRig';
 	    spectatorCameraEl.setAttribute('camera', '');
 	    spectatorCameraEl.setAttribute('look-controls', '');
 	    spectatorCameraEl.setAttribute('wasd-controls', '');
+	    spectatorCameraRigEl.appendChild(spectatorCameraEl);
 	  },
 
 	  updateSrc: function (src) {
@@ -810,7 +813,7 @@
 	      return;
 	    }
 	    if (data.spectatorMode) {
-	      spectatorCameraEl.setAttribute('position', data.spectatorPosition);
+	      this.spectatorCameraRigEl.setAttribute('position', data.spectatorPosition);
 	      spectatorCameraEl.setAttribute('camera', 'active', true);
 	    } else {
 	      currentCameraEl.setAttribute('camera', 'active', true);

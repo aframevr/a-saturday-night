@@ -15,7 +15,7 @@ AFRAME.registerComponent('replay', {
   },
 
   onEnterVR: function () {
-    this.el.querySelector('#spectatorCamera').setAttribute('position','0 0 2');
+    this.el.querySelector('#spectatorCameraRig').setAttribute('position','0 0 2');
   },
 
   loadDance: function (data) {
@@ -32,7 +32,7 @@ AFRAME.registerComponent('replay', {
     var leftHandEl = document.getElementById('leftHand');
     this.cameraRig = document.getElementById('cameraRig');
     if (!el.hasLoaded) {
-      el.addEventListener('loaded', function (){
+      el.addEventListener('loaded', function () {
         self.loadDance(data);
       });
       return;
@@ -56,6 +56,7 @@ AFRAME.registerComponent('replay', {
 
     el.setAttribute('avatar-replayer', {
       spectatorMode: true,
+      spectatorPosition: '0 1.6 2',
       loop: true
     });
 
@@ -64,7 +65,32 @@ AFRAME.registerComponent('replay', {
     el.components['avatar-replayer'].startReplaying(data.recording);
     document.querySelector('#room [sound]').setAttribute('sound', 'src', soundSrc);
     document.querySelector('#room [sound]').components.sound.playSound();
+    this.insertSelectionHands();
     el.emit('dancing');
+  },
+
+  insertSelectionHands: function () {
+    var leftSelectionHandEl;
+    var rightSelectionHandEl;
+    var spectatorCameraRigEl;
+    if (this.insertedHands) { return; }
+    this.onTriggerDown = this.onTriggerDown.bind(this);
+    spectatorCameraRigEl = this.el.querySelector('#spectatorCameraRig');
+    leftSelectionHandEl = this.leftSelectionHandEl = document.createElement('a-entity');
+    rightSelectionHandEl = this.rightSelectionHandEl = document.createElement('a-entity');
+    leftSelectionHandEl.id = 'leftSelectionHand';
+    rightSelectionHandEl.id = 'rightSelectionHand';
+    leftSelectionHandEl.setAttribute('vive-controls', 'hand: left');
+    rightSelectionHandEl.setAttribute('vive-controls', 'hand: right');
+    spectatorCameraRigEl.appendChild(leftSelectionHandEl);
+    spectatorCameraRigEl.appendChild(rightSelectionHandEl);
+    leftSelectionHandEl.addEventListener('triggerdown', this.onTriggerDown);
+    rightSelectionHandEl.addEventListener('triggerdown', this.onTriggerDown);
+    this.insertedHands = true;
+  },
+
+  onTriggerDown: function () {
+    this.el.setAttribute('game-state', 'state', 'avatar-selection');
   },
 
   remove: function () {
@@ -76,5 +102,7 @@ AFRAME.registerComponent('replay', {
     for (i = 0; i < animationEls.length; ++i) {
       animationEls[i].stop();
     }
+    this.leftSelectionHandEl.removeEventListener('triggerdown', this.onTriggerDown);
+    this.rightSelectionHandEl.removeEventListener('triggerdown', this.onTriggerDown);
   }
 });

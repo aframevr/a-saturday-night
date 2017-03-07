@@ -9,13 +9,9 @@ AFRAME.registerComponent('avatar-selection', {
     avatarSelectionEl.setAttribute('visible', true);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onHover = this.onHover.bind(this);
-    this.onButtonDown = this.onButtonDown.bind(this);
-    this.el.querySelector('#leftSelectionHand').setAttribute('visible', true);
-    this.el.querySelector('#rightSelectionHand').setAttribute('visible', true);
     rightHandEl.setAttribute('visible', false);
     leftHandEl.setAttribute('visible', false);
     window.addEventListener('hit', this.onHover);
-    window.addEventListener('buttondown', this.onButtonDown);
     window.addEventListener('keydown', this.onKeyDown);
     document.getElementById('backText').setAttribute('visible', true);
     for (var i = 1; i <= 4; i++) {
@@ -30,11 +26,6 @@ AFRAME.registerComponent('avatar-selection', {
     if (code >= 49 && code <= 52) {
       this.selectAvatar(this.avatarEls[code - 49].parentEl);
     }
-  },
-
-  onButtonDown: function (event) {
-    if (!this.hoveredAvatarEl) return;
-    this.selectAvatar(this.hoveredAvatarEl.parentEl);
   },
 
   selectAvatar: function (avatarEl) {
@@ -60,7 +51,6 @@ AFRAME.registerComponent('avatar-selection', {
   pause: function () {
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('hit', this.onHover);
-    window.removeEventListener('buttondown', this.selectAvatar);
   },
 
   onHover: function (event) {
@@ -78,7 +68,6 @@ AFRAME.registerComponent('avatar-selection', {
     this.avatarSelectionEl.setAttribute('visible', false);
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('hit', this.onHover);
-    window.removeEventListener('buttondown', this.commitSelection);
     document.getElementById('backText').setAttribute('visible', false);
     document.getElementById('room').querySelector('[sound]').components.sound.pauseSound();
   }

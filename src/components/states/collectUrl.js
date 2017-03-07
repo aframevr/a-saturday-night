@@ -1,6 +1,7 @@
 AFRAME.registerComponent('collect-url', {
   init: function () {
     document.getElementById('floor').setAttribute('discofloor', {pattern: 'idle'});
+    var el = this.el;
     var textElement = this.textElement = document.getElementById('centeredText');
     var selectedAvatarEl = this.el.getAttribute('game-state').selectedAvatar;
     this.soundEl = document.querySelector('#room [sound]');
@@ -26,8 +27,10 @@ AFRAME.registerComponent('collect-url', {
     if (json.recording.rightHand) { json.recording.rightHand.events = []; }
     if (json.recording.leftHand) { json.recording.leftHand.events = []; }
 
-    this.el.systems['uploadcare'].upload(json, 'application/json');
+    el.systems['uploadcare'].upload(json, 'application/json');
     this.soundEl.components.sound.playSound();
+    el.setAttribute('game-state', 'state', 'replay');
+    el.components['replay'].loadDance(json);
   },
 
   remove: function () {

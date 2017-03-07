@@ -8,7 +8,7 @@ AFRAME.registerComponent('game-state', {
     selectedAvatar: {type: 'selector'},
     countdownTime: {default: 3},
     dancingTime: {default: 15},
-    state: {default: 'instructions', oneOf: ['instructions', 'avatar-selection', 'countdown', 'dancing', 'collect-url']}
+    state: {default: 'instructions', oneOf: ['instructions', 'replay', 'avatar-selection', 'countdown', 'dancing', 'collect-url']}
   },
 
   init: function () {
@@ -54,7 +54,13 @@ AFRAME.registerComponent('game-state', {
         el.setAttribute('game-state', 'state', 'collect-url');
         break;
       }
+      case 'instructions': {
+        break;
+      }
       case 'collect-url': {
+        break;
+      }
+      case 'replay': {
         break;
       }
       default: {
