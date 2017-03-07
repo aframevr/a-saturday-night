@@ -1,7 +1,7 @@
 AFRAME.registerComponent('spotlight', {
   schema: {
     color: {default: '#FFFFFF'},
-    speed: {default: {x: 1500, y: 1400, z: 1300}}
+    speed: {default: {x: 500, y: 400, z: 600}}
   },
   init: function () {
     this.star = null;

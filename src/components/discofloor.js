@@ -5,7 +5,7 @@
  */
 AFRAME.registerComponent('discofloor', {
   schema: {
-    pattern: {default: 'idle', oneOf: ['idle', '3', '2', '1', '0']}
+    pattern: {default: 'idle', oneOf: ['idle', '3', '2', '1', '0', 'avatar1', 'avatar2', 'avatar3', 'avatar4']}
   },
   init: function () {
     this.tiles= [];
@@ -17,6 +17,10 @@ AFRAME.registerComponent('discofloor', {
       '2': 40,
       '1': 40,
       '0': 2400,
+      'avatar1': 1000,
+      'avatar2': 2000,
+      'avatar3': 200,
+      'avatar4': 600
     }
     this.tickTime = 1000 * 60 / this.bpms[this.data.pattern];
 
@@ -57,6 +61,9 @@ AFRAME.registerComponent('discofloor', {
     for (var i = 0; i < numTiles; i++) {
       var x = Math.floor(i % 8);
       var y = Math.floor(i / 8);
+      var dx = x - center;
+      var dy = y - center;
+      var dist = dx * dx + dy * dy;
       switch(this.data.pattern) {
         case 'idle':
             visible = (x + this.step) % 2 == 0;
@@ -70,13 +77,22 @@ AFRAME.registerComponent('discofloor', {
         case '1':
             visible = this.pat1[i] === '1';
           break;
-        case '0':
-          var dx = x - center;
-          var dy = y - center;
-          var dist = dx * dx + dy * dy;
+        case 'avatar1':
+          var pat1 = this.step % 12, pat2 = (this.step + 4) % 12;
+          visible = x == pat1 || y == pat1 || x == pat2 || y == pat2;
+          break;
+        case 'avatar2':
+          var ang = Math.atan2(y - 3.5, x - 3.5);
+          ang = (Math.floor(ang + this.step/10) / 2) % 2;
+          visible = ang == 0 || ang == 1 || ang == -1 || dist < 1;
+          break;
+        case 'avatar3':
           visible = Math.abs(dist - (this.step % 20)) < 3;
           break;
-      }
+        case 'avatar4':
+          visible = Math.random() > 0.5;
+          break;
+        }
       this.tiles[i].visible = visible;
     }
   }

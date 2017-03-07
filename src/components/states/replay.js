@@ -60,6 +60,8 @@ AFRAME.registerComponent('replay', {
       loop: true
     });
 
+    document.getElementById('floor').setAttribute('discofloor', {pattern: data.avatar});
+
     var soundSrc = '#' + data.avatar + (isChrome ? 'ogg' : 'mp3');
     el.sceneEl.setAttribute('game-state', 'dancingTime', document.querySelector(soundSrc).getAttribute('duration'));
     el.components['avatar-replayer'].startReplaying(data.recording);
