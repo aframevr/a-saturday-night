@@ -43,9 +43,9 @@ AFRAME.registerComponent('game-state', {
         break;
       }
       case 'countdown' : {
-        console.log(data.countdownTime);
         if (data.countdownTime > 0) { return; }
         el.setAttribute('game-state', 'state', 'dancing');
+        el.setAttribute('game-state', 'countdownTime', 3);
         el.emit('dancing');
         break;
       }
