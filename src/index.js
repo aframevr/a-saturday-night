@@ -6,10 +6,12 @@ require('./components/aabb-collider.js');
 require('./components/game-state.js');
 require('./components/avatar-selector.js');
 require('./components/ground.js');
+require('./components/line.js');
 require('./components/discofloor.js');
 require('./components/spotlight.js');
 require('./components/highlighter.js');
 require('./components/roomcolor.js');
+require('./components/ui-raycaster.js');
 
 // States
 require('./components/states/avatarSelection.js');

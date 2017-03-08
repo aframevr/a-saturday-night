@@ -177,9 +177,9 @@
 	      // Don't try to record camera with controllers.
 	      if (el.components.camera) { return; }
 
-	      el.setAttribute('vive-controls', {hand: data.hand});
+	      el.setAttribute('vive-controls', {hand: data.hand, model: false});
 	      el.setAttribute('oculus-touch-controls', {hand: data.hand});
-	      el.setAttribute('stroke', {hand: data.hand});
+	      el.setAttribute('stroke', '');
 	    }
 	  },
 
@@ -454,28 +454,9 @@
 	  },
 
 	  init: function () {
-	    var self = this;
-	    var el = this.el;
 	    this.trackedControllerEls = {};
 	    this.onKeyDown = this.onKeyDown.bind(this);
 	    this.tick = AFRAME.utils.throttle(this.throttledTick, 100, this);
-
-	    // Grab camera.
-	    if (el.camera && el.camera.el) {
-	      prepareCamera(el.camera.el);
-	    }
-	    el.addEventListener('camera-set-active', function (evt) {
-	      prepareCamera(evt.detail.cameraEl);
-	    });
-
-	    function prepareCamera (cameraEl) {
-	      if (self.cameraEl) { self.cameraEl.removeAttribute('motion-capture-recorder'); }
-	      self.cameraEl = cameraEl;
-	      self.cameraEl.setAttribute('motion-capture-recorder', {
-	        autoRecord: false,
-	        visibleStroke: false
-	      });
-	    }
 	  },
 
 	  replayRecording: function () {
@@ -507,12 +488,12 @@
 	  throttledTick: function () {
 	    var self = this;
 	    var trackedControllerEls = this.el.querySelectorAll('[tracked-controls]');
+	    this.trackedControllerEls = {};
 	    trackedControllerEls.forEach(function (trackedControllerEl) {
 	      if (!trackedControllerEl.id) {
 	        warn('Found tracked controllers with no id. It will not be recorded');
 	        return;
 	      }
-	      if (self.trackedControllerEls[trackedControllerEl.id]) { return; }
 	      trackedControllerEl.setAttribute('motion-capture-recorder', {
 	        autoRecord: false,
 	        visibleStroke: false
@@ -588,12 +569,37 @@
 	    }
 	  },
 
+	  setupCamera: function () {
+	  	var el = this.el;
+	  	var self = this;
+	  	var setup;
+	  	// Grab camera.
+	  	if (el.camera && el.camera.el) {
+	  	  prepareCamera(el.camera.el);
+	  	  return;
+	  	}
+	  	el.addEventListener('camera-set-active', setup)
+	  	setup = function (evt) { prepareCamera(evt.detail.cameraEl); };
+
+	  	function prepareCamera (cameraEl) {
+	  	  if (self.cameraEl) { self.cameraEl.removeAttribute('motion-capture-recorder'); }
+	  	  self.cameraEl = cameraEl;
+	  	  self.cameraEl.setAttribute('motion-capture-recorder', {
+	  	    autoRecord: false,
+	  	    visibleStroke: false
+	  	  });
+	  	  el.removeEventListener('camera-set-active', setup);
+	  	}
+	  },
+
 	  startRecording: function () {
 	    var trackedControllerEls = this.trackedControllerEls;
-	    var keys = Object.keys(trackedControllerEls);
+	    var keys;
 	    if (this.isRecording) { return; }
+	    keys = Object.keys(trackedControllerEls);
 	    log('Starting recording!');
 	    this.stopReplaying();
+	    this.setupCamera();
 	    this.isRecording = true;
 	    this.cameraEl.components['motion-capture-recorder'].startRecording();
 	    keys.forEach(function (id) {
@@ -707,7 +713,6 @@
 	  storeInitialCamera: function () {
 	    this.currentCameraEl = this.el.camera.el;
 	    this.currentCameraEl.removeAttribute('data-aframe-default-camera');
-	    this.el.appendChild(this.spectatorCameraRigEl);
 	    this.el.removeEventListener('camera-set-active', this.storeInitialCamera);
 	  },
 
@@ -744,14 +749,22 @@
 	  },
 
 	  initSpectatorCamera: function () {
-	    var spectatorCameraEl = this.spectatorCameraEl = document.createElement('a-entity');
-	    var spectatorCameraRigEl = this.spectatorCameraRigEl = document.createElement('a-entity');
+	    var spectatorCameraEl;
+	    var spectatorCameraRigEl = this.el.querySelector('#spectatorCameraRig');
+	    if (spectatorCameraRigEl) {
+	    	this.spectatorCameraRigEl = spectatorCameraRigEl;
+	    	this.spectatorCameraEl = spectatorCameraRigEl.querySelector('[camera]');
+	    	return;
+	    }
+	    spectatorCameraEl = this.spectatorCameraEl = document.createElement('a-entity');
+	    spectatorCameraRigEl = this.spectatorCameraRigEl = document.createElement('a-entity');
 	    spectatorCameraRigEl.id = 'spectatorCamera';
 	    spectatorCameraRigEl.id = 'spectatorCameraRig';
 	    spectatorCameraEl.setAttribute('camera', '');
 	    spectatorCameraEl.setAttribute('look-controls', '');
 	    spectatorCameraEl.setAttribute('wasd-controls', '');
 	    spectatorCameraRigEl.appendChild(spectatorCameraEl);
+	    this.el.appendChild(this.spectatorCameraRigEl);
 	  },
 
 	  updateSrc: function (src) {

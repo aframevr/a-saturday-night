@@ -37,17 +37,24 @@ AFRAME.registerComponent('replay', {
       });
       return;
     }
-    avatarHeadEl.addEventListener('model-loaded', function () {
-      avatarHeadEl.setAttribute('visible', true);
-      rightHandEl.setAttribute('visible', true);
-      leftHandEl.setAttribute('visible', true);
-    });
 
     el.sceneEl.setAttribute('game-state', 'selectedAvatar', selectedAvatarEl);
     avatarHeadEl.setAttribute('gltf-model', selectedAvatarHeadEl.getAttribute('gltf-model'));
-    avatarHeadEl.setAttribute('visible', false);
-    rightHandEl.setAttribute('visible', false);
-    leftHandEl.setAttribute('visible', false);
+    // If model has not loaded we hide the avatar until it loads
+    if (!avatarHeadEl.components['gltf-model'].model) {
+      avatarHeadEl.setAttribute('visible', false);
+      rightHandEl.setAttribute('visible', false);
+      leftHandEl.setAttribute('visible', false);
+      avatarHeadEl.addEventListener('model-loaded', function () {
+        avatarHeadEl.setAttribute('visible', true);
+        rightHandEl.setAttribute('visible', true);
+        leftHandEl.setAttribute('visible', true);
+      });
+    } else {
+      avatarHeadEl.setAttribute('visible', true);
+      rightHandEl.setAttribute('visible', true);
+      leftHandEl.setAttribute('visible', true);
+    }
     this.cameraRig.setAttribute('rotation', '0 180 0');
     rightHandEl.setAttribute('gltf-model', selectedAvatarRightHandEl.getAttribute('gltf-model'));
     leftHandEl.setAttribute('gltf-model', selectedAvatarLeftHandEl.getAttribute('gltf-model'));
@@ -107,7 +114,7 @@ AFRAME.registerComponent('replay', {
     this.rightTooltip.setAttribute('text', {anchor: 'left', align: 'left', value: '<< Press trigger'});
     this.rightTooltip.setAttribute('rotation', '-90 0 0');
     this.rightTooltip.setAttribute('position', '0.01 -0.05 0.05');
-    
+
     leftSelectionHandEl.appendChild(this.leftTooltip);
     rightSelectionHandEl.appendChild(this.rightTooltip);
 
@@ -121,6 +128,7 @@ AFRAME.registerComponent('replay', {
   remove: function () {
     var i;
     var animationEls = this.el.querySelectorAll('[begin=dancing]');
+    var spectatorCameraRigEl = this.el.querySelector('#spectatorCameraRig');
     document.querySelector('#room [sound]').components.sound.stopSound();
     this.el.removeAttribute('avatar-replayer');
     this.cameraRig.setAttribute('rotation', '0 0 0');
@@ -131,5 +139,7 @@ AFRAME.registerComponent('replay', {
     this.rightTooltip.parentNode.removeChild(this.rightTooltip);
     this.leftSelectionHandEl.removeEventListener('triggerdown', this.onTriggerDown);
     this.rightSelectionHandEl.removeEventListener('triggerdown', this.onTriggerDown);
+    spectatorCameraRigEl.removeChild(this.leftSelectionHandEl);
+    spectatorCameraRigEl.removeChild(this.rightSelectionHandEl);
   }
 });

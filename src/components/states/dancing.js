@@ -1,5 +1,6 @@
 AFRAME.registerComponent('dancing', {
   init: function () {
+    var el = this.el;
     var textElement = this.textElement = document.getElementById('centeredText');
     var counter0 = this.counter0 = document.getElementById('counter0');
     var counter1 = this.counter1 = document.getElementById('counter1');
@@ -7,12 +8,15 @@ AFRAME.registerComponent('dancing', {
 
     var avatarId = this.el.getAttribute('game-state').selectedAvatar.id;
     var soundAsset = '#' + avatarId + (isChrome ? 'ogg' : 'mp3');
-    this.el.setAttribute('game-state', 'dancingTime', document.querySelector(soundAsset).getAttribute('duration'));
+    el.setAttribute('game-state', 'dancingTime', document.querySelector(soundAsset).getAttribute('duration'));
     soundEl.setAttribute('sound', 'src', soundAsset);
 
-    document.getElementById('floor').setAttribute('discofloor', {pattern: avatarId});
+    el.querySelector('#floor').setAttribute('discofloor', {pattern: avatarId});
 
     this.dancingTime = this.el.getAttribute('game-state').dancingTime;
+
+    el.querySelector('#leftHand').setAttribute('tracked-controls', '');
+    el.querySelector('#rightHand').setAttribute('tracked-controls', '');
 
     textElement.setAttribute('visible', true);
     textElement.setAttribute('text', {value: 'Dance!', opacity: 1});
@@ -32,11 +36,11 @@ AFRAME.registerComponent('dancing', {
     counter1.setAttribute('text', {value: '!!'});
     counter0.setAttribute('visible', true);
     counter1.setAttribute('visible', true);
-     
+
     this.countdown = this.countdown.bind(this);
     soundEl.components.sound.playSound();
 
-    this.el.components['avatar-recorder'].startRecording();
+    el.components['avatar-recorder'].startRecording();
     this.interval = window.setInterval(this.countdown, 1000);
   },
 
@@ -48,13 +52,10 @@ AFRAME.registerComponent('dancing', {
 
     if (this.dancingTime === 0) {
       window.clearInterval(this.interval);
+      el.components['avatar-recorder'].stopRecording();
       el.querySelector('#leftHand').removeAttribute('tracked-controls');
       el.querySelector('#rightHand').removeAttribute('tracked-controls');
-      el.components['avatar-recorder'].stopRecording();
-      var avatarHeadEl = document.getElementById('avatarHead');
-      avatarHeadEl.setAttribute('visible', false);
-      var cameraRig = document.getElementById('cameraRig');
-      cameraRig.setAttribute('rotation', '0 180 0');
+      document.getElementById('cameraRig').setAttribute('rotation', '0 180 0');
     }
     el.setAttribute('game-state', 'dancingTime', this.dancingTime);
   },

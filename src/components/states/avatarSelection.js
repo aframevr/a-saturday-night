@@ -19,6 +19,73 @@ AFRAME.registerComponent('avatar-selection', {
     }
     document.querySelector('#room [sound]').setAttribute('sound', 'src', isChrome ? '#menuogg' : '#menump3');
     document.querySelector('#room [sound]').components.sound.playSound();
+    this.insertSelectionHands();
+  },
+
+  insertSelectionHands: function () {
+    var leftSelectionHandEl;
+    var rightSelectionHandEl;
+    var cameraRigEl = this.el.querySelector('#cameraRig');
+    this.onTriggerDown = this.onTriggerDown.bind(this);
+    this.onIntersection = this.onIntersection.bind(this);
+    this.onIntersectionCleared = this.onIntersectionCleared.bind(this);
+    leftSelectionHandEl = this.leftSelectionHandEl = document.createElement('a-entity');
+    rightSelectionHandEl = this.rightSelectionHandEl = document.createElement('a-entity');
+    var leftRayEl = this.leftRayEl = document.createElement('a-entity');
+    var rightRayEl = this.rightRayEl = document.createElement('a-entity');
+    leftSelectionHandEl.id = 'leftSelectionHand';
+    rightSelectionHandEl.id = 'rightSelectionHand';
+    leftSelectionHandEl.setAttribute('vive-controls', 'hand: left');
+    rightSelectionHandEl.setAttribute('vive-controls', 'hand: right');
+    leftRayEl.setAttribute('line', 'end: 0 0 -5');
+    //leftRayEl.setAttribute('visible', false);
+    rightRayEl.setAttribute('line', 'end: 0 0 -5');
+    //rightRayEl.setAttribute('visible', false);
+    // Raycaster setup
+    rightSelectionHandEl.setAttribute('ui-raycaster', {
+      far: 2,
+      objects: '.head',
+      rotation: 0
+    });
+    leftSelectionHandEl.setAttribute('ui-raycaster', {
+      far: 2,
+      objects: '.head',
+      rotation: 0
+    });
+    leftSelectionHandEl.appendChild(leftRayEl);
+    rightSelectionHandEl.appendChild(rightRayEl);
+    cameraRigEl.appendChild(leftSelectionHandEl);
+    cameraRigEl.appendChild(rightSelectionHandEl);
+    leftSelectionHandEl.addEventListener('triggerdown', this.onTriggerDown);
+    rightSelectionHandEl.addEventListener('triggerdown', this.onTriggerDown);
+  },
+
+  removeSelectionHands: function () {
+    var cameraRigEl = this.el.querySelector('#cameraRig');
+    cameraRigEl.removeChild(this.leftSelectionHandEl);
+    cameraRigEl.removeChild(this.rightSelectionHandEl);
+  },
+
+  tick: (function () {
+    var position = new THREE.Vector3();
+    return function () {
+      var leftRayEl = this.leftRayEl;
+      var rightRayEl = this.rightRayEl;
+      var leftPosition = leftRayEl.getAttribute('position');
+      var rightPosition = rightRayEl.getAttribute('position');
+      // position.copy(rightPosition)
+      // leftRayEl.object3D.localToWorld(position);
+      // rightRayEl.setAttribute('line', 'start', position);
+
+      // position.copy(leftPosition)
+      // leftRayEl.object3D.localToWorld(position);
+      // rightRayEl.setAttribute('line', 'start', position);
+    }
+  })(),
+
+  onTriggerDown: function () {
+    if (!this.hoveredAvatarEl) { return; }
+    this.selectAvatar(this.hoveredAvatarEl.parentEl);
   },
 
   onKeyDown: function (event) {
@@ -42,11 +109,42 @@ AFRAME.registerComponent('avatar-selection', {
                              selectedAvatarEl.querySelector('.leftHand').getAttribute('gltf-model'));
     rightHandEl.setAttribute('gltf-model',
                              selectedAvatarEl.querySelector('.rightHand').getAttribute('gltf-model'));
-    leftSelectionHandEl.setAttribute('visible', false);
-    rightSelectionHandEl.setAttribute('visible', false);
+    this.removeSelectionHands();
+  },
+
+  onIntersectionCleared: function (evt) {
+    var rayEl = evt.target.querySelector('[line]');
+    this.highlightAvatar();
+  },
+
+  onIntersection: (function () {
+    var position = new THREE.Vector3();
+    return function (evt) {
+      var avatarEl = evt.detail.els[0];
+      var rayEl = evt.target.querySelector('[line]');
+      position.copy(evt.detail.intersections[0].point);
+      rayEl.object3D.worldToLocal(position);
+      rayEl.setAttribute('line', 'end', position);
+      this.highlightAvatar(avatarEl);
+    }
+  })(),
+
+  play: function () {
+    var leftSelectionHandEl = this.leftSelectionHandEl;
+    var rightSelectionHandEl = this.rightSelectionHandEl;
+    rightSelectionHandEl.addEventListener('raycaster-intersection', this.onIntersection);
+    rightSelectionHandEl.addEventListener('raycaster-intersection-cleared', this.onIntersectionCleared);
+    leftSelectionHandEl.addEventListener('raycaster-intersection', this.onIntersection);
+    leftSelectionHandEl.addEventListener('raycaster-intersection-cleared', this.onIntersectionCleared);
   },
 
   pause: function () {
+    var leftSelectionHandEl = this.leftSelectionHandEl;
+    var rightSelectionHandEl = this.rightSelectionHandEl;
+    rightSelectionHandEl.removeEventListener('raycaster-intersection', this.onIntersection);
+    rightSelectionHandEl.removeEventListener('raycaster-intersection-cleared', this.onIntersectionCleared);
+    leftSelectionHandEl.removeEventListener('raycaster-intersection', this.onIntersection);
+    leftSelectionHandEl.removeEventListener('raycaster-intersection-cleared', this.onIntersectionCleared);
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('hit', this.onHover);
   },
@@ -56,8 +154,8 @@ AFRAME.registerComponent('avatar-selection', {
   },
 
   highlightAvatar: function (el) {
-    if ((el && el.className !== 'head') || el === this.hoveredAvatarEl) return;
-    if (el !== null) el.setAttribute('highlighter', {active: true});
+    if ((el && el.className !== 'head') || el === this.hoveredAvatarEl) { return; }
+    if (el) { el.setAttribute('highlighter', {active: true}); }
     if (this.hoveredAvatarEl) { this.hoveredAvatarEl.setAttribute('highlighter', {active: false}); }
     this.hoveredAvatarEl = el;
   },
