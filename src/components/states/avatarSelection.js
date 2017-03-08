@@ -114,6 +114,7 @@ AFRAME.registerComponent('avatar-selection', {
 
   onIntersectionCleared: function (evt) {
     var rayEl = evt.target.querySelector('[line]');
+    rayEl.setAttribute('line', {end: '0 0 -5', pulsating: true});
     this.highlightAvatar();
   },
 
@@ -124,7 +125,7 @@ AFRAME.registerComponent('avatar-selection', {
       var rayEl = evt.target.querySelector('[line]');
       position.copy(evt.detail.intersections[0].point);
       rayEl.object3D.worldToLocal(position);
-      rayEl.setAttribute('line', 'end', position);
+      rayEl.setAttribute('line', {end: position, pulsating: false});
       this.highlightAvatar(avatarEl);
     }
   })(),

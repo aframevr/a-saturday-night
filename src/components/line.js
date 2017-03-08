@@ -2,11 +2,12 @@
 AFRAME.registerComponent('line', {
   schema: {
     start: {type: 'vec3', default: '0 0 0'},
-    end: {type: 'vec3', default: '0 0 0'}
+    end: {type: 'vec3', default: '0 0 0'},
+    pulsating: {default: true}
   },
 
   init: function () {
-    var material = new THREE.LineBasicMaterial({color: 0xffffff});
+    var material = this.material = new THREE.LineBasicMaterial({color: 0xfffdb3, transparent: true});
     var geometry = this.geometry = new THREE.Geometry();
     this.line = new THREE.Line(geometry, material);
     this.el.setObject3D('line', this.line);
@@ -25,6 +26,12 @@ AFRAME.registerComponent('line', {
     vertices.push(end);
     this.geometry.vertices = vertices;
     this.geometry.verticesNeedUpdate = true;
+    this.material.opacity = 1;
+  },
+
+  tick: function (time, delta) {
+    if (!this.data.pulsating) { return; }
+    this.material.opacity = 1 - Math.abs( Math.sin(time / 60 ));
   }
 
 });
