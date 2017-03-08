@@ -106,6 +106,8 @@ body {
   width: 100%;
   height: 100%;
   background-color: black;
+  background: url(../assets/bg.jpg);
+  background-size: cover;
 }
 
 @keyframes fadein {
