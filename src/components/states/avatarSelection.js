@@ -38,8 +38,6 @@ AFRAME.registerComponent('avatar-selection', {
     var rightSelectionHandEl = el.querySelector('#rightSelectionHand');
     this.el.setAttribute('game-state', 'selectedAvatar', this.selectedAvatarEl);
 
-    avatarHeadEl.setAttribute('gltf-model',
-                             selectedAvatarEl.querySelector('.head').getAttribute('gltf-model'));
     leftHandEl.setAttribute('gltf-model',
                              selectedAvatarEl.querySelector('.leftHand').getAttribute('gltf-model'));
     rightHandEl.setAttribute('gltf-model',

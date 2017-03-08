@@ -10,7 +10,7 @@ AFRAME.registerComponent('dancing', {
     this.el.setAttribute('game-state', 'dancingTime', document.querySelector(soundAsset).getAttribute('duration'));
     soundEl.setAttribute('sound', 'src', soundAsset);
 
-    this.floor.setAttribute('discofloor', {pattern: avatarId});
+    document.getElementById('floor').setAttribute('discofloor', {pattern: avatarId});
 
     this.dancingTime = this.el.getAttribute('game-state').dancingTime;
 
