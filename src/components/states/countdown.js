@@ -14,6 +14,9 @@ AFRAME.registerComponent('countdown', {
     }
     this.opacity = 1;
 
+    this.el.querySelector('#leftHand').setAttribute('visible', true);
+    this.el.querySelector('#rightHand').setAttribute('visible', true);
+    
     var avatarHeadEl = document.getElementById('avatarHead');
     avatarHeadEl.setAttribute('visible', false);
   },
