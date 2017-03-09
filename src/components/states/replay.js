@@ -30,6 +30,7 @@ AFRAME.registerComponent('replay', {
     var avatarHeadEl = document.getElementById('avatarHead');
     var rightHandEl = document.getElementById('rightHand');
     var leftHandEl = document.getElementById('leftHand');
+    var spectatorPosition = el.is('vr-mode') ? '0 0 1.5' : '0 1.6 1.5';
     this.cameraRig = document.getElementById('cameraRig');
     if (!el.hasLoaded) {
       el.addEventListener('loaded', function () {
@@ -63,7 +64,7 @@ AFRAME.registerComponent('replay', {
 
     el.setAttribute('avatar-replayer', {
       spectatorMode: true,
-      spectatorPosition: '0 1.6 1.5',
+      spectatorPosition: spectatorPosition,
       loop: true
     });
 

@@ -5,6 +5,9 @@ AFRAME.registerComponent('dancing', {
     var counter0 = this.counter0 = document.getElementById('counter0');
     var counter1 = this.counter1 = document.getElementById('counter1');
     var soundEl = document.querySelector('#room [sound]');
+    var leftHandEl = el.querySelector('#leftHand');
+    var rightHandEl = el.querySelector('#rightHand');
+    var avatarHeadEl = document.getElementById('avatarHead');
 
     var avatarId = this.el.getAttribute('game-state').selectedAvatar.id;
     var soundAsset = '#' + avatarId + (isChrome ? 'ogg' : 'mp3');
@@ -15,8 +18,15 @@ AFRAME.registerComponent('dancing', {
 
     this.dancingTime = this.el.getAttribute('game-state').dancingTime;
 
-    el.querySelector('#leftHand').setAttribute('tracked-controls', '');
-    el.querySelector('#rightHand').setAttribute('tracked-controls', '');
+    // reset avatar positions
+    leftHandEl.setAttribute('position', '0 0 0');
+    leftHandEl.setAttribute('rotation', '0 0 0');
+    rightHandEl.setAttribute('position', '0 0 0');
+    rightHandEl.setAttribute('rotation', '0 0 0');
+    // avatarHeadEl.setAttribute('position', '0 0 0');
+    // avatarHeadEl.setAttribute('rotation', '0 0 0');
+    leftHandEl.setAttribute('tracked-controls', {controller: 0, id: 'OpenVR Gamepad'});
+    rightHandEl.setAttribute('tracked-controls', {controller: 1, id: 'OpenVR Gamepad'});
 
     textElement.setAttribute('visible', true);
     textElement.setAttribute('text', {value: 'Dance!', opacity: 1});
@@ -53,17 +63,18 @@ AFRAME.registerComponent('dancing', {
     if (this.dancingTime === 0) {
       window.clearInterval(this.interval);
       el.components['avatar-recorder'].stopRecording();
-      el.querySelector('#leftHand').removeAttribute('tracked-controls');
-      el.querySelector('#rightHand').removeAttribute('tracked-controls');
       document.getElementById('cameraRig').setAttribute('rotation', '0 180 0');
     }
     el.setAttribute('game-state', 'dancingTime', this.dancingTime);
   },
 
   remove: function () {
+    var el = this.el;
     this.textElement.setAttribute('visible', false);
     this.counter0.setAttribute('visible', false);
     this.counter1.setAttribute('visible', false);
+    el.querySelector('#leftHand').removeAttribute('tracked-controls');
+    el.querySelector('#rightHand').removeAttribute('tracked-controls');
     document.querySelector('#room [sound]').components.sound.stopSound();
   }
 });

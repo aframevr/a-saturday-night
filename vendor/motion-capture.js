@@ -88,6 +88,7 @@
 	    autoRecord: {default: false},
 	    enabled: {default: true},
 	    hand: {default: 'right'},
+	    recordingControls: {default: false},
 	    persistStroke: {default: false},
 	    visibleStroke: {default: true}
 	  },
@@ -176,9 +177,10 @@
 	    } else {
 	      // Don't try to record camera with controllers.
 	      if (el.components.camera) { return; }
-
-	      el.setAttribute('vive-controls', {hand: data.hand, model: false});
-	      el.setAttribute('oculus-touch-controls', {hand: data.hand});
+	      if (data.recordingControls) {
+		      el.setAttribute('vive-controls', {hand: data.hand, model: false});
+		      el.setAttribute('oculus-touch-controls', {hand: data.hand});
+		    }
 	      el.setAttribute('stroke', '');
 	    }
 	  },
@@ -499,7 +501,7 @@
 	        visibleStroke: false
 	      });
 	      self.trackedControllerEls[trackedControllerEl.id] = trackedControllerEl;
-	      if (this.isRecording) {
+	      if (self.isRecording) {
 	        trackedControllerEl.components['motion-capture-recorder'].startRecording();
 	      }
 	    });

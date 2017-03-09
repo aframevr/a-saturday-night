@@ -25,7 +25,7 @@ AFRAME.registerComponent('avatar-selection', {
   insertSelectionHands: function () {
     var leftSelectionHandEl;
     var rightSelectionHandEl;
-    var cameraRigEl = this.el.querySelector('#cameraRig');
+    var cameraRigEl = this.cameraRigEl = this.el.camera.el.parentEl;
     this.onTriggerDown = this.onTriggerDown.bind(this);
     this.onIntersection = this.onIntersection.bind(this);
     this.onIntersectionCleared = this.onIntersectionCleared.bind(this);
@@ -61,7 +61,7 @@ AFRAME.registerComponent('avatar-selection', {
   },
 
   removeSelectionHands: function () {
-    var cameraRigEl = this.el.querySelector('#cameraRig');
+    var cameraRigEl = this.cameraRigEl;
     cameraRigEl.removeChild(this.leftSelectionHandEl);
     cameraRigEl.removeChild(this.rightSelectionHandEl);
   },
