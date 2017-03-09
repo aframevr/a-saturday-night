@@ -103,18 +103,19 @@ AFRAME.registerComponent('replay', {
       align: 'right',
       anchor:'right',
       side:  'double',
-      value: 'Press trigger >>',
-      width: 0.6
+      value: '<< Press trigger\nto record\n your dance',
+      width: 0.40,
+      opacity: 0
     };
     this.leftTooltip = document.createElement('a-entity');
     this.leftTooltip.setAttribute('text', textProps);
     this.leftTooltip.setAttribute('rotation', '-90 0 0');
-    this.leftTooltip.setAttribute('position', '-0.01 -0.05 0.05');
+    this.leftTooltip.setAttribute('position', '0.17 -0.03 0.07');
     this.rightTooltip = document.createElement('a-entity');
     this.rightTooltip.setAttribute('text', textProps);
-    this.rightTooltip.setAttribute('text', {anchor: 'left', align: 'left', value: '<< Press trigger'});
+    this.rightTooltip.setAttribute('text', {anchor: 'left', align: 'left', value: 'Press trigger >>\nto record\n your dance'});
     this.rightTooltip.setAttribute('rotation', '-90 0 0');
-    this.rightTooltip.setAttribute('position', '0.01 -0.05 0.05');
+    this.rightTooltip.setAttribute('position', '-0.17 -0.03 0.07');
 
     leftSelectionHandEl.appendChild(this.leftTooltip);
     rightSelectionHandEl.appendChild(this.rightTooltip);
@@ -124,6 +125,13 @@ AFRAME.registerComponent('replay', {
 
   onTriggerDown: function () {
     this.el.setAttribute('game-state', 'state', 'avatar-selection');
+  },
+
+  tick: function (time, delta) {
+    if (!this.el.is('vr-mode')) return;
+    var opacity = 1 - Math.abs( Math.sin(time / 200)) * 0.9;
+    this.leftTooltip.setAttribute('text', {opacity: opacity });
+    this.rightTooltip.setAttribute('text', {opacity: opacity });
   },
 
   remove: function () {
