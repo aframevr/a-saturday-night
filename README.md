@@ -4,16 +4,15 @@ A WebVR dancing experience using [A-Frame](http://aframe.io) by [Mozilla VR](htt
 
 [Read the introductory blog post.](https://blog.mozvr.com/a-saturday-night/)
 
-[![Screenshot of A-Saturday-Night main menu](assets/readme/mainmenu2.png)](https://aframe.io/a-saturday-night/)
+[![Screenshot of A-Saturday-Night main menu](assets/readme/screenshot1.jpg)](https://aframe.io/a-saturday-night/)
 
 ## Usage
 
 - Grab a [WebVR-enabled browser](https://webvr.info/).
 - Head to [https://aframe.io/a-saturday-night/](https://aframe.io/a-saturday-night/) and start dancing. See the [blog post](https://blog.mozvr.com/a-saturday-night/) for more information.
 
-<p align="center">
-  <img src="assets/readme/a-blast-3s.gif" alt="Recording of A-Saturday-Night gameplay">
-</p>
+
+![Recording of A-Saturday-Night gameplay](assets/readme/asaturdaynight.gif)
 
 ## Local Development
 
