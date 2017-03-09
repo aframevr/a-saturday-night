@@ -1,9 +1,12 @@
 AFRAME.registerComponent('countdown', {
   init: function () {
+    var leftHandEl = this.el.querySelector('#leftHand');
+    var rightHandEl = this.el.querySelector('#rightHand');
+    var avatarHeadEl = this.el.querySelector('#avatarHead');
     this.countdownTime = this.el.getAttribute('game-state').countdownTime;
     this.countdown = this.countdown.bind(this);
     this.interval = window.setInterval(this.countdown, 1000);
-    this.floor = document.getElementById('floor');
+    this.floor = this.el.querySelector('#floor');
     this.floor.setAttribute('discofloor', {pattern: '' + this.countdownTime});
     var textElements = this.textElements = document.querySelectorAll('#centeredText, #counter0Text, #counter1Text');
 
@@ -14,10 +17,15 @@ AFRAME.registerComponent('countdown', {
     }
     this.opacity = 1;
 
-    this.el.querySelector('#leftHand').setAttribute('visible', true);
-    this.el.querySelector('#rightHand').setAttribute('visible', true);
-    
-    var avatarHeadEl = document.getElementById('avatarHead');
+    // reset avatar positions and visibility
+    leftHandEl.setAttribute('position', '0 0 0');
+    leftHandEl.setAttribute('rotation', '0 0 0');
+    rightHandEl.setAttribute('position', '0 0 0');
+    rightHandEl.setAttribute('rotation', '0 0 0');
+    leftHandEl.setAttribute('tracked-controls', {controller: 0, id: 'OpenVR Gamepad'});
+    rightHandEl.setAttribute('tracked-controls', {controller: 1, id: 'OpenVR Gamepad'});
+    leftHandEl.setAttribute('visible', true);
+    rightHandEl.setAttribute('visible', true);
     avatarHeadEl.setAttribute('visible', false);
   },
 
@@ -32,8 +40,12 @@ AFRAME.registerComponent('countdown', {
     }
 
     this.el.setAttribute('game-state', 'countdownTime', this.countdownTime);
-    this.floor.setAttribute('discofloor', {pattern: '' + this.countdownTime});
-    if (this.countdownTime === 0) { window.clearInterval(this.interval); }
+    if (this.countdownTime === 0) { 
+      window.clearInterval(this.interval); 
+    }
+    else {
+      this.floor.setAttribute('discofloor', {pattern: '' + this.countdownTime});
+    }
   },
 
   tick: function (time, delta) {

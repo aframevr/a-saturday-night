@@ -18,8 +18,11 @@ AFRAME.registerComponent('avatar-selection', {
       document.getElementById('spot'+i).setAttribute('scale', '0 0 0');
     }
     document.querySelector('#room [sound]').setAttribute('sound', 'src', isChrome ? '#menuogg' : '#menump3');
+    document.querySelector('#room [sound]').setAttribute('sound', 'volume', 0.5);
     document.querySelector('#room [sound]').components.sound.playSound();
     this.insertSelectionHands();
+    
+    this.el.querySelector('#floor').setAttribute('discofloor', {pattern: 'idle'});
   },
 
   insertSelectionHands: function () {
@@ -114,7 +117,7 @@ AFRAME.registerComponent('avatar-selection', {
 
   onIntersectionCleared: function (evt) {
     var rayEl = evt.target.querySelector('[line]');
-    rayEl.setAttribute('line', {end: '0 0 -5', pulsating: true});
+    rayEl.setAttribute('line', {end: '0 0 -5'});
     this.highlightAvatar();
   },
 
@@ -125,7 +128,7 @@ AFRAME.registerComponent('avatar-selection', {
       var rayEl = evt.target.querySelector('[line]');
       position.copy(evt.detail.intersections[0].point);
       rayEl.object3D.worldToLocal(position);
-      rayEl.setAttribute('line', {end: position, pulsating: false});
+      rayEl.setAttribute('line', {end: position});
       this.highlightAvatar(avatarEl);
     }
   })(),
@@ -166,6 +169,8 @@ AFRAME.registerComponent('avatar-selection', {
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('hit', this.onHover);
     document.getElementById('backText').setAttribute('visible', false);
-    document.getElementById('room').querySelector('[sound]').components.sound.pauseSound();
+    var soundEl = document.querySelector('#room [sound]');
+    soundEl.components.sound.pauseSound();
+    soundEl.setAttribute('sound', 'volume', 1);
   }
 });

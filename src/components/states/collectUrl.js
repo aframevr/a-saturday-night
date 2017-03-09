@@ -2,13 +2,11 @@ AFRAME.registerComponent('collect-url', {
   init: function () {
     document.getElementById('floor').setAttribute('discofloor', {pattern: 'idle'});
     var el = this.el;
-    var textElement = this.textElement = document.getElementById('centeredText');
+    var textElement = this.textElement = document.getElementById('collectText');
     var selectedAvatarEl = this.el.getAttribute('game-state').selectedAvatar;
     this.soundEl = document.querySelector('#room [sound]');
-
-    textElement.setAttribute('position', {y: 0.9});
     textElement.setAttribute('visible', true);
-    textElement.setAttribute('text', {value: 'Copy your dance URL and share!', width: 3.5});
+
     var object = { opacity: 0.0 };
     new AFRAME.TWEEN.Tween(object)
       .to({opacity: 1.0}, 1000)

@@ -5,21 +5,20 @@
  */
 AFRAME.registerComponent('discofloor', {
   schema: {
-    pattern: {default: 'idle', oneOf: ['idle', '3', '2', '1', '0', 'avatar1', 'avatar2', 'avatar3', 'avatar4']}
+    pattern: {default: 'idle', oneOf: ['idle', '3', '2', '1', 'avatar1', 'avatar2', 'avatar3', 'avatar4']}
   },
   init: function () {
     this.tiles= [];
     this.myTick = null;
     this.step = 0;
     this.bpms = {
-      'idle': 60,
+      'idle': 64,
       '3': 40,
       '2': 40,
       '1': 40,
-      '0': 2400,
       'avatar1': 1000,
       'avatar2': 2000,
-      'avatar3': 200,
+      'avatar3': 1000,
       'avatar4': 600
     }
     this.tickTime = 1000 * 60 / this.bpms[this.data.pattern];
@@ -57,7 +56,7 @@ AFRAME.registerComponent('discofloor', {
   animTick: function () {
     var numTiles = this.tiles.length;
     var center = 3.5;
-    var visible;
+    var visible = false;
     for (var i = 0; i < numTiles; i++) {
       var x = Math.floor(i % 8);
       var y = Math.floor(i / 8);
