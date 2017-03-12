@@ -15,7 +15,8 @@ AFRAME.registerComponent('replay', {
   },
 
   onEnterVR: function () {
-    this.el.querySelector('#spectatorCameraRig').setAttribute('position','0 0 1.5');
+    var position = this.el.isMobile ? '0 1.6 0.80' : '0 0 1.5';
+    this.el.querySelector('#spectatorCameraRig').setAttribute('position', position);
   },
 
   loadDance: function (data) {
@@ -30,7 +31,10 @@ AFRAME.registerComponent('replay', {
     var avatarHeadEl = document.getElementById('avatarHead');
     var rightHandEl = document.getElementById('rightHand');
     var leftHandEl = document.getElementById('leftHand');
-    var spectatorPosition = el.is('vr-mode') ? '0 0 1.5' : '0 1.6 1.5';
+    var spectatorPositionY = el.is('vr-mode') ? 0 : 1.6;
+    var spectatorPosition = this.el.isMobile ?
+      '0 ' + spectatorPositionY + ' 0.80' : '0 ' + spectatorPositionY + '1.5';
+
     this.cameraRig = document.getElementById('cameraRig');
     if (!el.hasLoaded) {
       el.addEventListener('loaded', function () {

@@ -5,7 +5,7 @@ AFRAME.registerComponent('dancing', {
     var counter0 = this.counter0 = document.getElementById('counter0');
     var counter1 = this.counter1 = document.getElementById('counter1');
     var soundEl = document.querySelector('#room [sound]');
-   
+
     var avatarId = this.el.getAttribute('game-state').selectedAvatar.id;
     var soundAsset = '#' + avatarId + (isChrome ? 'ogg' : 'mp3');
     el.setAttribute('game-state', 'dancingTime', document.querySelector(soundAsset).getAttribute('duration'));

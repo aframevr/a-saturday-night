@@ -15,14 +15,6 @@ AFRAME.registerComponent('game-state', {
     this.updateState = this.updateState.bind(this);
   },
 
-  play: function () {
-    this.el.addEventListener('enter-vr', this.updateState);
-  },
-
-  pause: function () {
-    this.el.removeEventListener('enter-vr', this.updateState);
-  },
-
   update: function (oldData) {
     var data = this.data;
     var el = this.el;

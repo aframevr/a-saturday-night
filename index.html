@@ -35,6 +35,7 @@
     <a-scene uploadcare="publicKey: 85ed3c25d99e387316bd" game-state
              avatar-recorder="spectatorPlay: true; spectatorPosition: 0 0 0; localStorage: false; saveFile: false"
              auto-enter-vr="enabled: false">
+
       <a-assets timeout="8000">
 
         <img src="assets/room/set.jpg">
@@ -47,6 +48,7 @@
         <img src="assets/avatar4/avatar4.jpg">
 
         <a-asset-item id="set-obj" src="assets/room/set.gltf"></a-asset-item>
+        <img src="assets/room/set.jpg">
         <a-asset-item id="floor-obj" src="assets/room/floor.gltf"></a-asset-item>
         <audio id="avatar1ogg" src="assets/sounds/avatar1.ogg" duration="15"></audio>
         <audio id="avatar2ogg" src="assets/sounds/avatar2.ogg" duration="19"></audio>
@@ -86,7 +88,7 @@
         <a-entity id="avatarHead"
                   camera="userHeight: 0"
                   wasd-controls look-controls
-                  visible="false"></a-entity>
+                  visiblefalse"></a-entity>
         <!-- Avatar Hands -->
         <a-entity id="leftHand" visible="false"></a-entity>
         <a-entity id="rightHand" visible="false"></a-entity>

@@ -26,6 +26,11 @@ AFRAME.registerComponent('instructions', {
   },
 
   setupStartButton: function () {
+    var sceneEl = document.querySelector('a-scene');
+    if (!sceneEl.hasLoaded) {
+      sceneEl.addEventListener('loaded', this.setupStartButton.bind(this));
+      return;
+    }
     var buttonLabelEl = this.startButtonEl.querySelector('span');
     buttonLabelEl.innerHTML = 'START';
     buttonLabelEl.classList.remove('loading');
