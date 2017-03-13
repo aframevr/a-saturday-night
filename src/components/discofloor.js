@@ -35,7 +35,7 @@ AFRAME.registerComponent('discofloor', {
     for (var i = 0; i < meshes.length; i++) {
       this.tiles[i] = meshes[i];
     }
-    this.tiles.sort((a, b) => a.name > b.name ? 1 : -1);
+    this.tiles.sort(function(a, b) { a.name > b.name ? 1 : -1 });
   },
   update: function (oldData) {
     this.tickTime = 1000 * 60 / this.bpms[this.data.pattern];
