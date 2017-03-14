@@ -17,9 +17,11 @@ AFRAME.registerComponent('avatar-selection', {
     for (var i = 1; i <= 4; i++) {
       document.getElementById('spot'+i).setAttribute('scale', '0 0 0');
     }
-    document.querySelector('#room [sound]').setAttribute('sound', 'src', isChrome ? '#menuogg' : '#menump3');
-    document.querySelector('#room [sound]').setAttribute('sound', 'volume', 0.5);
-    document.querySelector('#room [sound]').components.sound.playSound();
+    document.querySelector('#room [sound]').setAttribute('sound', {
+      src: isChrome ? '#menuogg' : '#menump3',
+      volume: 0.5,
+      autoplay: true
+    });
     this.insertSelectionHands();
 
     this.el.querySelector('#floor').setAttribute('discofloor', {pattern: 'idle'});

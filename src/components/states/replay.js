@@ -76,8 +76,10 @@ AFRAME.registerComponent('replay', {
     var soundSrc = '#' + data.avatar + (isChrome ? 'ogg' : 'mp3');
     el.sceneEl.setAttribute('game-state', 'dancingTime', document.querySelector(soundSrc).getAttribute('duration'));
     el.components['avatar-replayer'].startReplaying(data.recording);
-    document.querySelector('#room [sound]').setAttribute('sound', 'src', soundSrc);
-    document.querySelector('#room [sound]').components.sound.playSound();
+    document.querySelector('#room [sound]').setAttribute('sound', {
+      src: soundSrc,
+      autoplay: true
+    });
     this.insertSelectionHands();
     el.emit('dancing');
   },
