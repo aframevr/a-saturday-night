@@ -7,6 +7,7 @@ require('./components/game-state.js');
 require('./components/avatar-selector.js');
 require('./components/ground.js');
 require('./components/line.js');
+require('./components/mimo.js');
 require('./components/discofloor.js');
 require('./components/spotlight.js');
 require('./components/highlighter.js');

@@ -21,7 +21,7 @@ AFRAME.registerComponent('avatar-selection', {
     document.querySelector('#room [sound]').setAttribute('sound', 'volume', 0.5);
     document.querySelector('#room [sound]').components.sound.playSound();
     this.insertSelectionHands();
-    
+
     this.el.querySelector('#floor').setAttribute('discofloor', {pattern: 'idle'});
   },
 
@@ -68,23 +68,6 @@ AFRAME.registerComponent('avatar-selection', {
     cameraRigEl.removeChild(this.leftSelectionHandEl);
     cameraRigEl.removeChild(this.rightSelectionHandEl);
   },
-
-  tick: (function () {
-    var position = new THREE.Vector3();
-    return function () {
-      var leftRayEl = this.leftRayEl;
-      var rightRayEl = this.rightRayEl;
-      var leftPosition = leftRayEl.getAttribute('position');
-      var rightPosition = rightRayEl.getAttribute('position');
-      // position.copy(rightPosition)
-      // leftRayEl.object3D.localToWorld(position);
-      // rightRayEl.setAttribute('line', 'start', position);
-
-      // position.copy(leftPosition)
-      // leftRayEl.object3D.localToWorld(position);
-      // rightRayEl.setAttribute('line', 'start', position);
-    }
-  })(),
 
   onTriggerDown: function () {
     if (!this.hoveredAvatarEl) { return; }

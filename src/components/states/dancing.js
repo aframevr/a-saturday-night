@@ -5,6 +5,7 @@ AFRAME.registerComponent('dancing', {
     var counter0 = this.counter0 = document.getElementById('counter0');
     var counter1 = this.counter1 = document.getElementById('counter1');
     var soundEl = document.querySelector('#room [sound]');
+    this.avatarHeadEl = el.querySelector('#avatarHead');
 
     var avatarId = this.el.getAttribute('game-state').selectedAvatar.id;
     var soundAsset = '#' + avatarId + (isChrome ? 'ogg' : 'mp3');
@@ -37,8 +38,41 @@ AFRAME.registerComponent('dancing', {
     this.countdown = this.countdown.bind(this);
     soundEl.components.sound.playSound();
 
+    this.setupAvatarMimo();
+
     el.components['avatar-recorder'].startRecording();
     this.interval = window.setInterval(this.countdown, 1000);
+  },
+
+  setupAvatarMimo: function () {
+    var avatarEl = this.el.getAttribute('game-state').selectedAvatar;
+    var avatarMimoRigEl = this.avatarMimoRigEl = this.avatarMimoRigEl || this.initMimoRig();
+    avatarMimoRigEl.setAttribute('visible', true);
+    this.rightHandMimoEl.setAttribute('gltf-model',
+      avatarEl.querySelector('.rightHand').getAttribute('gltf-model'));
+    this.leftHandMimoEl.setAttribute('gltf-model',
+      avatarEl.querySelector('.leftHand').getAttribute('gltf-model'));
+    this.headMimoEl.setAttribute('gltf-model',
+      avatarEl.querySelector('.head').getAttribute('gltf-model'));
+  },
+
+  initMimoRig: function () {
+    var avatarMimoRigEl = this.avatarMimoRigEl = document.createElement('a-entity');
+    var avatarMimoRigPivotEl = this.avatarMimoRigPivotEl = document.createElement('a-entity');
+    var rightHandMimoEl = this.rightHandMimoEl = document.createElement('a-entity');
+    var leftHandMimoEl = this.leftHandMimoEl = document.createElement('a-entity');
+    var headMimoEl = this.headMimoEl = document.createElement('a-entity');
+    headMimoEl.setAttribute('mimo', '#avatarHead');
+    rightHandMimoEl.setAttribute('mimo', '#leftHand');
+    leftHandMimoEl.setAttribute('mimo', '#rightHand');
+    avatarMimoRigEl.appendChild(rightHandMimoEl);
+    avatarMimoRigEl.appendChild(leftHandMimoEl);
+    avatarMimoRigEl.setAttribute('position', '0 0 -2.5');
+    avatarMimoRigEl.setAttribute('rotation', '0 180 0');
+    avatarMimoRigEl.appendChild(headMimoEl);
+    avatarMimoRigPivotEl.appendChild(avatarMimoRigEl);
+    this.el.appendChild(avatarMimoRigPivotEl);
+    return avatarMimoRigEl;
   },
 
   countdown: function () {
@@ -63,5 +97,6 @@ AFRAME.registerComponent('dancing', {
     el.querySelector('#leftHand').removeAttribute('tracked-controls');
     el.querySelector('#rightHand').removeAttribute('tracked-controls');
     document.querySelector('#room [sound]').components.sound.stopSound();
+    this.avatarMimoRigEl.setAttribute('visible', false);
   }
 });

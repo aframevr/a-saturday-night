@@ -692,13 +692,12 @@
 
 	  init: function () {
 	    var sceneEl = this.el;
-	    this.storeInitialCamera = this.storeInitialCamera.bind(this);
-	    this.initSpectatorCamera();
+	    this.setupCameras = this.setupCameras.bind(this);
 	    // Prepare camera.
 	    if (sceneEl.camera) {
-	      this.storeInitialCamera();
+	      this.setupCameras();
 	    } else {
-	      this.el.addEventListener('camera-set-active', this.storeInitialCamera);
+	      this.el.addEventListener('camera-set-active', this.setupCameras);
 	    }
 	    this.el.addEventListener('replayingstopped', this.restoreCamera.bind(this));
 	    this.onKeyDown = this.onKeyDown.bind(this);
@@ -712,10 +711,11 @@
 	    this.currentCameraEl.setAttribute('camera', 'active', true);
 	  },
 
-	  storeInitialCamera: function () {
+	  setupCameras: function () {
 	    this.currentCameraEl = this.el.camera.el;
 	    this.currentCameraEl.removeAttribute('data-aframe-default-camera');
-	    this.el.removeEventListener('camera-set-active', this.storeInitialCamera);
+	    this.el.removeEventListener('camera-set-active', this.setupCameras);
+	    this.initSpectatorCamera();
 	  },
 
 	  play: function () {
