@@ -20,7 +20,8 @@ AFRAME.registerComponent('avatar-selection', {
     document.querySelector('#room [sound]').setAttribute('sound', {
       src: isChrome ? '#menuogg' : '#menump3',
       volume: 0.5,
-      autoplay: true
+      autoplay: true,
+      positional: false
     });
     this.insertSelectionHands();
 

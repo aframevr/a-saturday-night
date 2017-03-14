@@ -78,7 +78,8 @@ AFRAME.registerComponent('replay', {
     el.components['avatar-replayer'].startReplaying(data.recording);
     document.querySelector('#room [sound]').setAttribute('sound', {
       src: soundSrc,
-      autoplay: true
+      autoplay: true,
+      positional: false
     });
     this.insertSelectionHands();
     el.emit('dancing');
