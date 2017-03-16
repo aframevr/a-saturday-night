@@ -8,6 +8,10 @@
     <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.12/dist/clipboard.min.js"></script>
     <script src="vendor/aframe-master.min.js"></script>
     <script src="vendor/motion-capture.js"></script>
+    <script src="vendor/gif.js"></script>
+    <script src="vendor/download.js"></script>
+    <script src="vendor/CCapture.min.js"></script>
+
     <script src="https://unpkg.com/aframe-uploadcare-component/dist/aframe-uploadcare-component.min.js"></script>
     <script src="build/build.js"></script>
   </head>
@@ -24,6 +28,18 @@
           </p>
         </div>
         <button class="start-button"><span>Loading...</span></button>
+      </div>
+    </div>
+
+
+    <div id="gif-ui" class="hide black">
+      <div class="dialog">
+        <h1>Generating GIF, please wait...</h1>
+        <a href="javascript:;" class="close hide" id="gifclose">&times;</a>
+        <img src="assets/loading.gif">
+        <div id="share-buttons" class="hide">
+          <a href="javascript:;" class="button">SHARE ON TWITTER</a>
+        </div>
       </div>
     </div>
 
@@ -166,22 +182,23 @@
       </a-entity>
     </a-scene>
 
-    <div id="asaturday-ui" class="hide dialog">
+    <div id="asaturday-ui" class="h dialog">
       <div class="progress hide">
         Saving dance...
         <div class="bar"></div>
       </div>
-      <div class="share hide">
+      <div class="share h">
         <div class="help">
           <h1>Dance saved!</h1>
-          <p>Your dance was saved in the following URL.<br>You can use it to share your masterpiece in social media.</p>
+          <p>Now share it! copy the dance URL or send an animated GIF</p>
         </div>
         <div class="form">
-        <input id="asaturday-share-url" type="text" value="" readonly/>
-        <div id="copy-toclipboard" data-clipboard-target="#asaturday-share-url" class="button copy">COPY URL</div>
+          <input id="asaturday-share-url" type="text" value="" />
+          <div id="copy-toclipboard" data-clipboard-target="#asaturday-share-url" class="button copy">COPY URL</div>
+          <a href="javascript:;" class="button" id="generategif">SHARE GIF</a>
         </div>
       </div>
     </div>
-    <script>
+  
   </body>
 </html>
