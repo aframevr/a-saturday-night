@@ -43,25 +43,15 @@ window.addEventListener('load', function (event) {
   document.getElementById('generategif').addEventListener('click', function (event) {
     var gifui = document.getElementById('gif-ui');
     gifui.classList.remove('hide');
-    
-    if (!sceneEl.components['gifcapture']) {
-      sceneEl.setAttribute('gifcapture', 'width:300; height:220; fps:10; duration:2; delay:1; jsPath: vendor/; saveToFile: false');
-
-      sceneEl.addEventListener('gifdone', function (evt) {
-        gifui.querySelector('img').src = URL.createObjectURL(evt.detail);
-        gifui.classList.remove('black');
-        gifui.querySelector('h1').innerHTML = '<b>DONE!</b> HERE IT IS YOUR GIF';
-        gifui.querySelector('#share-buttons').classList.remove('hide');
-        gifui.querySelector('#gifclose').classList.remove('hide');
-        gifui.querySelector('#gifclose').classList.remove('hide');
-      });
-
-    }
-    else {
-      sceneEl.components.gifcapture.start();
-    }
-
-    
+    sceneEl.addEventListener('gifdone', function (evt) {
+      gifui.querySelector('img').src = URL.createObjectURL(evt.detail);
+      gifui.classList.remove('black');
+      gifui.querySelector('h1').innerHTML = '<b>DONE!</b> HERE IT IS YOUR GIF';
+      gifui.querySelector('#share-buttons').classList.remove('hide');
+      gifui.querySelector('#gifclose').classList.remove('hide');
+      gifui.querySelector('#gifclose').classList.remove('hide');
+    });
+    sceneEl.setAttribute('gifcapture', 'width:300; height:220; fps:10; duration:2; delay:1; jsPath: vendor/; saveToFile: false');
   });
 
   document.getElementById('gifclose').addEventListener('click', function (event) {
