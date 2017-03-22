@@ -217,7 +217,7 @@ body {
   position: absolute;
   width: 400px;
   top: 30%;
-  top: calc(50vh - 200px);
+  top: calc(45vh - 200px);
   left: calc(50% - 200px);
   background: rgba(0, 0, 0, 0.8);
   text-align: center;  
@@ -225,16 +225,21 @@ body {
 #gif-ui .button {
   margin: 0;
 }
-#gif-ui img {
+#gif-ui .dialog>img {
   display: block;
   background: black;
   margin: 3rem auto;
+}
+
+#gif-ui #share-buttons img {
+  vertical-align: text-bottom;
 }
 
 #gif-ui b{
   color: #fff;
   font-weight: normal;
 }
+
 #gif-ui .close {
   background-color: #e43b5e;
   text-decoration: none;

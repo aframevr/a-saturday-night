@@ -1,3 +1,5 @@
+addUploadJSONListeners = require('../../ui2d').addUploadJSONListeners;
+
 AFRAME.registerComponent('collect-url', {
   init: function () {
     document.getElementById('floor').setAttribute('discofloor', {pattern: 'idle'});
@@ -23,6 +25,7 @@ AFRAME.registerComponent('collect-url', {
     delete json.recording['rightSelectionHand'];
     if (json.recording.rightHand) { json.recording.rightHand.events = []; }
     if (json.recording.leftHand) { json.recording.leftHand.events = []; }
+    addUploadJSONListeners();
     el.systems['uploadcare'].upload(json, 'application/json');
     this.soundEl.components.sound.playSound();
     el.setAttribute('game-state', 'state', 'replay');

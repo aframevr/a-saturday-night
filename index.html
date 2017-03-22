@@ -14,6 +14,18 @@
     <script src="https://unpkg.com/aframe-uploadcare-component/dist/aframe-uploadcare-component.min.js"></script>
     <script src="build/build.js"></script>
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@mozillavr" />
+    <meta name="twitter:title" content="Check out my moves on aframe.io/a-saturday-night!">
+    <meta name="twitter:description" content="A-Saturday-Night from Mozilla VR! Share your dance with the world in VR.">
+    <meta  name="twitter:image" id="twitterimg" content="http://aframe.io/a-saturday-night/assets/logo-small.png">
+
+    <meta property="og:url" content="http://aframe.io/a-saturday-night" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Check out my moves on aframe.io/a-saturday-night!" />
+    <meta property="og:description" content="A-Saturday-Night from Mozilla VR! Share your dance with the world in VR." />
+    <meta property="og:image" id="facebookimg" content="http://aframe.io/a-saturday-night/assets/logo-small.png" />
+
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
@@ -48,9 +60,6 @@
         <h1>Generating GIF, please wait...</h1>
         <a href="javascript:;" class="close hide" id="gifclose">&times;</a>
         <img src="assets/loading.gif">
-        <div id="share-buttons" class="hide">
-          <a href="javascript:;" class="button">SHARE ON TWITTER</a>
-        </div>
       </div>
     </div>
 
@@ -115,7 +124,7 @@
         <a-entity id="avatarHead"
                   camera="userHeight: 0"
                   wasd-controls look-controls
-                  visiblefalse"></a-entity>
+                  visible="false"></a-entity>
         <!-- Avatar Hands -->
         <a-entity id="leftHand" visible="false"></a-entity>
         <a-entity id="rightHand" visible="false"></a-entity>
@@ -132,7 +141,7 @@
       </a-entity>
 
 
-      <a-entity id="backText" text="font: assets/asaturdaynight.fnt; align: center; opacity: 1; width: 2.8; color:#fffdb3; value:( Turn around )"" visible="false" position="0 1.4 2.19" rotation="0 180 0"></a-entity>
+      <a-entity id="backText" text="font: assets/asaturdaynight.fnt; align: center; opacity: 1; width: 2.8; color:#fffdb3; value:( Turn around )" visible="false" position="0 1.4 2.19" rotation="0 180 0"></a-entity>
 
       <!-- Lights -->
       <a-entity id="light0" light="color:#f8b927;intensity:2;type:point;" position="0 -2 0.5"></a-entity>
@@ -193,20 +202,20 @@
       </a-entity>
     </a-scene>
 
-    <div id="asaturday-ui" class="h dialog">
+    <div id="asaturday-ui" class="hide dialog">
       <div class="progress hide">
         Saving dance...
         <div class="bar"></div>
       </div>
-      <div class="share h">
+      <div class="share hide">
         <div class="help">
           <h1>Dance saved!</h1>
           <p>Now share it! copy the dance URL or send an animated GIF</p>
         </div>
         <div class="form">
-          <input id="asaturday-share-url" type="text" value="" />
+          <input id="asaturday-share-url" type="text" value="" readonly />
           <div id="copy-toclipboard" data-clipboard-target="#asaturday-share-url" class="button copy">COPY URL</div>
-          <a href="javascript:;" class="button" id="generategif">SHARE GIF</a>
+          <a href="javascript:;" class="button" id="generategif">MAKE GIF</a>
         </div>
       </div>
     </div>
