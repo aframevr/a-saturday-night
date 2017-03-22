@@ -211,7 +211,7 @@ body {
   background: rgba(0, 0, 0, 0.3);
 }
 #gif-ui.black{
-  background: #000;
+  /*background: #000;*/
 }
 #gif-ui .dialog{
   position: absolute;
@@ -246,7 +246,4 @@ body {
   position: absolute;
   left: 450px;
   top: -10px;
-}
-#gif-ui .close:hover{
-
 }

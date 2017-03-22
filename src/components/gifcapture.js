@@ -12,7 +12,11 @@ AFRAME.registerComponent('gifcapture', {
     saveToFile: {default: true}
   },
 
-  init: function() {
+  init: function () {
+    this.start();
+  },
+  start: function () {
+    var el = this.el;
     this.capturer = new CCapture({
       format: 'gif',
       framerate: this.data.fps,
@@ -21,6 +25,18 @@ AFRAME.registerComponent('gifcapture', {
       name: 'mydance'
     });
     this.startCapture = this.startCapture.bind(this);
+
+    if (el.is('vr-mode')) {
+      el.addEventListener('exit-vr', this.prepareCapture.bind(this));
+      el.exitVR();
+    }
+    else {
+      this.prepareCapture();
+    }
+  },
+
+  prepareCapture: function () {
+    this.el.removeEventListener('exit-vr', this.prepareCapture);
     window.setTimeout(this.startCapture, this.data.delay * 1000);
   },
 
@@ -28,24 +44,17 @@ AFRAME.registerComponent('gifcapture', {
     var el = this.el;
     var cameraRigEl = el.querySelector('#spectatorCameraRig');
     this.oldSize = this.el.sceneEl.renderer.getSize();
-    if (el.is('vr-mode')) {
-      this.el.addEventListener('exit-vr', this.startCapture);
-      this.el.exitVR();
-      return;
-    }
-    // save camera position and bring it closer
-    var spectatorCameraRigPosition = this.spectatorCameraRigPosition = cameraRigEl.getAttribute('position');
-    cameraRigEl.setAttribute('position', {
-      x: spectatorCameraRigPosition.x,
-      y: spectatorCameraRigPosition.y,
-      z: spectatorCameraRigPosition.z - 1.0
-    });
+
+    // save camera position
+    this.spectatorCameraRigPosition = cameraRigEl.getAttribute('position');
+
+    //get camera closer
+    cameraRigEl.setAttribute('position', '0 1.4 0.8');
     el.sceneEl.renderer.setSize(
       this.data.width / window.devicePixelRatio, this.data.height / window.devicePixelRatio);
     this.effectRender = this.el.sceneEl.effect.render.bind(this.el.sceneEl.effect);
     el.sceneEl.effect.render = this.render.bind(this);
     el.emit('start');
-    el.removeEventListener('exit-vr', this.startCapture);
     window.setTimeout(this.stopCapture.bind(this), this.data.duration * 1000);
     this.capturer.start();
   },
@@ -64,13 +73,14 @@ AFRAME.registerComponent('gifcapture', {
     }
     el.sceneEl.renderer.setSize(this.oldSize.width, this.oldSize.height);
     el.sceneEl.effect.render = this.effectRender;
-    // restore camera
+    // restore camera position
     cameraRigEl.setAttribute('position', this.spectatorCameraRigPosition);
   },
 
   render: function (scene, camera) {
     this.effectRender(scene, camera);
     this.capturer.capture(this.el.sceneEl.canvas);
+    console.log('gif frame captured');
   }
 
 });
