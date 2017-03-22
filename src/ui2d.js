@@ -73,7 +73,8 @@ window.addEventListener('load', function (event) {
       gifui.classList.add('black');
       gifui.classList.add('hide');
       gifui.querySelector('img').src = "assets/loading.gif"
-      gifui.querySelector('h1').innerHTML = 'Generating GIF, please wait...';
+      gifui.querySelector('h1').innerHTML = 'Making GIF, please wait...';
+      gifui.querySelector('#share-buttons').classList.add('hide');
       gifui.querySelector('#gifclose').classList.add('hide');
       gifui.querySelector('#gifclose').classList.add('hide');
   });
