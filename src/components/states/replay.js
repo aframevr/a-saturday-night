@@ -109,19 +109,19 @@ AFRAME.registerComponent('replay', {
       align: 'right',
       anchor:'right',
       side:  'double',
-      value: '<< Press trigger\nto record\n and upload\n your dance',
+      value: '<< Press trigger to record\n and upload your dance',
       width: 0.40,
       opacity: 0
     };
     this.leftTooltip = document.createElement('a-entity');
     this.leftTooltip.setAttribute('text', textProps);
     this.leftTooltip.setAttribute('rotation', '-90 0 0');
-    this.leftTooltip.setAttribute('position', '0.17 -0.03 0.07');
+    this.leftTooltip.setAttribute('position', '0.23 -0.03 0.06');
     this.rightTooltip = document.createElement('a-entity');
     this.rightTooltip.setAttribute('text', textProps);
-    this.rightTooltip.setAttribute('text', {anchor: 'left', align: 'left', value: 'Press trigger >>\nto record\n your dance'});
+    this.rightTooltip.setAttribute('text', {anchor: 'left', align: 'left', value: 'Press trigger to record >>\nand upload your dance'});
     this.rightTooltip.setAttribute('rotation', '-90 0 0');
-    this.rightTooltip.setAttribute('position', '-0.17 -0.03 0.07');
+    this.rightTooltip.setAttribute('position', '-0.23 -0.03 0.06');
 
     leftSelectionHandEl.appendChild(this.leftTooltip);
     rightSelectionHandEl.appendChild(this.rightTooltip);
