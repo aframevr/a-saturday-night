@@ -1,6 +1,3 @@
-var getUrlParams = require('../../utils').getUrlParams;
-var defaultDanceData = require('json!../../../assets/dance.json');
-
 AFRAME.registerComponent('replay', {
   init: function () {
     this.onEnterVR = this.onEnterVR.bind(this);
@@ -23,7 +20,6 @@ AFRAME.registerComponent('replay', {
     var self = this;
     var el = this.el;
     window.isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-    var timeout = isChrome ? 0 : 800;
     var selectedAvatarEl = this.selectedAvatarEl = document.getElementById(data.avatar);
     var selectedAvatarHeadEl = selectedAvatarEl.querySelector('.head');
     var selectedAvatarRightHandEl = selectedAvatarEl.querySelector('.rightHand');

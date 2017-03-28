@@ -17,7 +17,6 @@ AFRAME.registerComponent('game-state', {
 
   update: function (oldData) {
     var data = this.data;
-    var el = this.el;
     if (oldData.state !== data.state) {
       this.setState(data.state);
       return;
