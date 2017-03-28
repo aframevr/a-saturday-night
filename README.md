@@ -10,7 +10,7 @@ A WebVR dancing experience using [A-Frame](http://aframe.io) by [Mozilla VR](htt
 
 ## Usage
 
-- Donwload [WebVR Dev Edition](https://www.mozilla.org/en-US/firefox/developer/) and follow the [setup instructions](https://webvr.rocks/firefox#setup)
+- Donwload [Firefox Nightly](https://webvr.rocks/firefox) and follow the setup instructions.
 - Head to [https://aframe.io/a-saturday-night/](https://aframe.io/a-saturday-night/) and start dancing. See the [blog post](https://blog.mozvr.com/a-saturday-night/) for more information.
 
 [![Screenshot of A-Saturday-Night main menu](assets/readme/screenshot1.jpg)](https://aframe.io/a-saturday-night/)
