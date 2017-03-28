@@ -57,6 +57,7 @@
 
 	// Systems
 	__webpack_require__(6);
+	__webpack_require__(7);
 
 
 /***/ },
@@ -143,11 +144,22 @@
 	  },
 
 	  getJSONData: function () {
+	    var data;
+	    var trackedControlsComponent = this.el.components['tracked-controls'];
+	    var controller = trackedControlsComponent && trackedControlsComponent.controller;
 	    if (!this.recordedPoses) { return; }
-	    return {
+	    data = {
 	      poses: this.system.getStrokeJSON(this.recordedPoses),
 	      events: this.recordedEvents
 	    };
+	    if (controller) {
+	      data.gamepad = {
+	        id: controller.id,
+	        hand: controller.hand,
+	        index: controller.index
+	      };
+	    }
+	    return data;
 	  },
 
 	  saveCapture: function (binary) {
@@ -177,10 +189,11 @@
 	    } else {
 	      // Don't try to record camera with controllers.
 	      if (el.components.camera) { return; }
+
 	      if (data.recordingControls) {
-		      el.setAttribute('vive-controls', {hand: data.hand, model: false});
-		      el.setAttribute('oculus-touch-controls', {hand: data.hand});
-		    }
+	        el.setAttribute('vive-controls', {hand: data.hand});
+	        el.setAttribute('oculus-touch-controls', {hand: data.hand});
+	      }
 	      el.setAttribute('stroke', '');
 	    }
 	  },
@@ -324,6 +337,10 @@
 	    this.isReplaying = true;
 	    this.startReplayingPoses(data.poses);
 	    this.startReplayingEvents(data.events);
+	    if (data.gamepad) {
+	      this.el.sceneEl.systems['motion-capture-replayer'].gamepads.push(data.gamepad);
+	      this.el.emit('gamepadconnected');
+	    }
 	    this.el.emit('replayingstarted');
 	  },
 
@@ -452,7 +469,7 @@
 	    spectatorPosition: {default: '0 1.6 0', type: 'vec3'},
 	    localStorage: {default: true},
 	    saveFile: {default: true},
-	    loop: {default: true},
+	    loop: {default: true}
 	  },
 
 	  init: function () {
@@ -572,26 +589,26 @@
 	  },
 
 	  setupCamera: function () {
-	  	var el = this.el;
-	  	var self = this;
-	  	var setup;
-	  	// Grab camera.
-	  	if (el.camera && el.camera.el) {
-	  	  prepareCamera(el.camera.el);
-	  	  return;
-	  	}
-	  	el.addEventListener('camera-set-active', setup)
-	  	setup = function (evt) { prepareCamera(evt.detail.cameraEl); };
+	    var el = this.el;
+	    var self = this;
+	    var setup;
+	    // Grab camera.
+	    if (el.camera && el.camera.el) {
+	      prepareCamera(el.camera.el);
+	      return;
+	    }
+	    el.addEventListener('camera-set-active', setup)
+	    setup = function (evt) { prepareCamera(evt.detail.cameraEl); };
 
-	  	function prepareCamera (cameraEl) {
-	  	  if (self.cameraEl) { self.cameraEl.removeAttribute('motion-capture-recorder'); }
-	  	  self.cameraEl = cameraEl;
-	  	  self.cameraEl.setAttribute('motion-capture-recorder', {
-	  	    autoRecord: false,
-	  	    visibleStroke: false
-	  	  });
-	  	  el.removeEventListener('camera-set-active', setup);
-	  	}
+	    function prepareCamera (cameraEl) {
+	      if (self.cameraEl) { self.cameraEl.removeAttribute('motion-capture-recorder'); }
+	      self.cameraEl = cameraEl;
+	      self.cameraEl.setAttribute('motion-capture-recorder', {
+	        autoRecord: false,
+	        visibleStroke: false
+	      });
+	      el.removeEventListener('camera-set-active', setup);
+	    }
 	  },
 
 	  startRecording: function () {
@@ -751,16 +768,13 @@
 	  },
 
 	  initSpectatorCamera: function () {
-	    var spectatorCameraEl;
-	    var spectatorCameraRigEl = this.el.querySelector('#spectatorCameraRig');
-	    if (spectatorCameraRigEl) {
-	    	this.spectatorCameraRigEl = spectatorCameraRigEl;
-	    	this.spectatorCameraEl = spectatorCameraRigEl.querySelector('[camera]');
-	    	return;
-	    }
-	    spectatorCameraEl = this.spectatorCameraEl = document.createElement('a-entity');
-	    spectatorCameraRigEl = this.spectatorCameraRigEl = document.createElement('a-entity');
-	    spectatorCameraRigEl.id = 'spectatorCamera';
+	    var spectatorCameraEl = this.spectatorCameraEl =
+	      this.el.querySelector('#spectatorCamera') || document.createElement('a-entity');
+	    var spectatorCameraRigEl = this.spectatorCameraRigEl =
+	      this.el.querySelector('#spectatorCameraRig') || document.createElement('a-entity');
+	    if (this.el.querySelector('#spectatorCameraRig')
+	        || !this.data.spectatorMode) { return; }
+	    spectatorCameraEl.id = 'spectatorCamera';
 	    spectatorCameraRigEl.id = 'spectatorCameraRig';
 	    spectatorCameraEl.setAttribute('camera', '');
 	    spectatorCameraEl.setAttribute('look-controls', '');
@@ -831,6 +845,7 @@
 	      this.spectatorCameraRigEl.setAttribute('position', data.spectatorPosition);
 	      spectatorCameraEl.setAttribute('camera', 'active', true);
 	    } else {
+	      debugger
 	      currentCameraEl.setAttribute('camera', 'active', true);
 	    }
 	    this.configureHeadGeometry();
@@ -1279,6 +1294,44 @@
 	  }
 	});
 
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	AFRAME.registerSystem('motion-capture-replayer', {
+	  init: function () {
+	    var sceneEl = this.sceneEl;
+	    var trackedControlsSystem = sceneEl.systems['tracked-controls'];
+	    var trackedControlsTick = AFRAME.components['tracked-controls'].Component.prototype.tick;
+	    this.gamepads = [];
+	    this.updateControllerListOriginal = trackedControlsSystem.updateControllerList.bind(trackedControlsSystem);
+	    sceneEl.systems['tracked-controls'].updateControllerList = this.updateControllerList.bind(this);
+	    AFRAME.components['tracked-controls'].Component.prototype.tick = this.trackedControlsTickWrapper;
+	    AFRAME.components['tracked-controls'].Component.prototype.trackedControlsTick = trackedControlsTick;
+	  },
+
+	  trackedControlsTickWrapper: function (time, delta) {
+	    if (this.el.components['motion-capture-replayer']) { return; }
+	    this.trackedControlsTick(time, delta);
+	  },
+
+	  updateControllerList: function () {
+	    var sceneEl = this.sceneEl;
+	    var i;
+	    var trackedControlsSystem = sceneEl.systems['tracked-controls'];
+	    this.updateControllerListOriginal();
+	    this.gamepads.forEach(function (gamepad) {
+	      if (trackedControlsSystem.controllers[gamepad.index]) { return; }
+	      trackedControlsSystem.controllers[gamepad.index] = gamepad;
+	    });
+	    for (i = 0; i < trackedControlsSystem.controllers.length; ++i) {
+	      if (!trackedControlsSystem.controllers[i]) {
+	        trackedControlsSystem.controllers[i] = {id: '___', index: -1, hand: 'finger'};
+	      }
+	    }
+	  }
+	});
 
 /***/ }
 /******/ ]);
