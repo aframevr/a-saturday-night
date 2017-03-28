@@ -58,7 +58,6 @@
       </div>
     </div>
 
-
     <div id="gif-ui" class="hide black">
       <div class="dialog">
         <h1>Making GIF, please wait...</h1>
@@ -70,7 +69,6 @@
     <div class="watermark">
       <a href="http://aframe.io/a-saturday-night"><img src="assets/logo-small.png" alt="a-saturday-night logo"></a>
     </div>
-
 
     <a-scene uploadcare="publicKey: 85ed3c25d99e387316bd" game-state
              avatar-recorder="spectatorPlay: true; spectatorPosition: 0 0 0; localStorage: false; saveFile: false"
@@ -214,9 +212,11 @@
       <div class="share hide">
         <div class="help">
           <h1>Dance saved!</h1>
-          <p>Now share it! copy the dance URL or send an animated GIF</p>
+          <p>You now can copy the dance URL, share it or get an animated GIF</p>
         </div>
         <div class="form">
+          <a id="sharetwitter" href="#" class="button" target="_blank"><img src="assets/twitter.gif" alt="share on twitter"></a>
+          <a id="sharefacebook" href="#" class="button" target="_blank"><img src="assets/facebook.gif" alt="share on facebook"></a>
           <input id="asaturday-share-url" type="text" value="" readonly />
           <div id="copy-toclipboard" data-clipboard-target="#asaturday-share-url" class="button copy">COPY URL</div>
           <a href="javascript:;" class="button" id="generategif">MAKE GIF</a>

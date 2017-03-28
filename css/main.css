@@ -58,9 +58,13 @@ body {
   color: #fff;
   cursor: pointer;
   text-align: center;
-  padding: 8px 20px;
+  padding: 8px 15px;
   border-radius: 10px;
-  margin-right: 20px;
+  margin-right: 15px;
+}
+
+#asaturday-ui .button img{
+  vertical-align: middle;
 }
 
 #asaturday-ui .copy{
@@ -75,6 +79,7 @@ body {
 #asaturday-ui .form {
   display: flex;
   align-content: center;
+  margin-bottom: 1rem;
 }
 
 #asaturday-ui .share input {
@@ -222,13 +227,13 @@ body {
   background: rgba(0, 0, 0, 0.3);
 }
 #gif-ui.black{
-  /*background: #000;*/
+  background: #000;
 }
 #gif-ui .dialog{
   position: absolute;
   width: 400px;
   top: 30%;
-  top: calc(45vh - 200px);
+  top: calc(40vh - 200px);
   left: calc(50% - 200px);
   background: rgba(0, 0, 0, 0.8);
   text-align: center;
@@ -240,10 +245,6 @@ body {
   display: block;
   background: black;
   margin: 3rem auto;
-}
-
-#gif-ui #share-buttons img {
-  vertical-align: text-bottom;
 }
 
 #gif-ui b{
