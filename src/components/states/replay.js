@@ -109,7 +109,7 @@ AFRAME.registerComponent('replay', {
       align: 'right',
       anchor:'right',
       side:  'double',
-      value: '<< Press trigger\nto record\n your dance',
+      value: '<< Press trigger\nto record\n and upload\n your dance',
       width: 0.40,
       opacity: 0
     };

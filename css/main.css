@@ -10,6 +10,17 @@ body {
   }
 }
 
+.credits {
+  margin-top: 50px;
+  text-align: center;
+  width: 100%;
+}
+
+.credits .title {
+  font-weight: bold;
+  color: #e43b5e;
+}
+
 .dialog {
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1.2em;
@@ -220,7 +231,7 @@ body {
   top: calc(45vh - 200px);
   left: calc(50% - 200px);
   background: rgba(0, 0, 0, 0.8);
-  text-align: center;  
+  text-align: center;
 }
 #gif-ui .button {
   margin: 0;
