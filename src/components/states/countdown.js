@@ -22,8 +22,13 @@ AFRAME.registerComponent('countdown', {
     leftHandEl.setAttribute('rotation', '0 0 0');
     rightHandEl.setAttribute('position', '0 0 0');
     rightHandEl.setAttribute('rotation', '0 0 0');
-    leftHandEl.setAttribute('tracked-controls', {controller: 0, id: 'OpenVR Gamepad'});
-    rightHandEl.setAttribute('tracked-controls', {controller: 1, id: 'OpenVR Gamepad'});
+
+    leftHandEl.setAttribute('vive-controls', {hand: 'left', model: false});
+    leftHandEl.setAttribute('oculus-touch-controls', {hand: 'left', model: false});
+
+    rightHandEl.setAttribute('vive-controls', {hand: 'right', model: false});
+    rightHandEl.setAttribute('oculus-touch-controls', {hand: 'right', model: false});
+
     leftHandEl.setAttribute('visible', true);
     rightHandEl.setAttribute('visible', true);
     avatarHeadEl.setAttribute('visible', false);
@@ -40,8 +45,8 @@ AFRAME.registerComponent('countdown', {
     }
 
     this.el.setAttribute('game-state', 'countdownTime', this.countdownTime);
-    if (this.countdownTime === 0) { 
-      window.clearInterval(this.interval); 
+    if (this.countdownTime === 0) {
+      window.clearInterval(this.interval);
     }
     else {
       this.floor.setAttribute('discofloor', {pattern: '' + this.countdownTime});

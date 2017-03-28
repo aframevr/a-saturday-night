@@ -98,6 +98,8 @@ AFRAME.registerComponent('replay', {
     rightSelectionHandEl.id = 'rightSelectionHand';
     leftSelectionHandEl.setAttribute('vive-controls', 'hand: left');
     rightSelectionHandEl.setAttribute('vive-controls', 'hand: right');
+    leftSelectionHandEl.setAttribute('oculus-touch-controls', 'hand: left');
+    rightSelectionHandEl.setAttribute('oculus-touch-controls', 'hand: right');
     spectatorCameraRigEl.appendChild(leftSelectionHandEl);
     spectatorCameraRigEl.appendChild(rightSelectionHandEl);
     leftSelectionHandEl.addEventListener('triggerdown', this.onTriggerDown);

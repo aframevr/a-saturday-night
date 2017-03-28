@@ -43,6 +43,9 @@ AFRAME.registerComponent('avatar-selection', {
     rightSelectionHandEl.id = 'rightSelectionHand';
     leftSelectionHandEl.setAttribute('vive-controls', 'hand: left');
     rightSelectionHandEl.setAttribute('vive-controls', 'hand: right');
+    leftSelectionHandEl.setAttribute('oculus-touch-controls', 'hand: left');
+    rightSelectionHandEl.setAttribute('oculus-touch-controls', 'hand: right');
+
     leftRayEl.setAttribute('line', 'end: 0 0 -5');
     //leftRayEl.setAttribute('visible', false);
     rightRayEl.setAttribute('line', 'end: 0 0 -5');
