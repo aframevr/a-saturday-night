@@ -1,3 +1,5 @@
+var audioCapabilities = require('../../utils').capabilities.audio;
+
 AFRAME.registerComponent('dancing', {
   init: function () {
     var el = this.el;
@@ -8,7 +10,7 @@ AFRAME.registerComponent('dancing', {
     this.avatarHeadEl = el.querySelector('#avatarHead');
 
     var avatarId = this.el.getAttribute('game-state').selectedAvatar.id;
-    var soundAsset = '#' + avatarId + (isChrome ? 'ogg' : 'mp3');
+    var soundAsset = '#' + avatarId + (audioCapabilities.opus ? 'ogg' : 'mp3');
     el.setAttribute('game-state', 'dancingTime', document.querySelector(soundAsset).getAttribute('duration'));
     soundEl.setAttribute('sound', 'src', soundAsset);
 

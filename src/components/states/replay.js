@@ -1,3 +1,5 @@
+var audioCapabilities = require('../../utils').capabilities.audio;
+
 AFRAME.registerComponent('replay', {
   init: function () {
     this.onEnterVR = this.onEnterVR.bind(this);
@@ -19,7 +21,6 @@ AFRAME.registerComponent('replay', {
   loadDance: function (data) {
     var self = this;
     var el = this.el;
-    window.isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
     var selectedAvatarEl = this.selectedAvatarEl = document.getElementById(data.avatar);
     var selectedAvatarHeadEl = selectedAvatarEl.querySelector('.head');
     var selectedAvatarRightHandEl = selectedAvatarEl.querySelector('.rightHand');
@@ -69,7 +70,7 @@ AFRAME.registerComponent('replay', {
 
     document.getElementById('floor').setAttribute('discofloor', {pattern: data.avatar});
 
-    var soundSrc = '#' + data.avatar + (isChrome ? 'ogg' : 'mp3');
+    var soundSrc = '#' + data.avatar + (audioCapabilities.opus ? 'ogg' : 'mp3');
     el.sceneEl.setAttribute('game-state', 'dancingTime', document.querySelector(soundSrc).getAttribute('duration'));
     el.components['avatar-replayer'].startReplaying(data.recording);
     document.querySelector('#room [sound]').setAttribute('sound', {

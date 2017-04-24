@@ -1,3 +1,5 @@
+var audioCapabilities = require('../../utils').capabilities.audio;
+
 AFRAME.registerComponent('avatar-selection', {
   init: function () {
     var avatarSelectionEl = this.avatarSelectionEl = this.el.querySelector('#avatarSelection');
@@ -15,10 +17,10 @@ AFRAME.registerComponent('avatar-selection', {
     window.addEventListener('keydown', this.onKeyDown);
     document.getElementById('backText').setAttribute('visible', true);
     for (var i = 1; i <= 4; i++) {
-      document.getElementById('spot'+i).setAttribute('scale', '0 0 0');
+      document.getElementById('spot' + i).setAttribute('scale', '0 0 0');
     }
     document.querySelector('#room [sound]').setAttribute('sound', {
-      src: isChrome ? '#menuogg' : '#menump3',
+      src: audioCapabilities.opus ? '#menuogg' : '#menump3',
       volume: 0.5,
       autoplay: true,
       positional: false

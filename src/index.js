@@ -22,4 +22,3 @@ require('./components/states/countdown.js');
 require('./components/states/dancing.js');
 require('./components/states/instructions.js');
 require('./components/states/replay.js');
-
