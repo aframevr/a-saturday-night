@@ -58,15 +58,26 @@ AFRAME.registerComponent('dancing', {
       avatarEl.querySelector('.head').getAttribute('gltf-model'));
   },
 
+  // fix until A-Frame issue is resolved
+  // https://github.com/aframevr/aframe/issues/2928
+  whenLoaded: function(el) {
+    return new Promise(function (resolve) {
+      if (el.hasLoaded) resolve(el);
+      el.addEventListener('loaded', function() {
+        resolve(el)
+      });
+    })
+  },
+
   initMimoRig: function () {
     var avatarMimoRigEl = this.avatarMimoRigEl = document.createElement('a-entity');
     var avatarMimoRigPivotEl = this.avatarMimoRigPivotEl = document.createElement('a-entity');
     var rightHandMimoEl = this.rightHandMimoEl = document.createElement('a-entity');
     var leftHandMimoEl = this.leftHandMimoEl = document.createElement('a-entity');
     var headMimoEl = this.headMimoEl = document.createElement('a-entity');
-    headMimoEl.setAttribute('mimo', '#avatarHead');
-    rightHandMimoEl.setAttribute('mimo', '#leftHand');
-    leftHandMimoEl.setAttribute('mimo', '#rightHand');
+    this.whenLoaded(headMimoEl).then(function (el) { el.setAttribute('mimo', '#avatarHead'); })
+    this.whenLoaded(rightHandMimoEl).then(function (el) { el.setAttribute('mimo', '#leftHand'); })
+    this.whenLoaded(leftHandMimoEl).then(function (el) { el.setAttribute('mimo', '#rightHand'); })
     avatarMimoRigEl.appendChild(rightHandMimoEl);
     avatarMimoRigEl.appendChild(leftHandMimoEl);
     avatarMimoRigEl.setAttribute('position', '0 0 -2.5');
