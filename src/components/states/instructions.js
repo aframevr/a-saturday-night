@@ -6,9 +6,28 @@ AFRAME.registerComponent('instructions', {
     this.startButtonEl = document.querySelector('.start-button');
     this.startButtonEl.querySelector('span').innerHTML = 'Loading';
     this.startButtonEl.querySelector('span').classList.add('loading');
-    this.onClicked = this.onClicked.bind(this);
+    this.startReplaying = this.startReplaying.bind(this);
     this.loading = true;
+    this.danceData = null;
     this.el.sceneEl.addEventListener('loaded', this.downloadDance.bind(this));
+  },
+
+  handleDanceData: function (data) {
+    this.danceData = data;
+
+    var sceneEl = this.el.sceneEl;
+    var inVR = sceneEl.is('vr-mode');
+
+    if (!sceneEl.hasLoaded) {
+      sceneEl.addEventListener('loaded', this.handleDanceData.bind(this));
+      return;
+    }
+
+    if (inVR) {
+      this.startReplaying();
+    } else {
+      this.setupStartButton();
+    }
   },
 
   downloadDance: function () {
@@ -16,12 +35,10 @@ AFRAME.registerComponent('instructions', {
     var self = this;
     if (urlParams.url) {
       this.el.sceneEl.systems['uploadcare'].download(urlParams.url, function (data) {
-        self.danceData = data.content;
-        self.setupStartButton();
+        self.handleDanceData(data.content);
       });
     } else {
-      this.danceData = defaultDanceData;
-      this.setupStartButton();
+      this.handleDanceData(defaultDanceData);
     }
   },
 
@@ -36,7 +53,9 @@ AFRAME.registerComponent('instructions', {
     buttonLabelEl.classList.remove('loading');
   },
 
-  onClicked: function () {
+  startReplaying: function () {
+    if (!this.danceData) { return; }
+
     var el = this.el;
     document.querySelector('.instructions-overlay').style.display = 'none';
     el.setAttribute('game-state', 'state', 'replay');
@@ -44,10 +63,12 @@ AFRAME.registerComponent('instructions', {
   },
 
   play: function () {
-    this.startButtonEl.addEventListener('click', this.onClicked);
+    this.startButtonEl.addEventListener('click', this.startReplaying);
+    this.el.sceneEl.addEventListener('enter-vr', this.startReplaying);
   },
 
-  remove: function () {
-    this.startButtonEl.removeEventListener('click', this.onClicked);
+  pause: function () {
+    this.startButtonEl.removeEventListener('click', this.startReplaying);
+    this.el.sceneEl.addEventListener('enter-vr', this.startReplaying);
   }
 });
