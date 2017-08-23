@@ -95,10 +95,15 @@ AFRAME.registerComponent('avatar-selection', {
     var selectedAvatarEl = this.selectedAvatarEl = avatarEl;
     var leftHandEl = el.querySelector('#leftHand');
     var rightHandEl = el.querySelector('#rightHand');
-    this.el.setAttribute('game-state', 'selectedAvatar', this.selectedAvatarEl);
+    el.setAttribute('game-state', 'selectedAvatar', this.selectedAvatarEl);
 
+    leftHandEl.setAttribute('position', {x: 0, y: 0, z: 0});
+    leftHandEl.setAttribute('rotation', {x: 0, y: 0, z: 0});
     leftHandEl.setAttribute('gltf-model',
                              selectedAvatarEl.querySelector('.leftHand').getAttribute('gltf-model'));
+
+    rightHandEl.setAttribute('position', {x: 0, y: 0, z: 0});
+    rightHandEl.setAttribute('rotation', {x: 0, y: 0, z: 0});
     rightHandEl.setAttribute('gltf-model',
                              selectedAvatarEl.querySelector('.rightHand').getAttribute('gltf-model'));
     this.removeSelectionHands();
