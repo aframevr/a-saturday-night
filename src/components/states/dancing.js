@@ -104,11 +104,23 @@ AFRAME.registerComponent('dancing', {
 
   remove: function () {
     var el = this.el;
+    var leftHandEl = el.querySelector('#leftHand');
+    var rightHandEl = el.querySelector('#rightHand');
     this.textElement.setAttribute('visible', false);
     this.counter0.setAttribute('visible', false);
     this.counter1.setAttribute('visible', false);
-    el.querySelector('#leftHand').removeAttribute('tracked-controls');
-    el.querySelector('#rightHand').removeAttribute('tracked-controls');
+    leftHandEl.removeAttribute('tracked-controls');
+    leftHandEl.removeAttribute('vive-controls');
+    leftHandEl.removeAttribute('oculus-touch-controls');
+    leftHandEl.setAttribute('position', {x: 0, y: 0, z:0});
+    leftHandEl.setAttribute('rotation', {x: 0, y: 0, z:0});
+
+    rightHandEl.removeAttribute('tracked-controls');
+    rightHandEl.removeAttribute('vive-controls');
+    rightHandEl.removeAttribute('oculus-touch-controls');
+    rightHandEl.setAttribute('position', {x: 0, y: 0, z:0});
+    rightHandEl.setAttribute('rotation', {x: 0, y: 0, z:0});
+
     document.querySelector('#room [sound]').components.sound.stopSound();
     this.avatarMimoRigEl.setAttribute('visible', false);
   }
