@@ -129,6 +129,7 @@ AFRAME.registerComponent('replay', {
   },
 
   onTriggerDown: function () {
+    if (!this.el.sceneEl.is('vr-mode')) { return; }
     this.el.setAttribute('game-state', 'state', 'avatar-selection');
   },
 
