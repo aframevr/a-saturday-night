@@ -17,12 +17,6 @@ AFRAME.registerComponent('countdown', {
     }
     this.opacity = 1;
 
-    // reset avatar positions and visibility
-    leftHandEl.setAttribute('position', '0 0 0');
-    leftHandEl.setAttribute('rotation', '0 0 0');
-    rightHandEl.setAttribute('position', '0 0 0');
-    rightHandEl.setAttribute('rotation', '0 0 0');
-
     leftHandEl.setAttribute('vive-controls', {hand: 'left', model: false});
     leftHandEl.setAttribute('oculus-touch-controls', {hand: 'left', model: false});
 
