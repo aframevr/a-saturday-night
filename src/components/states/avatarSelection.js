@@ -54,12 +54,12 @@ AFRAME.registerComponent('avatar-selection', {
     //rightRayEl.setAttribute('visible', false);
     // Raycaster setup
     rightSelectionHandEl.setAttribute('ui-raycaster', {
-      far: 2,
+      far: 4,
       objects: '.head',
       rotation: 0
     });
     leftSelectionHandEl.setAttribute('ui-raycaster', {
-      far: 2,
+      far: 4,
       objects: '.head',
       rotation: 0
     });
