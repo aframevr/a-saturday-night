@@ -2,6 +2,7 @@ var audioCapabilities = require('../../utils').capabilities.audio;
 
 AFRAME.registerComponent('avatar-selection', {
   init: function () {
+    var el = this.el;
     var avatarSelectionEl = this.avatarSelectionEl = this.el.querySelector('#avatarSelection');
     var avatarHeadEl = document.getElementById('avatarHead');
     var rightHandEl = document.getElementById('rightHand');
@@ -25,9 +26,9 @@ AFRAME.registerComponent('avatar-selection', {
       autoplay: true,
       positional: false
     });
+    el.setAttribute('game-state', 'selectedAvatar', null);
     this.insertSelectionHands();
-
-    this.el.querySelector('#floor').setAttribute('discofloor', {pattern: 'idle'});
+    el.querySelector('#floor').setAttribute('discofloor', {pattern: 'idle'});
   },
 
   insertSelectionHands: function () {
