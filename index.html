@@ -2,6 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fff78c">
     <title>A-Saturday-Night</title>
     <meta name="description" content="A WebVR dancing experience using A-Frame by Mozilla VR.">
     <link rel="stylesheet" href="css/main.css">
@@ -14,46 +17,48 @@
     <script src="https://unpkg.com/aframe-uploadcare-component/dist/aframe-uploadcare-component.min.js"></script>
     <script src="build/build.js"></script>
 
+    <link rel="manifest" href="manifest.webmanifest">
+
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@mozillavr" />
+    <meta name="twitter:site" content="@mozillavr">
     <meta name="twitter:title" content="Check out my moves on aframe.io/a-saturday-night!">
     <meta name="twitter:description" content="A-Saturday-Night from Mozilla VR! Share your dance with the world in VR.">
-    <meta  name="twitter:image" id="twitterimg" content="http://aframe.io/a-saturday-night/socialimg.jpg">
+    <meta name="twitter:image" id="twitterimg" content="https://aframe.io/a-saturday-night/socialimg.jpg">
 
-    <meta property="og:url" content="http://aframe.io/a-saturday-night" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Check out my moves on aframe.io/a-saturday-night!" />
-    <meta property="og:description" content="A-Saturday-Night from Mozilla VR! Share your dance with the world in VR." />
-    <meta property="og:image" id="facebookimg" content="http://aframe.io/a-saturday-night/socialimg.jpg" />
+    <meta property="og:url" content="https://aframe.io/a-saturday-night/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Check out my moves on aframe.io/a-saturday-night!">
+    <meta property="og:description" content="A-Saturday-Night from Mozilla VR! Share your dance with the world in VR.">
+    <meta property="og:image" id="facebookimg" content="https://aframe.io/a-saturday-night/socialimg.jpg">
 
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
-    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-    <meta name="application-name" content="A-Saturday-Night"/>
-    <meta name="msapplication-TileColor" content="#000000" />
-    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <meta name="application-name" content="A-Saturday-Night">
+    <meta name="msapplication-TileColor" content="#fff78c">
+    <meta name="msapplication-TileImage" content="mstile-144x144.png">
   </head>
   <body>
     <div class="instructions-overlay" id="instructions">
       <div class="instructions" class="hide">
-        <img src="assets/logo.png" alt="a-saturday-night logo">
+        <img src="assets/logo.png" alt="A-Saturday-Night logo">
         <div>
           <h2>Show everybody your moves!</h2>
           <p>This dance was captured using a VR headset and controllers. <br>
           If you have <b>HTC Vive</b> or <b>Oculus Rift</b> you will able to record and upload <br>your dance to <b>share it with everybody!</b> (<a href="https://www.mozilla.org/privacy/">privacy</a> and <a href="https://www.mozilla.org/privacy/websites/#cookies">cookies</a> policy)</a></p>
           <p>
-            <a href="http://blog.mozvr.com/a-saturday-night">Read more</a>
+            <a href="https://blog.mozvr.com/a-saturday-night/">Read more</a>
           </p>
         </div>
         <button class="start-button"><span>Loading...</span></button>
         <div class="credits">
           <span class="title">Code: </span>
-          <a href="https://twitter.com/dmarcos">dmarcos</a>, <a href="https://twitter.com/fernandojsg">fernandojsg</a>, <a href="https://twitter.com/feiss">feiss</a>, <a href='https://twitter.com/andgokevin'>ngokevin</a> <span class="title">Art: </span><a href="https://twitter.com/feiss">feiss</a> <span class="title">Music: </span><a href="https://soundcloud.com/josss-1">josss</a>
+          <a href="https://twitter.com/dmarcos">dmarcos</a>, <a href="https://twitter.com/fernandojsg">fernandojsg</a>, <a href="https://twitter.com/feiss">feiss</a>, <a href="https://twitter.com/andgokevin">ngokevin</a> <span class="title">Art: </span><a href="https://twitter.com/feiss">feiss</a> <span class="title">Music: </span><a href="https://soundcloud.com/josss-1">josss</a>
         </div>
       </div>
     </div>
@@ -67,7 +72,7 @@
     </div>
 
     <div class="watermark">
-      <a href="http://aframe.io/a-saturday-night"><img src="assets/logo-small.png" alt="a-saturday-night logo"></a>
+      <a href="https://aframe.io/a-saturday-night/"><img src="assets/logo-small.png" alt="A-Saturday-Night logo"></a>
     </div>
 
     <a-scene uploadcare="publicKey: 85ed3c25d99e387316bd" game-state
@@ -215,23 +220,22 @@
           <p>You now can copy the dance URL, share it or get an animated GIF</p>
         </div>
         <div class="form">
-          <a id="sharetwitter" href="#" class="button" target="_blank"><img src="assets/twitter.gif" alt="share on twitter"></a>
-          <a id="sharefacebook" href="#" class="button" target="_blank"><img src="assets/facebook.gif" alt="share on facebook"></a>
-          <input id="asaturday-share-url" type="text" value="" readonly />
+          <a id="sharetwitter" href="#" class="button" target="_blank"><img src="assets/twitter.gif" alt="Share on Twitter"></a>
+          <a id="sharefacebook" href="#" class="button" target="_blank"><img src="assets/facebook.gif" alt="Share on Facebook"></a>
+          <input id="asaturday-share-url" type="text" value="" readonly>
           <div id="copy-toclipboard" data-clipboard-target="#asaturday-share-url" class="button copy">COPY URL</div>
           <a href="javascript:;" class="button" id="generategif">MAKE GIF</a>
         </div>
       </div>
     </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-80530812-6', 'auto');
-    ga('send', 'pageview');
-  </script>
+      ga('create', 'UA-35433268-69', 'auto');
+      ga('send', 'pageview');
+    </script>
   </body>
 </html>
