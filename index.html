@@ -234,8 +234,26 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-35433268-69', 'auto');
+      ga('create', 'UA-80530812-6', 'auto');
+      ga('create', 'UA-35433268-69', 'auto', 'managers');
+
       ga('send', 'pageview');
+      ga('managers.send', 'pageview');
+
+      ga('send', 'event', 'pageload.querystring', window.location.search);
+      ga('managers.send', 'event', 'pageload.querystring', window.location.search);
+
+      ga('send', 'event', 'pageload.hash', window.location.hash);
+      ga('managers.send', 'event', 'pageload.hash', window.location.hash);
+
+      ga('send', 'event', 'supports.getVRDisplays', 'getVRDisplays' in navigator);
+      ga('managers.send', 'event', 'supports.getVRDisplays', 'getVRDisplays' in navigator);
+
+      ga('send', 'event', 'supports.navigator.vr', 'vr' in navigator);
+      ga('managers.send', 'event', 'supports.navigator.vr', 'vr' in navigator);
+
+      ga('send', 'event', 'supports.WEBVRPLUS', 'WEBVRPLUS' in window);
+      ga('managers.send', 'event', 'supports.WEBVRPLUS', 'WEBVRPLUS' in window);
     </script>
   </body>
 </html>
