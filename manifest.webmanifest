@@ -1,0 +1,82 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "name": "A-Saturday-Night",
+  "short_name": "A-Saturday-Night",
+  "description": "A-Saturday-Night from Mozilla VR! Share your dance with the world in VR.",
+  "start_url": "./?src=manifest",
+  "scope": "./",
+  "display": "fullscreen",
+  "theme_color": "#fff78c",
+  "background_color": "#fff78c",
+  "icons": [
+    {
+      "src": "favicon-64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon-120x120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon-114x114.png",
+      "sizes": "114x114",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon-57x57.png",
+      "sizes": "57x57",
+      "type": "image/png"
+    },
+    {
+      "src": "mstile-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "socialimg.jpg",
+      "sizes": "500x303",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/readme/screenshot1.jpg",
+      "sizes": "500x303",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/readme/asaturdaynight.gif",
+      "sizes": "576x300",
+      "type": "image/png"
+    }
+  ],
+  "about_url": "https://blog.mozvr.com/a-saturday-night/",
+  "vr_default_display": "HTC Vive",
+  "vr_available_displays": [
+    "HTC Vive",
+    "Oculus Rift"
+  ]
+}
